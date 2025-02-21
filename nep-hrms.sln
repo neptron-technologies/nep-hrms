@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nep-hrms.Server", "nep-hrms.Server\nep-hrms.Server.csproj", "{8E62BBE1-F38C-413A-AFE1-2E86EC7D7EFB}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "nep-hrms.client", "nep-hrms.client\nep-hrms.client.esproj", "{A3E5D911-447D-4349-B51F-5F35C5D87D39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nep-hrms.DAL", "nep-hrms.DAL\nep-hrms.DAL.csproj", "{6A379CD5-29F5-4E94-89C4-5FB6A3758E29}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nep-hrms.Domain", "nep-hrms.Domain\nep-hrms.Domain.csproj", "{3CB9D08B-A39C-478E-BD84-60D87D8B976D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8E62BBE1-F38C-413A-AFE1-2E86EC7D7EFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E62BBE1-F38C-413A-AFE1-2E86EC7D7EFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E62BBE1-F38C-413A-AFE1-2E86EC7D7EFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E62BBE1-F38C-413A-AFE1-2E86EC7D7EFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3E5D911-447D-4349-B51F-5F35C5D87D39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3E5D911-447D-4349-B51F-5F35C5D87D39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3E5D911-447D-4349-B51F-5F35C5D87D39}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{A3E5D911-447D-4349-B51F-5F35C5D87D39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3E5D911-447D-4349-B51F-5F35C5D87D39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3E5D911-447D-4349-B51F-5F35C5D87D39}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{6A379CD5-29F5-4E94-89C4-5FB6A3758E29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A379CD5-29F5-4E94-89C4-5FB6A3758E29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A379CD5-29F5-4E94-89C4-5FB6A3758E29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A379CD5-29F5-4E94-89C4-5FB6A3758E29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CB9D08B-A39C-478E-BD84-60D87D8B976D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CB9D08B-A39C-478E-BD84-60D87D8B976D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CB9D08B-A39C-478E-BD84-60D87D8B976D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CB9D08B-A39C-478E-BD84-60D87D8B976D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
