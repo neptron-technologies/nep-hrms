@@ -1,0 +1,10 @@
+{
+"SpaProxyServer": {
+"ServerUrl": "https://localhost:62986",
+"RedirectUrl": "",
+"LaunchCommand": "npm start",
+"WorkingDirectory": "C:\\Users\\Admin\\source\\repos\\HRMS-V2\\nep-hrms\\nep-hrms.Server\\..\\nep-hrms.client",
+"MaxTimeoutInSeconds": "120",
+"KeepRunning": "false"
+}
+}

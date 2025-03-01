@@ -1,0 +1,16 @@
+C:\Users\Admin\source\repos\HRMS-V2\nep-hrms\nep-hrms.Domain\bin\Debug\net8.0\nep-hrms.Domain.deps.json
+C:\Users\Admin\source\repos\HRMS-V2\nep-hrms\nep-hrms.Domain\bin\Debug\net8.0\nep-hrms.Domain.dll
+C:\Users\Admin\source\repos\HRMS-V2\nep-hrms\nep-hrms.Domain\bin\Debug\net8.0\nep-hrms.Domain.pdb
+C:\Users\Admin\source\repos\HRMS-V2\nep-hrms\nep-hrms.Domain\bin\Debug\net8.0\nep-hrms.DAL.dll
+C:\Users\Admin\source\repos\HRMS-V2\nep-hrms\nep-hrms.Domain\bin\Debug\net8.0\nep-hrms.DAL.pdb
+C:\Users\Admin\source\repos\HRMS-V2\nep-hrms\nep-hrms.Domain\obj\Debug\net8.0\nep-hrms.Domain.csproj.AssemblyReference.cache
+C:\Users\Admin\source\repos\HRMS-V2\nep-hrms\nep-hrms.Domain\obj\Debug\net8.0\nep-hrms.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\source\repos\HRMS-V2\nep-hrms\nep-hrms.Domain\obj\Debug\net8.0\nep-hrms.Domain.AssemblyInfoInputs.cache
+C:\Users\Admin\source\repos\HRMS-V2\nep-hrms\nep-hrms.Domain\obj\Debug\net8.0\nep-hrms.Domain.AssemblyInfo.cs
+C:\Users\Admin\source\repos\HRMS-V2\nep-hrms\nep-hrms.Domain\obj\Debug\net8.0\nep-hrms.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\HRMS-V2\nep-hrms\nep-hrms.Domain\obj\Debug\net8.0\nep-hrms.Domain.sourcelink.json
+C:\Users\Admin\source\repos\HRMS-V2\nep-hrms\nep-hrms.Domain\obj\Debug\net8.0\nep-hrms.BAB3AF08.Up2Date
+C:\Users\Admin\source\repos\HRMS-V2\nep-hrms\nep-hrms.Domain\obj\Debug\net8.0\nep-hrms.Domain.dll
+C:\Users\Admin\source\repos\HRMS-V2\nep-hrms\nep-hrms.Domain\obj\Debug\net8.0\refint\nep-hrms.Domain.dll
+C:\Users\Admin\source\repos\HRMS-V2\nep-hrms\nep-hrms.Domain\obj\Debug\net8.0\nep-hrms.Domain.pdb
+C:\Users\Admin\source\repos\HRMS-V2\nep-hrms\nep-hrms.Domain\obj\Debug\net8.0\ref\nep-hrms.Domain.dll

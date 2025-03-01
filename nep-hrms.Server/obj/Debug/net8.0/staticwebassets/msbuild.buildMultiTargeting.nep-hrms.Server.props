@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\nep-hrms.Server.props" />
+</Project>

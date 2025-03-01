@@ -1,0 +1,24 @@
+{
+  "Version": 1,
+  "Hash": "IWiHEoTN4SHrpURhztUrVnXriLoHY626hf0P9wmSqZs=",
+  "Source": "nep-hrms.Server",
+  "BasePath": "_content/nep-hrms.Server",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "C:\\Users\\Admin\\source\\repos\\HRMS-V2\\nep-hrms\\nep-hrms.client\\nep-hrms.client.esproj",
+      "Version": 2,
+      "Source": "nep-hrms.client",
+      "GetPublishAssetsTargets": "GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
+    }
+  ],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

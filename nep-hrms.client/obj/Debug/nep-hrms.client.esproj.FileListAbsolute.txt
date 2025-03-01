@@ -1,0 +1,2 @@
+D:\Main\Dev\nep-hrms\nep-hrms.client\obj\Debug\nep-hrms.client.esproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\HRMS-V2\nep-hrms\nep-hrms.client\obj\Debug\nep-hrms.client.esproj.CoreCompileInputs.cache
