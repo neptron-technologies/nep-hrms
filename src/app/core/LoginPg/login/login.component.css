@@ -1,0 +1,108 @@
+/* Reset & Remove Default Margin */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Prevent scrolling completely */
+html, body {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden !important; /* No scrolling */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #e0f7df, #c8ebc4);
+    background-attachment: fixed;
+    position: fixed;
+}
+
+/* Center the login card */
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Login Card */
+.login-card {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    border: 2px solid #4cae4c; /* Green border */
+}
+
+/* Heading */
+h2 {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+/* Input fields */
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #a0d6a0;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Input field hover & focus effects */
+input[type="text"]:hover, input[type="password"]:hover {
+    border-color: #6dbf6d;
+    box-shadow: 0 0 8px rgba(109, 191, 109, 0.3);
+}
+input[type="text"]:focus, input[type="password"]:focus {
+    outline: none;
+    border-color: #4cae4c;
+    box-shadow: 0 0 10px rgba(76, 174, 76, 0.5);
+}
+
+/* Login Button */
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4cae4c;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Button hover effect */
+button:hover {
+    background-color: #3b8c3b;
+    transform: scale(1.05);
+}
+
+/* Small screens */
+@media screen and (max-width: 480px) {
+    .login-card {
+        width: 90%;
+        padding: 1.5rem;
+    }
+    h2 {
+        font-size: 1.5rem;
+    }
+    input[type="text"], input[type="password"], button {
+        padding: 10px;
+    }
+}

@@ -1,0 +1,66 @@
+/* Reset & Remove Default Margin */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+/* Navbar */
+.navbar {
+    width: 100%;
+    background-color: #4cae4c; /* Green Header */
+    padding: 1rem;
+    text-align: center;
+    color: white;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+/* Dashboard Content */
+.dashboard-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+/* Logout Button */
+button {
+    padding: 12px 20px;
+    background-color: #4cae4c;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Button hover effect */
+button:hover {
+    background-color: #3b8c3b;
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 480px) {
+    .navbar {
+        font-size: 1.5rem;
+        padding: 0.8rem;
+    }
+
+    button {
+        padding: 10px 15px;
+    }
+}
