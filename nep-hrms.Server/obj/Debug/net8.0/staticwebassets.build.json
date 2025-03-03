@@ -1,13 +1,13 @@
 {
   "Version": 1,
-  "Hash": "IWiHEoTN4SHrpURhztUrVnXriLoHY626hf0P9wmSqZs=",
+  "Hash": "SFn8kOnCV0Iaqao19dKdfsv/YQLHXfW8GGnJsXErwcg=",
   "Source": "nep-hrms.Server",
   "BasePath": "_content/nep-hrms.Server",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [
     {
-      "Identity": "C:\\Users\\Admin\\source\\repos\\HRMS-V2\\nep-hrms\\nep-hrms.client\\nep-hrms.client.esproj",
+      "Identity": "C:\\Users\\Siddharth Prajapati\\Desktop\\HRMS-V2\\nep-hrms\\nep-hrms.client\\nep-hrms.client.esproj",
       "Version": 2,
       "Source": "nep-hrms.client",
       "GetPublishAssetsTargets": "GetCurrentProjectPublishStaticWebAssetItems",

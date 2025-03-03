@@ -4741,11 +4741,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\HRMS-V2\\nep-hrms\\nep-hrms.DAL\\nep-hrms.DAL.csproj",
+      "projectUniqueName": "C:\\Users\\Admin\\Downloads\\HRMS-V2\\HRMS-V2\\nep-hrms\\nep-hrms.DAL\\nep-hrms.DAL.csproj",
       "projectName": "nep-hrms.DAL",
-      "projectPath": "C:\\Users\\Admin\\source\\repos\\HRMS-V2\\nep-hrms\\nep-hrms.DAL\\nep-hrms.DAL.csproj",
+      "projectPath": "C:\\Users\\Admin\\Downloads\\HRMS-V2\\HRMS-V2\\nep-hrms\\nep-hrms.DAL\\nep-hrms.DAL.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Admin\\source\\repos\\HRMS-V2\\nep-hrms\\nep-hrms.DAL\\obj\\",
+      "outputPath": "C:\\Users\\Admin\\Downloads\\HRMS-V2\\HRMS-V2\\nep-hrms\\nep-hrms.DAL\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

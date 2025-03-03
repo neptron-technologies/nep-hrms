@@ -13,3 +13,33 @@ C:\Users\Admin\source\repos\HRMS-V2\nep-hrms\nep-hrms.DAL\obj\Debug\net8.0\refin
 C:\Users\Admin\source\repos\HRMS-V2\nep-hrms\nep-hrms.DAL\obj\Debug\net8.0\nep-hrms.DAL.pdb
 C:\Users\Admin\source\repos\HRMS-V2\nep-hrms\nep-hrms.DAL\obj\Debug\net8.0\nep-hrms.DAL.genruntimeconfig.cache
 C:\Users\Admin\source\repos\HRMS-V2\nep-hrms\nep-hrms.DAL\obj\Debug\net8.0\ref\nep-hrms.DAL.dll
+C:\Users\Admin\Desktop\HRMS-V2\nep-hrms\nep-hrms.DAL\bin\Debug\net8.0\nep-hrms.DAL.deps.json
+C:\Users\Admin\Desktop\HRMS-V2\nep-hrms\nep-hrms.DAL\bin\Debug\net8.0\nep-hrms.DAL.runtimeconfig.json
+C:\Users\Admin\Desktop\HRMS-V2\nep-hrms\nep-hrms.DAL\bin\Debug\net8.0\nep-hrms.DAL.dll
+C:\Users\Admin\Desktop\HRMS-V2\nep-hrms\nep-hrms.DAL\bin\Debug\net8.0\nep-hrms.DAL.pdb
+C:\Users\Admin\Desktop\HRMS-V2\nep-hrms\nep-hrms.DAL\obj\Debug\net8.0\nep-hrms.DAL.csproj.AssemblyReference.cache
+C:\Users\Admin\Desktop\HRMS-V2\nep-hrms\nep-hrms.DAL\obj\Debug\net8.0\nep-hrms.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\Desktop\HRMS-V2\nep-hrms\nep-hrms.DAL\obj\Debug\net8.0\nep-hrms.DAL.AssemblyInfoInputs.cache
+C:\Users\Admin\Desktop\HRMS-V2\nep-hrms\nep-hrms.DAL\obj\Debug\net8.0\nep-hrms.DAL.AssemblyInfo.cs
+C:\Users\Admin\Desktop\HRMS-V2\nep-hrms\nep-hrms.DAL\obj\Debug\net8.0\nep-hrms.DAL.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\HRMS-V2\nep-hrms\nep-hrms.DAL\obj\Debug\net8.0\nep-hrms.DAL.sourcelink.json
+C:\Users\Admin\Desktop\HRMS-V2\nep-hrms\nep-hrms.DAL\obj\Debug\net8.0\nep-hrms.DAL.dll
+C:\Users\Admin\Desktop\HRMS-V2\nep-hrms\nep-hrms.DAL\obj\Debug\net8.0\refint\nep-hrms.DAL.dll
+C:\Users\Admin\Desktop\HRMS-V2\nep-hrms\nep-hrms.DAL\obj\Debug\net8.0\nep-hrms.DAL.pdb
+C:\Users\Admin\Desktop\HRMS-V2\nep-hrms\nep-hrms.DAL\obj\Debug\net8.0\nep-hrms.DAL.genruntimeconfig.cache
+C:\Users\Admin\Desktop\HRMS-V2\nep-hrms\nep-hrms.DAL\obj\Debug\net8.0\ref\nep-hrms.DAL.dll
+C:\Users\Siddharth Prajapati\Desktop\HRMS-V2\nep-hrms\nep-hrms.DAL\bin\Debug\net8.0\nep-hrms.DAL.deps.json
+C:\Users\Siddharth Prajapati\Desktop\HRMS-V2\nep-hrms\nep-hrms.DAL\bin\Debug\net8.0\nep-hrms.DAL.runtimeconfig.json
+C:\Users\Siddharth Prajapati\Desktop\HRMS-V2\nep-hrms\nep-hrms.DAL\bin\Debug\net8.0\nep-hrms.DAL.dll
+C:\Users\Siddharth Prajapati\Desktop\HRMS-V2\nep-hrms\nep-hrms.DAL\bin\Debug\net8.0\nep-hrms.DAL.pdb
+C:\Users\Siddharth Prajapati\Desktop\HRMS-V2\nep-hrms\nep-hrms.DAL\obj\Debug\net8.0\nep-hrms.DAL.csproj.AssemblyReference.cache
+C:\Users\Siddharth Prajapati\Desktop\HRMS-V2\nep-hrms\nep-hrms.DAL\obj\Debug\net8.0\nep-hrms.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Siddharth Prajapati\Desktop\HRMS-V2\nep-hrms\nep-hrms.DAL\obj\Debug\net8.0\nep-hrms.DAL.AssemblyInfoInputs.cache
+C:\Users\Siddharth Prajapati\Desktop\HRMS-V2\nep-hrms\nep-hrms.DAL\obj\Debug\net8.0\nep-hrms.DAL.AssemblyInfo.cs
+C:\Users\Siddharth Prajapati\Desktop\HRMS-V2\nep-hrms\nep-hrms.DAL\obj\Debug\net8.0\nep-hrms.DAL.csproj.CoreCompileInputs.cache
+C:\Users\Siddharth Prajapati\Desktop\HRMS-V2\nep-hrms\nep-hrms.DAL\obj\Debug\net8.0\nep-hrms.DAL.sourcelink.json
+C:\Users\Siddharth Prajapati\Desktop\HRMS-V2\nep-hrms\nep-hrms.DAL\obj\Debug\net8.0\nep-hrms.DAL.dll
+C:\Users\Siddharth Prajapati\Desktop\HRMS-V2\nep-hrms\nep-hrms.DAL\obj\Debug\net8.0\refint\nep-hrms.DAL.dll
+C:\Users\Siddharth Prajapati\Desktop\HRMS-V2\nep-hrms\nep-hrms.DAL\obj\Debug\net8.0\nep-hrms.DAL.pdb
+C:\Users\Siddharth Prajapati\Desktop\HRMS-V2\nep-hrms\nep-hrms.DAL\obj\Debug\net8.0\nep-hrms.DAL.genruntimeconfig.cache
+C:\Users\Siddharth Prajapati\Desktop\HRMS-V2\nep-hrms\nep-hrms.DAL\obj\Debug\net8.0\ref\nep-hrms.DAL.dll

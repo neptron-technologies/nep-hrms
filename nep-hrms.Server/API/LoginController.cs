@@ -4,6 +4,10 @@ using nep_hrms.Domain.RequestInfo;
 using nep_hrms.Domain.Interfaces;
 using nep_hrms.Server.nep_hrms.DAL;
 using System.Reflection.Metadata.Ecma335;
+using nep_hrms.Server.Authenticate;
+using nep_hrms.Domain.Models;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace nep_hrms.Server.API
 {
@@ -11,46 +15,40 @@ namespace nep_hrms.Server.API
     [ApiController]
     public class LoginController : ControllerBase
     {
+        private readonly Auth _auth;
         private readonly ILoginService _loginService;
-        
-        public LoginController(ILoginService loginService)
+
+        public LoginController(ILoginService loginService, Auth auth)
         {
+            _auth = auth;
             _loginService = loginService;
         }
-        //[HttpPost]
-        //[Route("LoginAsync")]
-        //public async Task<IActionResult> LoginAsync(LoginInfo loginInfo)
-        //{
-        //    var result = _loginService.Login(loginInfo);
-        //    if (result == null)
-        //    {
-        //        return Unauthorized();
-        //    }
-        //    return Ok(result);
-        //}
 
-        //[HttpPost]
-        //[Route("Login")]
-        //public IActionResult Login(LoginInfo loginInfo)
-        //{
-        //    var result = _loginService.Login(loginInfo);
-        //    if (result == null)
-        //    {
-        //        return Unauthorized();
-        //    }
-        //    return Ok(result);
-        //}
+        [HttpPost]
+        [Route("Login")]
 
+        public async Task<IActionResult> GetUsersWithRolesAndPermissions([FromBody] UserRequest request)
+        {
+            var userDtos = await _loginService.GetUsersWithRolesAndPermissionsAsync(request);
+
+            
+
+
+            if (userDtos == null || !userDtos.Any())
+            {  
+               
+                return Unauthorized("Invalid Username or Password");
+
+            }
+            return Ok(userDtos );
+            
+
+        }
 
         
-        [HttpGet("all")]
-       
-        public async Task<IActionResult> GetUserAsync()
-        {
 
-            var result = await _loginService.GetUsers();
-            return Ok(result);
-        }
+
+
 
     }
 }

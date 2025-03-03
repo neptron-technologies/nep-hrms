@@ -1,58 +1,81 @@
-﻿using nep_hrms.DAL.Interfaces;
+﻿using Azure.Core;
+using Microsoft.EntityFrameworkCore;
+using nep_hrms.DAL.Interfaces;
 using nep_hrms.Domain.Interfaces;
+using nep_hrms.Domain.Models;
 using nep_hrms.Domain.RequestInfo;
 using nep_hrms.Domain.ViewModels;
 using nep_hrms.Server.nep_hrms.DAL;
 
+
 namespace nep_hrms.Domain.Services
 {
     public class LoginService : ILoginService
-    {  private readonly ILoginRepo _loginRepo;
-        
+    {
 
-        public LoginService(ILoginRepo loginRepo)
+        private readonly HrmsDBContext _dbContext;
+        public LoginService(HrmsDBContext context)
         {
-            _loginRepo = loginRepo;
-        }
+            _dbContext = context;
 
-        public async Task<List<User>> GetUsers()
+
+        }
+        public async Task<List<UserDto>> GetUsersWithRolesAndPermissionsAsync(UserRequest userRequest)
         {
-            var users = await _loginRepo.GetAllAsync();
-            return users;
+            var userEntities = await _dbContext.Users
+        .Include(u => u.UserRoles)
+            .ThenInclude(ur => ur.Role)
+                .ThenInclude(r => r.RolePermissions)
+                    .ThenInclude(rp => rp.Permission)
+        .FirstOrDefaultAsync(u => u.Username == userRequest.UserName);
+
+          
+            if (userEntities == null)
+            {
+                return new List<UserDto>();
+            }
+
+
+            var userDtos = new UserDto
+            {
+                Username = userEntities.Username,
+                RoleNames = userEntities.UserRoles.Select(ur => ur.Role.RoleName).ToList(),
+                Permissions = userEntities.UserRoles
+                    .SelectMany(ur => ur.Role.RolePermissions)
+                    .Select(rp => rp.Permission.PermissionType)
+                    .ToList()
+
+            };
+                
+
+
+                return new List<UserDto> { userDtos };
+                
+           
+
+
+
         }
-
-        //public async Task<List<User>> GetUser()
-        //{
-        //    var user = await _userRepo.GetAllAsync();
-        //    return user;
-        //} 
-
-        //public async Task<LoginResponseVM> LoginAsync(LoginInfo loginInfo)
-        //{
-        //    LoginResponseVM loginResponse = null;
-        //    if (loginInfo != null)
-        //    {
-        //        var users = await _userRepo.GetAllAsync();
-        //        var user = users.Where(u => u.Username == loginInfo.UserName).FirstOrDefault();
-        //    }
-        //    return loginResponse;
-        //}
-
-        //public LoginResponseVM Login(LoginInfo loginInfo)
-        //{
-        //    LoginResponseVM loginResponse = null;
-        //    if (loginInfo != null)
-        //    {
-        //        var users = _userRepo.GetAll();
-        //        var user = users.Where(u => u.Username == loginInfo.UserName).FirstOrDefault();
-        //    }
-        //    return loginResponse;
-        //}
-
-
 
 
 
 
     }
 }
+        
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+    
+    

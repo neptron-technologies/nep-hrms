@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-
+using static System.Net.Mime.MediaTypeNames;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace nep_hrms.Server.nep_hrms.DAL;
 
 public partial class HrmsDBContext : DbContext
@@ -724,9 +725,9 @@ public partial class HrmsDBContext : DbContext
                 .HasForeignKey<UserRole>(d => d.RoleId)
                 .HasConstraintName("FK_roles");
 
-            entity.HasOne(d => d.User).WithOne(p => p.UserRole)
-                .HasForeignKey<UserRole>(d => d.UserId)
-                .HasConstraintName("FK_users_roles");
+            //entity.HasOne(d => d.User).WithOne(p => p.UserRole)
+            //    .HasForeignKey<UserRole>(d => d.UserId)
+            //    .HasConstraintName("FK_users_roles");
         });
 
         OnModelCreatingPartial(modelBuilder);

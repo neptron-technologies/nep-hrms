@@ -12,19 +12,16 @@ public partial class User
     public string? Username { get; set; }
 
     public string? PasswordHash { get; set; }
+    public long CreatedBy { get; set; }
     public DateTime? CreatedDt { get; set; }
+    public long UpdatedBy { get; set; }
     public DateTime? UpdatedDt { get; set; }
-    public string CreatedBy { get; set; }
-
-    public string UpdatedBy { get; set; }
-
-    
 
     public virtual Employee Emp { get; set; } = null!;
 
     public virtual ICollection<Log> Logs { get; set; } = new List<Log>();
 
-    public UserRole UserRole { get; set; }
-
-    //public List<UserRole> UserRoles { get; set; }
+    
+    //public ICollection<UserRole> UserRole { get; set; }
+    public  List<UserRole> UserRoles { get; set; }
 }

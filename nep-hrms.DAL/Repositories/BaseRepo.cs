@@ -69,5 +69,7 @@ namespace nep_hrms.DAL.Repositories
         {
             return await _dbSet.FirstOrDefaultAsync();
         }
+
+     
     }
 }

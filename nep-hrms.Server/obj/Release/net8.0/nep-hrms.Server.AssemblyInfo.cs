@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("nep-hrms.Server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8b470f18367ce8a1998f0aed1955abecff042938")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4ad8c987eb1904dce5630c6b4e72d5989e46cadc")]
 [assembly: System.Reflection.AssemblyProductAttribute("nep-hrms.Server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("nep-hrms.Server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

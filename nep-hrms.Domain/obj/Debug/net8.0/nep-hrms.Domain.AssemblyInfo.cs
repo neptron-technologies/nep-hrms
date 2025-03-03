@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("nep-hrms.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d573932fb94dc8bb74a026dc92e20537fce21ca6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4ad8c987eb1904dce5630c6b4e72d5989e46cadc")]
 [assembly: System.Reflection.AssemblyProductAttribute("nep-hrms.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("nep-hrms.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

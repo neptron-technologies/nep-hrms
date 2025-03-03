@@ -1,66 +1,70 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Admin\\source\\repos\\HRMS-V2\\nep-hrms\\",
+  "WorkspaceRootPath": "C:\\Users\\Admin\\Downloads\\HRMS-V2\\HRMS-V2\\nep-hrms\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6A379CD5-29F5-4E94-89C4-5FB6A3758E29}|nep-hrms.DAL\\nep-hrms.DAL.csproj|c:\\users\\admin\\source\\repos\\hrms-v2\\nep-hrms\\nep-hrms.dal\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6A379CD5-29F5-4E94-89C4-5FB6A3758E29}|nep-hrms.DAL\\nep-hrms.DAL.csproj|solutionrelative:nep-hrms.dal\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6A379CD5-29F5-4E94-89C4-5FB6A3758E29}|nep-hrms.DAL\\nep-hrms.DAL.csproj|c:\\users\\admin\\source\\repos\\hrms-v2\\nep-hrms\\nep-hrms.dal\\context\\hrmsdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6A379CD5-29F5-4E94-89C4-5FB6A3758E29}|nep-hrms.DAL\\nep-hrms.DAL.csproj|solutionrelative:nep-hrms.dal\\context\\hrmsdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8E62BBE1-F38C-413A-AFE1-2E86EC7D7EFB}|nep-hrms.Server\\nep-hrms.Server.csproj|c:\\users\\admin\\source\\repos\\hrms-v2\\nep-hrms\\nep-hrms.server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "AbsoluteMoniker": "D:0:0:{8E62BBE1-F38C-413A-AFE1-2E86EC7D7EFB}|nep-hrms.Server\\nep-hrms.Server.csproj|c:\\users\\admin\\downloads\\hrms-v2\\hrms-v2\\nep-hrms\\nep-hrms.server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{8E62BBE1-F38C-413A-AFE1-2E86EC7D7EFB}|nep-hrms.Server\\nep-hrms.Server.csproj|solutionrelative:nep-hrms.server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6A379CD5-29F5-4E94-89C4-5FB6A3758E29}|nep-hrms.DAL\\nep-hrms.DAL.csproj|c:\\users\\admin\\source\\repos\\hrms-v2\\nep-hrms\\nep-hrms.dal\\repositories\\baserepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6A379CD5-29F5-4E94-89C4-5FB6A3758E29}|nep-hrms.DAL\\nep-hrms.DAL.csproj|solutionrelative:nep-hrms.dal\\repositories\\baserepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6A379CD5-29F5-4E94-89C4-5FB6A3758E29}|nep-hrms.DAL\\nep-hrms.DAL.csproj|c:\\users\\admin\\downloads\\hrms-v2\\hrms-v2\\nep-hrms\\nep-hrms.dal\\context\\hrmsdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6A379CD5-29F5-4E94-89C4-5FB6A3758E29}|nep-hrms.DAL\\nep-hrms.DAL.csproj|solutionrelative:nep-hrms.dal\\context\\hrmsdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3CB9D08B-A39C-478E-BD84-60D87D8B976D}|nep-hrms.Domain\\nep-hrms.Domain.csproj|c:\\users\\admin\\source\\repos\\hrms-v2\\nep-hrms\\nep-hrms.domain\\services\\loginservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{6A379CD5-29F5-4E94-89C4-5FB6A3758E29}|nep-hrms.DAL\\nep-hrms.DAL.csproj|c:\\users\\admin\\downloads\\hrms-v2\\hrms-v2\\nep-hrms\\nep-hrms.dal\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6A379CD5-29F5-4E94-89C4-5FB6A3758E29}|nep-hrms.DAL\\nep-hrms.DAL.csproj|solutionrelative:nep-hrms.dal\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6A379CD5-29F5-4E94-89C4-5FB6A3758E29}|nep-hrms.DAL\\nep-hrms.DAL.csproj|c:\\users\\admin\\downloads\\hrms-v2\\hrms-v2\\nep-hrms\\nep-hrms.dal\\models\\userrole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6A379CD5-29F5-4E94-89C4-5FB6A3758E29}|nep-hrms.DAL\\nep-hrms.DAL.csproj|solutionrelative:nep-hrms.dal\\models\\userrole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6A379CD5-29F5-4E94-89C4-5FB6A3758E29}|nep-hrms.DAL\\nep-hrms.DAL.csproj|c:\\users\\admin\\downloads\\hrms-v2\\hrms-v2\\nep-hrms\\nep-hrms.dal\\models\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6A379CD5-29F5-4E94-89C4-5FB6A3758E29}|nep-hrms.DAL\\nep-hrms.DAL.csproj|solutionrelative:nep-hrms.dal\\models\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6A379CD5-29F5-4E94-89C4-5FB6A3758E29}|nep-hrms.DAL\\nep-hrms.DAL.csproj|c:\\users\\admin\\downloads\\hrms-v2\\hrms-v2\\nep-hrms\\nep-hrms.dal\\models\\rolepermission.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6A379CD5-29F5-4E94-89C4-5FB6A3758E29}|nep-hrms.DAL\\nep-hrms.DAL.csproj|solutionrelative:nep-hrms.dal\\models\\rolepermission.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3CB9D08B-A39C-478E-BD84-60D87D8B976D}|nep-hrms.Domain\\nep-hrms.Domain.csproj|c:\\users\\admin\\downloads\\hrms-v2\\hrms-v2\\nep-hrms\\nep-hrms.domain\\services\\loginservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3CB9D08B-A39C-478E-BD84-60D87D8B976D}|nep-hrms.Domain\\nep-hrms.Domain.csproj|solutionrelative:nep-hrms.domain\\services\\loginservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8E62BBE1-F38C-413A-AFE1-2E86EC7D7EFB}|nep-hrms.Server\\nep-hrms.Server.csproj|c:\\users\\admin\\source\\repos\\hrms-v2\\nep-hrms\\nep-hrms.server\\api\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{8E62BBE1-F38C-413A-AFE1-2E86EC7D7EFB}|nep-hrms.Server\\nep-hrms.Server.csproj|c:\\users\\admin\\downloads\\hrms-v2\\hrms-v2\\nep-hrms\\nep-hrms.server\\api\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8E62BBE1-F38C-413A-AFE1-2E86EC7D7EFB}|nep-hrms.Server\\nep-hrms.Server.csproj|solutionrelative:nep-hrms.server\\api\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8E62BBE1-F38C-413A-AFE1-2E86EC7D7EFB}|nep-hrms.Server\\nep-hrms.Server.csproj|c:\\users\\admin\\source\\repos\\hrms-v2\\nep-hrms\\nep-hrms.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8E62BBE1-F38C-413A-AFE1-2E86EC7D7EFB}|nep-hrms.Server\\nep-hrms.Server.csproj|solutionrelative:nep-hrms.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3CB9D08B-A39C-478E-BD84-60D87D8B976D}|nep-hrms.Domain\\nep-hrms.Domain.csproj|c:\\users\\admin\\downloads\\hrms-v2\\hrms-v2\\nep-hrms\\nep-hrms.domain\\models\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3CB9D08B-A39C-478E-BD84-60D87D8B976D}|nep-hrms.Domain\\nep-hrms.Domain.csproj|solutionrelative:nep-hrms.domain\\models\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6A379CD5-29F5-4E94-89C4-5FB6A3758E29}|nep-hrms.DAL\\nep-hrms.DAL.csproj|c:\\users\\admin\\source\\repos\\hrms-v2\\nep-hrms\\nep-hrms.dal\\repositories\\loginrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6A379CD5-29F5-4E94-89C4-5FB6A3758E29}|nep-hrms.DAL\\nep-hrms.DAL.csproj|solutionrelative:nep-hrms.dal\\repositories\\loginrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3CB9D08B-A39C-478E-BD84-60D87D8B976D}|nep-hrms.Domain\\nep-hrms.Domain.csproj|c:\\users\\admin\\source\\repos\\hrms-v2\\nep-hrms\\nep-hrms.domain\\interfaces\\iloginservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{3CB9D08B-A39C-478E-BD84-60D87D8B976D}|nep-hrms.Domain\\nep-hrms.Domain.csproj|c:\\users\\admin\\downloads\\hrms-v2\\hrms-v2\\nep-hrms\\nep-hrms.domain\\interfaces\\iloginservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3CB9D08B-A39C-478E-BD84-60D87D8B976D}|nep-hrms.Domain\\nep-hrms.Domain.csproj|solutionrelative:nep-hrms.domain\\interfaces\\iloginservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6A379CD5-29F5-4E94-89C4-5FB6A3758E29}|nep-hrms.DAL\\nep-hrms.DAL.csproj|c:\\users\\admin\\source\\repos\\hrms-v2\\nep-hrms\\nep-hrms.dal\\interfaces\\iloginrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6A379CD5-29F5-4E94-89C4-5FB6A3758E29}|nep-hrms.DAL\\nep-hrms.DAL.csproj|solutionrelative:nep-hrms.dal\\interfaces\\iloginrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8E62BBE1-F38C-413A-AFE1-2E86EC7D7EFB}|nep-hrms.Server\\nep-hrms.Server.csproj|c:\\users\\admin\\downloads\\hrms-v2\\hrms-v2\\nep-hrms\\nep-hrms.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8E62BBE1-F38C-413A-AFE1-2E86EC7D7EFB}|nep-hrms.Server\\nep-hrms.Server.csproj|solutionrelative:nep-hrms.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6A379CD5-29F5-4E94-89C4-5FB6A3758E29}|nep-hrms.DAL\\nep-hrms.DAL.csproj|c:\\users\\admin\\source\\repos\\hrms-v2\\nep-hrms\\nep-hrms.dal\\interfaces\\ibaserepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{8E62BBE1-F38C-413A-AFE1-2E86EC7D7EFB}|nep-hrms.Server\\nep-hrms.Server.csproj|c:\\users\\admin\\downloads\\hrms-v2\\hrms-v2\\nep-hrms\\nep-hrms.server\\authenticate\\auth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8E62BBE1-F38C-413A-AFE1-2E86EC7D7EFB}|nep-hrms.Server\\nep-hrms.Server.csproj|solutionrelative:nep-hrms.server\\authenticate\\auth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6A379CD5-29F5-4E94-89C4-5FB6A3758E29}|nep-hrms.DAL\\nep-hrms.DAL.csproj|c:\\users\\admin\\downloads\\hrms-v2\\hrms-v2\\nep-hrms\\nep-hrms.dal\\models\\attendance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6A379CD5-29F5-4E94-89C4-5FB6A3758E29}|nep-hrms.DAL\\nep-hrms.DAL.csproj|solutionrelative:nep-hrms.dal\\models\\attendance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6A379CD5-29F5-4E94-89C4-5FB6A3758E29}|nep-hrms.DAL\\nep-hrms.DAL.csproj|c:\\users\\admin\\downloads\\hrms-v2\\hrms-v2\\nep-hrms\\nep-hrms.dal\\nep-hrms.dal.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{6A379CD5-29F5-4E94-89C4-5FB6A3758E29}|nep-hrms.DAL\\nep-hrms.DAL.csproj|solutionrelative:nep-hrms.dal\\nep-hrms.dal.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6A379CD5-29F5-4E94-89C4-5FB6A3758E29}|nep-hrms.DAL\\nep-hrms.DAL.csproj|c:\\users\\admin\\downloads\\hrms-v2\\hrms-v2\\nep-hrms\\nep-hrms.dal\\interfaces\\ibaserepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6A379CD5-29F5-4E94-89C4-5FB6A3758E29}|nep-hrms.DAL\\nep-hrms.DAL.csproj|solutionrelative:nep-hrms.dal\\interfaces\\ibaserepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3CB9D08B-A39C-478E-BD84-60D87D8B976D}|nep-hrms.Domain\\nep-hrms.Domain.csproj|c:\\users\\admin\\source\\repos\\hrms-v2\\nep-hrms\\nep-hrms.domain\\requestinfo\\logininfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3CB9D08B-A39C-478E-BD84-60D87D8B976D}|nep-hrms.Domain\\nep-hrms.Domain.csproj|solutionrelative:nep-hrms.domain\\requestinfo\\logininfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3CB9D08B-A39C-478E-BD84-60D87D8B976D}|nep-hrms.Domain\\nep-hrms.Domain.csproj|c:\\users\\admin\\source\\repos\\hrms-v2\\nep-hrms\\nep-hrms.domain\\nep-hrms.domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "AbsoluteMoniker": "D:0:0:{3CB9D08B-A39C-478E-BD84-60D87D8B976D}|nep-hrms.Domain\\nep-hrms.Domain.csproj|c:\\users\\admin\\downloads\\hrms-v2\\hrms-v2\\nep-hrms\\nep-hrms.domain\\nep-hrms.domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{3CB9D08B-A39C-478E-BD84-60D87D8B976D}|nep-hrms.Domain\\nep-hrms.Domain.csproj|solutionrelative:nep-hrms.domain\\nep-hrms.domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8E62BBE1-F38C-413A-AFE1-2E86EC7D7EFB}|nep-hrms.Server\\nep-hrms.Server.csproj|c:\\users\\admin\\source\\repos\\hrms-v2\\nep-hrms\\nep-hrms.server\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8E62BBE1-F38C-413A-AFE1-2E86EC7D7EFB}|nep-hrms.Server\\nep-hrms.Server.csproj|solutionrelative:nep-hrms.server\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6A379CD5-29F5-4E94-89C4-5FB6A3758E29}|nep-hrms.DAL\\nep-hrms.DAL.csproj|c:\\users\\admin\\source\\repos\\hrms-v2\\nep-hrms\\nep-hrms.dal\\nep-hrms.dal.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{6A379CD5-29F5-4E94-89C4-5FB6A3758E29}|nep-hrms.DAL\\nep-hrms.DAL.csproj|solutionrelative:nep-hrms.dal\\nep-hrms.dal.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -70,34 +74,82 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 5,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Role.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Downloads\\HRMS-V2\\HRMS-V2\\nep-hrms\\nep-hrms.DAL\\Models\\Role.cs",
+              "RelativeDocumentMoniker": "nep-hrms.DAL\\Models\\Role.cs",
+              "ToolTip": "C:\\Users\\Admin\\Downloads\\HRMS-V2\\HRMS-V2\\nep-hrms\\nep-hrms.DAL\\Models\\Role.cs",
+              "RelativeToolTip": "nep-hrms.DAL\\Models\\Role.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-03T07:33:41.549Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
+              "Title": "RolePermission.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Downloads\\HRMS-V2\\HRMS-V2\\nep-hrms\\nep-hrms.DAL\\Models\\RolePermission.cs",
+              "RelativeDocumentMoniker": "nep-hrms.DAL\\Models\\RolePermission.cs",
+              "ToolTip": "C:\\Users\\Admin\\Downloads\\HRMS-V2\\HRMS-V2\\nep-hrms\\nep-hrms.DAL\\Models\\RolePermission.cs",
+              "RelativeToolTip": "nep-hrms.DAL\\Models\\RolePermission.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-03T07:33:38.64Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "HrmsDBContext.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Downloads\\HRMS-V2\\HRMS-V2\\nep-hrms\\nep-hrms.DAL\\Context\\HrmsDBContext.cs",
+              "RelativeDocumentMoniker": "nep-hrms.DAL\\Context\\HrmsDBContext.cs",
+              "ToolTip": "C:\\Users\\Admin\\Downloads\\HRMS-V2\\HRMS-V2\\nep-hrms\\nep-hrms.DAL\\Context\\HrmsDBContext.cs",
+              "RelativeToolTip": "nep-hrms.DAL\\Context\\HrmsDBContext.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAqwKICAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-28T11:58:54.814Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\HRMS-V2\\nep-hrms\\nep-hrms.DAL\\Models\\User.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Downloads\\HRMS-V2\\HRMS-V2\\nep-hrms\\nep-hrms.DAL\\Models\\User.cs",
               "RelativeDocumentMoniker": "nep-hrms.DAL\\Models\\User.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\HRMS-V2\\nep-hrms\\nep-hrms.DAL\\Models\\User.cs",
+              "ToolTip": "C:\\Users\\Admin\\Downloads\\HRMS-V2\\HRMS-V2\\nep-hrms\\nep-hrms.DAL\\Models\\User.cs",
               "RelativeToolTip": "nep-hrms.DAL\\Models\\User.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-01T06:22:43.388Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
+              "Title": "UserRole.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Downloads\\HRMS-V2\\HRMS-V2\\nep-hrms\\nep-hrms.DAL\\Models\\UserRole.cs",
+              "RelativeDocumentMoniker": "nep-hrms.DAL\\Models\\UserRole.cs",
+              "ToolTip": "C:\\Users\\Admin\\Downloads\\HRMS-V2\\HRMS-V2\\nep-hrms\\nep-hrms.DAL\\Models\\UserRole.cs",
+              "RelativeToolTip": "nep-hrms.DAL\\Models\\UserRole.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAA1wAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-02T19:08:02.803Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\HRMS-V2\\nep-hrms\\nep-hrms.Server\\appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Admin\\Downloads\\HRMS-V2\\HRMS-V2\\nep-hrms\\nep-hrms.Server\\appsettings.json",
               "RelativeDocumentMoniker": "nep-hrms.Server\\appsettings.json",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\HRMS-V2\\nep-hrms\\nep-hrms.Server\\appsettings.json",
+              "ToolTip": "C:\\Users\\Admin\\Downloads\\HRMS-V2\\HRMS-V2\\nep-hrms\\nep-hrms.Server\\appsettings.json",
               "RelativeToolTip": "nep-hrms.Server\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA0AAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2025-02-28T12:33:15.056Z",
               "EditorCaption": ""
@@ -105,170 +157,127 @@
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\HRMS-V2\\nep-hrms\\nep-hrms.Server\\Program.cs",
-              "RelativeDocumentMoniker": "nep-hrms.Server\\Program.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\HRMS-V2\\nep-hrms\\nep-hrms.Server\\Program.cs",
-              "RelativeToolTip": "nep-hrms.Server\\Program.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAABIAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-28T12:35:03.136Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "LoginRepo.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\HRMS-V2\\nep-hrms\\nep-hrms.DAL\\Repositories\\LoginRepo.cs",
-              "RelativeDocumentMoniker": "nep-hrms.DAL\\Repositories\\LoginRepo.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\HRMS-V2\\nep-hrms\\nep-hrms.DAL\\Repositories\\LoginRepo.cs",
-              "RelativeToolTip": "nep-hrms.DAL\\Repositories\\LoginRepo.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-01T06:06:30.822Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "HrmsDBContext.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\HRMS-V2\\nep-hrms\\nep-hrms.DAL\\Context\\HrmsDBContext.cs",
-              "RelativeDocumentMoniker": "nep-hrms.DAL\\Context\\HrmsDBContext.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\HRMS-V2\\nep-hrms\\nep-hrms.DAL\\Context\\HrmsDBContext.cs",
-              "RelativeToolTip": "nep-hrms.DAL\\Context\\HrmsDBContext.cs",
-              "ViewState": "AgIAACkAAAAAAAAAAAAuwDYAAAA8AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-28T11:58:54.814Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "BaseRepo.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\HRMS-V2\\nep-hrms\\nep-hrms.DAL\\Repositories\\BaseRepo.cs",
-              "RelativeDocumentMoniker": "nep-hrms.DAL\\Repositories\\BaseRepo.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\HRMS-V2\\nep-hrms\\nep-hrms.DAL\\Repositories\\BaseRepo.cs",
-              "RelativeToolTip": "nep-hrms.DAL\\Repositories\\BaseRepo.cs",
-              "ViewState": "AgIAAC4AAAAAAAAAAAD4vysAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-28T12:22:16.905Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "LoginController.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\HRMS-V2\\nep-hrms\\nep-hrms.Server\\API\\LoginController.cs",
-              "RelativeDocumentMoniker": "nep-hrms.Server\\API\\LoginController.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\HRMS-V2\\nep-hrms\\nep-hrms.Server\\API\\LoginController.cs",
-              "RelativeToolTip": "nep-hrms.Server\\API\\LoginController.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAAQwDIAAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-28T11:36:11.133Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
               "Title": "LoginService.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\HRMS-V2\\nep-hrms\\nep-hrms.Domain\\Services\\LoginService.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Downloads\\HRMS-V2\\HRMS-V2\\nep-hrms\\nep-hrms.Domain\\Services\\LoginService.cs",
               "RelativeDocumentMoniker": "nep-hrms.Domain\\Services\\LoginService.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\HRMS-V2\\nep-hrms\\nep-hrms.Domain\\Services\\LoginService.cs",
+              "ToolTip": "C:\\Users\\Admin\\Downloads\\HRMS-V2\\HRMS-V2\\nep-hrms\\nep-hrms.Domain\\Services\\LoginService.cs",
               "RelativeToolTip": "nep-hrms.Domain\\Services\\LoginService.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAApwBMAAAAwAAAAAAAAAA==",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAhwCsAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-28T12:16:48.613Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "ILoginService.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\HRMS-V2\\nep-hrms\\nep-hrms.Domain\\Interfaces\\ILoginService.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Downloads\\HRMS-V2\\HRMS-V2\\nep-hrms\\nep-hrms.Domain\\Interfaces\\ILoginService.cs",
               "RelativeDocumentMoniker": "nep-hrms.Domain\\Interfaces\\ILoginService.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\HRMS-V2\\nep-hrms\\nep-hrms.Domain\\Interfaces\\ILoginService.cs",
+              "ToolTip": "C:\\Users\\Admin\\Downloads\\HRMS-V2\\HRMS-V2\\nep-hrms\\nep-hrms.Domain\\Interfaces\\ILoginService.cs",
               "RelativeToolTip": "nep-hrms.Domain\\Interfaces\\ILoginService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAkAAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA0AAABfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-28T11:36:15.376Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-28T11:36:15.376Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "ILoginRepo.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\HRMS-V2\\nep-hrms\\nep-hrms.DAL\\Interfaces\\ILoginRepo.cs",
-              "RelativeDocumentMoniker": "nep-hrms.DAL\\Interfaces\\ILoginRepo.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\HRMS-V2\\nep-hrms\\nep-hrms.DAL\\Interfaces\\ILoginRepo.cs",
-              "RelativeToolTip": "nep-hrms.DAL\\Interfaces\\ILoginRepo.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAKAAAAAAAAAA==",
+              "DocumentIndex": 8,
+              "Title": "UserDto.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Downloads\\HRMS-V2\\HRMS-V2\\nep-hrms\\nep-hrms.Domain\\Models\\UserDto.cs",
+              "RelativeDocumentMoniker": "nep-hrms.Domain\\Models\\UserDto.cs",
+              "ToolTip": "C:\\Users\\Admin\\Downloads\\HRMS-V2\\HRMS-V2\\nep-hrms\\nep-hrms.Domain\\Models\\UserDto.cs",
+              "RelativeToolTip": "nep-hrms.Domain\\Models\\UserDto.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAIA0wBEAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-01T06:44:03.058Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-02T15:02:00.709Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 10,
-              "Title": "IBaseRepo.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\HRMS-V2\\nep-hrms\\nep-hrms.DAL\\Interfaces\\IBaseRepo.cs",
-              "RelativeDocumentMoniker": "nep-hrms.DAL\\Interfaces\\IBaseRepo.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\HRMS-V2\\nep-hrms\\nep-hrms.DAL\\Interfaces\\IBaseRepo.cs",
-              "RelativeToolTip": "nep-hrms.DAL\\Interfaces\\IBaseRepo.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAuwAsAAAArAAAAAAAAAA==",
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Downloads\\HRMS-V2\\HRMS-V2\\nep-hrms\\nep-hrms.Server\\Program.cs",
+              "RelativeDocumentMoniker": "nep-hrms.Server\\Program.cs",
+              "ToolTip": "C:\\Users\\Admin\\Downloads\\HRMS-V2\\HRMS-V2\\nep-hrms\\nep-hrms.Server\\Program.cs",
+              "RelativeToolTip": "nep-hrms.Server\\Program.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAADwvzkAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-28T12:20:16.056Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-28T12:35:03.136Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "LoginController.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Downloads\\HRMS-V2\\HRMS-V2\\nep-hrms\\nep-hrms.Server\\API\\LoginController.cs",
+              "RelativeDocumentMoniker": "nep-hrms.Server\\API\\LoginController.cs",
+              "ToolTip": "C:\\Users\\Admin\\Downloads\\HRMS-V2\\HRMS-V2\\nep-hrms\\nep-hrms.Server\\API\\LoginController.cs",
+              "RelativeToolTip": "nep-hrms.Server\\API\\LoginController.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAASwB0AAABnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-28T11:36:11.133Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 11,
-              "Title": "LoginInfo.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\HRMS-V2\\nep-hrms\\nep-hrms.Domain\\RequestInfo\\LoginInfo.cs",
-              "RelativeDocumentMoniker": "nep-hrms.Domain\\RequestInfo\\LoginInfo.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\HRMS-V2\\nep-hrms\\nep-hrms.Domain\\RequestInfo\\LoginInfo.cs",
-              "RelativeToolTip": "nep-hrms.Domain\\RequestInfo\\LoginInfo.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAcAAAAAAAAAA==",
+              "Title": "Auth.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Downloads\\HRMS-V2\\HRMS-V2\\nep-hrms\\nep-hrms.Server\\Authenticate\\Auth.cs",
+              "RelativeDocumentMoniker": "nep-hrms.Server\\Authenticate\\Auth.cs",
+              "ToolTip": "C:\\Users\\Admin\\Downloads\\HRMS-V2\\HRMS-V2\\nep-hrms\\nep-hrms.Server\\Authenticate\\Auth.cs",
+              "RelativeToolTip": "nep-hrms.Server\\Authenticate\\Auth.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-28T12:17:08.636Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-01T11:36:47.092Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 12,
-              "Title": "nep-hrms.Domain.csproj",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\HRMS-V2\\nep-hrms\\nep-hrms.Domain\\nep-hrms.Domain.csproj",
-              "RelativeDocumentMoniker": "nep-hrms.Domain\\nep-hrms.Domain.csproj",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\HRMS-V2\\nep-hrms\\nep-hrms.Domain\\nep-hrms.Domain.csproj",
-              "RelativeToolTip": "nep-hrms.Domain\\nep-hrms.Domain.csproj",
+              "Title": "Attendance.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Downloads\\HRMS-V2\\HRMS-V2\\nep-hrms\\nep-hrms.DAL\\Models\\Attendance.cs",
+              "RelativeDocumentMoniker": "nep-hrms.DAL\\Models\\Attendance.cs",
+              "ToolTip": "C:\\Users\\Admin\\Downloads\\HRMS-V2\\HRMS-V2\\nep-hrms\\nep-hrms.DAL\\Models\\Attendance.cs",
+              "RelativeToolTip": "nep-hrms.DAL\\Models\\Attendance.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-02-28T12:07:06.225Z",
-              "EditorCaption": ""
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-02T15:45:15.132Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 13,
-              "Title": "WeatherForecast.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\HRMS-V2\\nep-hrms\\nep-hrms.Server\\WeatherForecast.cs",
-              "RelativeDocumentMoniker": "nep-hrms.Server\\WeatherForecast.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\HRMS-V2\\nep-hrms\\nep-hrms.Server\\WeatherForecast.cs",
-              "RelativeToolTip": "nep-hrms.Server\\WeatherForecast.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-01T05:11:26.897Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
               "Title": "nep-hrms.DAL.csproj",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\HRMS-V2\\nep-hrms\\nep-hrms.DAL\\nep-hrms.DAL.csproj",
+              "DocumentMoniker": "C:\\Users\\Admin\\Downloads\\HRMS-V2\\HRMS-V2\\nep-hrms\\nep-hrms.DAL\\nep-hrms.DAL.csproj",
               "RelativeDocumentMoniker": "nep-hrms.DAL\\nep-hrms.DAL.csproj",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\HRMS-V2\\nep-hrms\\nep-hrms.DAL\\nep-hrms.DAL.csproj",
+              "ToolTip": "C:\\Users\\Admin\\Downloads\\HRMS-V2\\HRMS-V2\\nep-hrms\\nep-hrms.DAL\\nep-hrms.DAL.csproj",
               "RelativeToolTip": "nep-hrms.DAL\\nep-hrms.DAL.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
               "WhenOpened": "2025-02-28T11:52:56.599Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "IBaseRepo.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Downloads\\HRMS-V2\\HRMS-V2\\nep-hrms\\nep-hrms.DAL\\Interfaces\\IBaseRepo.cs",
+              "RelativeDocumentMoniker": "nep-hrms.DAL\\Interfaces\\IBaseRepo.cs",
+              "ToolTip": "C:\\Users\\Admin\\Downloads\\HRMS-V2\\HRMS-V2\\nep-hrms\\nep-hrms.DAL\\Interfaces\\IBaseRepo.cs",
+              "RelativeToolTip": "nep-hrms.DAL\\Interfaces\\IBaseRepo.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAuwA0AAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-28T12:20:16.056Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "nep-hrms.Domain.csproj",
+              "DocumentMoniker": "C:\\Users\\Admin\\Downloads\\HRMS-V2\\HRMS-V2\\nep-hrms\\nep-hrms.Domain\\nep-hrms.Domain.csproj",
+              "RelativeDocumentMoniker": "nep-hrms.Domain\\nep-hrms.Domain.csproj",
+              "ToolTip": "C:\\Users\\Admin\\Downloads\\HRMS-V2\\HRMS-V2\\nep-hrms\\nep-hrms.Domain\\nep-hrms.Domain.csproj",
+              "RelativeToolTip": "nep-hrms.Domain\\nep-hrms.Domain.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-02-28T12:07:06.225Z"
             }
           ]
         }
