@@ -12,11 +12,12 @@ namespace nep_hrms.Domain.Services
 {
     public class LoginService : ILoginService
     {
-
+        private readonly ILoginService _loginService;
         private readonly HrmsDBContext _dbContext;
-        public LoginService(HrmsDBContext context)
+        public LoginService(ILoginService loginService)
         {
-            _dbContext = context;
+            //_dbContext = context;
+            _loginService = loginService;
 
 
         }

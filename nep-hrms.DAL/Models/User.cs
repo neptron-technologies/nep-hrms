@@ -12,9 +12,9 @@ public partial class User
     public string? Username { get; set; }
 
     public string? PasswordHash { get; set; }
-    public long CreatedBy { get; set; }
+    public string CreatedBy { get; set; }
     public DateTime? CreatedDt { get; set; }
-    public long UpdatedBy { get; set; }
+    public string UpdatedBy { get; set; }
     public DateTime? UpdatedDt { get; set; }
 
     public virtual Employee Emp { get; set; } = null!;
