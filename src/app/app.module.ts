@@ -6,18 +6,23 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http'; //added
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreInterceptor } from './core/interceptors/interceptor-core';
-import { EmployeeComponent } from './core/employee/employee.component';
-
 
 @NgModule({ 
-    declarations: [AppComponent, EmployeeComponent, ],
+    declarations: [AppComponent,],
     bootstrap: [AppComponent,], 
     imports: [BrowserModule,AppRoutingModule,], 
     providers: [provideHttpClient(withInterceptorsFromDi())] })
+export class AppModule { }
 
-  export class AppModule { }
 
-
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: CoreInterceptor, multi: true }
+providers: [
+    { 
+        provide: HTTP_INTERCEPTORS, 
+        useClass: CoreInterceptor, 
+        multi: true },
+        {
+            provider: HTTP_INTERCEPTORS,
+            useClass: CoreInterceptor,
+            multi: true
+        },
   ]
