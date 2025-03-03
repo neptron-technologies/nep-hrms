@@ -1,0 +1,53 @@
+
+<div class="container">
+    <h2>Add New Employee</h2>
+    <!-- [formGroup]="employeeForm" -->
+    <form  (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>First Name</label>
+        <input type="text" formControlName="name" class="form-control" />
+        <!-- <div *ngIf="submitted && employeeForm.controls.name.invalid" class="error"> -->
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" formControlName="name" class="form-control" />
+        <!-- <div *ngIf="submitted && employeeForm.controls.name.invalid" class="error"> -->
+      </div>
+  
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" formControlName="email" class="form-control" placeholder="Enter a valid email."/>
+        <!-- <div *ngIf="submitted && employeeForm.controls.email.invalid" class="error"> -->
+      </div>
+  
+      <div class="form-group">
+        <label>Phone</label>
+        <input type="text" formControlName="phone" class="form-control" placeholder="Enter a valid 10-digit phone number." />
+        <!-- <div *ngIf="submitted && employeeForm.controls.phone.invalid" class="error"> -->
+      </div>
+  
+      <div class="form-group">
+        <label>Department</label>
+        <select formControlName="department" class="form-control">
+          <option value="">Select</option>
+          <option value="HR">HR</option>
+          <option value="IT">IT</option>
+          <option value="Finance">Finance</option>
+        </select>
+        <!-- <div *ngIf="submitted && employeeForm.controls.department.invalid" class="error"> -->
+      </div>
+  
+      <div class="form-group">
+        <label>Salary</label>
+        <input type="number" formControlName="salary" class="form-control" placeholder="Enter a valid salary." />
+        <!-- <div *ngIf="submitted && employeeForm.controls.salary.invalid" class="error"> -->
+      </div>
+  
+      <button type="submit" class="btn btn-primary">Add Employee</button>
+  
+      <div *ngIf="successMessage" class="success">{{ successMessage }}</div>
+      <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+    </form>
+    
+  </div>
+  
