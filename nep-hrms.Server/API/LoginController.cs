@@ -2,6 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using nep_hrms.Domain.RequestInfo;
 using nep_hrms.Domain.Interfaces;
+using nep_hrms.Server.nep_hrms.DAL;
+using System.Reflection.Metadata.Ecma335;
+using nep_hrms.Server.Authenticate;
+using nep_hrms.Domain.Models;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace nep_hrms.Server.API
 {
@@ -9,20 +15,41 @@ namespace nep_hrms.Server.API
     [ApiController]
     public class LoginController : ControllerBase
     {
+        private readonly Auth _auth;
         private readonly ILoginService _loginService;
-        public LoginController(ILoginService loginService)
+
+        public LoginController(ILoginService loginService, Auth auth)
         {
+            _auth = auth;
             _loginService = loginService;
         }
+
         [HttpPost]
-        public async Task<IActionResult> Login(LoginInfo loginInfo)
+        [Route("Login")]
+
+        public async Task<IActionResult> GetUsersWithRolesAndPermissions([FromBody] UserRequest request)
         {
-            var result = _loginService.Login(loginInfo);
-            if (result == null)
+            var userDtos = await _loginService.GetUsersWithRolesAndPermissionsAsync(request);
+            var user = userDtos.FirstOrDefault();
+            var token = _auth.GenerateToken(request.UserName);
+            user.Token = token;
+            
+
+            if (userDtos == null || !userDtos.Any())
             {
-                return Unauthorized();
+
+                return Unauthorized("Invalid Username or Password");
+
             }
-            return Ok(result);
+            return Ok(userDtos);
+
+
         }
+
+
+
+
+
+
     }
 }
