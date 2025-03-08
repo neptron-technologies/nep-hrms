@@ -6,11 +6,18 @@ using nep_hrms.DAL.Interfaces;
 using nep_hrms.DAL.Repositories;
 using nep_hrms.Domain.Interfaces;
 using nep_hrms.Domain.Services;
+using nep_hrms.Domain.Mappers;
 using nep_hrms.Server.Authenticate;
 using nep_hrms.Server.nep_hrms.DAL;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddAutoMapper(typeof(EmpMapper));
+builder.Services.AddAutoMapper(typeof(AttendanceMap));
+builder.Services.AddAutoMapper(typeof(UserMapper));
+builder.Services.AddAutoMapper(typeof(UserRoleMapper));
+builder.Services.AddAutoMapper(typeof(PermissionMapper));
 
 var configuration = builder.Configuration;
 
@@ -27,6 +34,7 @@ builder.Services.AddAuthentication(options =>
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 })
+
 .AddJwtBearer(options =>
 {
     options.RequireHttpsMetadata = false;
@@ -51,14 +59,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
-//builder.Services.AddScoped<ILoginRepo, LoginRepo>();
+builder.Services.AddScoped<IEmployeeRepo, EmployeeRepo>();
+builder.Services.AddScoped<IAttendanceRepo, AttendanceRepo>();
 builder.Services.AddScoped<ILoginService, LoginService>();
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 builder.Services.AddScoped(typeof(IBaseRepo<>), typeof(BaseRepo<>));
+builder.Services.AddScoped<IAttendanceService, AttendanceService>();
 builder.Services.AddScoped<Auth>();
 
 var app = builder.Build();
-
 
 if (app.Environment.IsDevelopment())
 {

@@ -7,8 +7,6 @@ public partial class LoginLog
 {
     public long Id { get; set; }
 
-    public long EmpId { get; set; }
-
     public DateTime? LoginTime { get; set; }
 
     public DateTime? LogoutTime { get; set; }
@@ -21,5 +19,7 @@ public partial class LoginLog
 
     public DateTime? UpdatedDt { get; set; }
 
-    public virtual Employee Emp { get; set; } = null!;
+    public int? EmpId { get; set; }
+
+    public virtual Employee? Emp { get; set; }
 }

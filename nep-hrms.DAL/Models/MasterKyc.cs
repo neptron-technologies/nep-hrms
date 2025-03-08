@@ -5,7 +5,7 @@ namespace nep_hrms.Server.nep_hrms.DAL;
 
 public partial class MasterKyc
 {
-    public long Id { get; set; }
+    public int Id { get; set; }
 
     public string? KycType { get; set; }
 
@@ -19,7 +19,7 @@ public partial class MasterKyc
 
     public DateTime? UpdatedDt { get; set; }
 
-    public long EmpkycId { get; set; }
+    public int EmpkycId { get; set; }
 
     public virtual EmployeeKyc Empkyc { get; set; } = null!;
 }

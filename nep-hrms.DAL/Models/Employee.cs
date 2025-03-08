@@ -5,7 +5,7 @@ namespace nep_hrms.Server.nep_hrms.DAL;
 
 public partial class Employee
 {
-    public long Id { get; set; }
+    public int Id { get; set; }
 
     public string EmpCode { get; set; } = null!;
 
@@ -25,7 +25,7 @@ public partial class Employee
 
     public string? BaseLoc { get; set; }
 
-    public string CompanyEmail { get; set; } = null!;
+    public string CompanyEmail { get; set; }
 
     public bool? Active { get; set; }
 
@@ -39,7 +39,9 @@ public partial class Employee
 
     public DateTime? UpdatedDt { get; set; }
 
-    public long? GradeId { get; set; }
+    public int? GradeId { get; set; }
+
+    public int? EmployeeId { get; set; }
 
     public virtual ICollection<Attendance> Attendances { get; set; } = new List<Attendance>();
 

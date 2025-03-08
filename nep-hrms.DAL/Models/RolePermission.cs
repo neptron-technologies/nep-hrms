@@ -23,7 +23,7 @@ public partial class RolePermission
 
     public DateTime UpdatedDt { get; set; }
 
-    public virtual Permission Permission { get; set; } = null!;
-
+    //public virtual Permission Permission { get; set; } = null!;
+    public virtual List<Permission> Permissions { get; set; } = null!;
     public virtual Role Role { get; set; } = null!;
 }

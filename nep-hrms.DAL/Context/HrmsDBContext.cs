@@ -4,18 +4,17 @@ using System.Data;
 using System.Reflection.Emit;
 using System.Security;
 using Microsoft.EntityFrameworkCore;
+using nep_hrms.DAL.Repositories;
 using static System.Net.Mime.MediaTypeNames;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace nep_hrms.Server.nep_hrms.DAL;
 
 public partial class HrmsDBContext : DbContext
 {
-   
-
     public HrmsDBContext(DbContextOptions<HrmsDBContext> options): base(options)
     {
-    }
 
+    }
     public virtual DbSet<Attendance> Attendances { get; set; }
 
     public virtual DbSet<Designation> Designations { get; set; }
@@ -53,13 +52,13 @@ public partial class HrmsDBContext : DbContext
     public virtual DbSet<UserRole> UserRoles { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Server=192.168.0.101,1433;Initial Catalog=np-hrms;Persist Security Info=True;User ID=npadmin;Password=admin123;Trust Server Certificate=True");
+        => optionsBuilder.UseSqlServer("Server=192.168.0.103,1433;Initial Catalog=np-hrms;Persist Security Info=True;User ID=npadmin;Password=admin123;Trust Server Certificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Attendance>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Attendan__3213E83F26E78965");
+            entity.HasKey(e => e.Id).HasName("pk_attendance");
 
             entity.ToTable("Attendance");
 
@@ -95,14 +94,11 @@ public partial class HrmsDBContext : DbContext
 
             entity.HasOne(d => d.Emp).WithMany(p => p.Attendances)
                 .HasForeignKey(d => d.EmpId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK_Emp");
+                .HasConstraintName("FK_Attend_Emp");
         });
 
         modelBuilder.Entity<Designation>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Designat__3213E83F90A91C5B");
-
             entity.ToTable("Designation");
 
             entity.Property(e => e.Id).HasColumnName("id");
@@ -129,8 +125,6 @@ public partial class HrmsDBContext : DbContext
 
         modelBuilder.Entity<DesignationHistory>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Designat__3213E83F0D7321C0");
-
             entity.ToTable("DesignationHistory");
 
             entity.Property(e => e.Id).HasColumnName("id");
@@ -156,18 +150,15 @@ public partial class HrmsDBContext : DbContext
 
             entity.HasOne(d => d.Designation).WithMany(p => p.DesignationHistories)
                 .HasForeignKey(d => d.DesignationId)
-                .HasConstraintName("FK_EmpDesignation");
+                .HasConstraintName("FK_DisigHist_Desig");
 
             entity.HasOne(d => d.Emp).WithMany(p => p.DesignationHistories)
                 .HasForeignKey(d => d.EmpId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK_Empdes_history");
+                .HasConstraintName("FK_EmpDesHis_Emp");
         });
 
         modelBuilder.Entity<Employee>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Employee__3213E83F493810B3");
-
             entity.ToTable("Employee");
 
             entity.HasIndex(e => e.CompanyEmail, "UQ__Employee__7C4661D143DC0782").IsUnique();
@@ -211,6 +202,7 @@ public partial class HrmsDBContext : DbContext
                 .HasMaxLength(20)
                 .IsUnicode(false)
                 .HasColumnName("emp_code");
+            entity.Property(e => e.EmployeeId).HasColumnName("employee_id");
             entity.Property(e => e.Fname)
                 .HasMaxLength(50)
                 .IsUnicode(false)
@@ -234,14 +226,11 @@ public partial class HrmsDBContext : DbContext
 
             entity.HasOne(d => d.GradeNavigation).WithMany(p => p.Employees)
                 .HasForeignKey(d => d.GradeId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK_Empgrade");
+                .HasConstraintName("FK_Employee_Grade");
         });
 
         modelBuilder.Entity<EmployeeCertification>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Employee__3213E83F6A0C8F95");
-
             entity.ToTable("EmployeeCertification");
 
             entity.Property(e => e.Id).HasColumnName("id");
@@ -281,14 +270,11 @@ public partial class HrmsDBContext : DbContext
 
             entity.HasOne(d => d.Emp).WithMany(p => p.EmployeeCertifications)
                 .HasForeignKey(d => d.EmpId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK_Empcertification");
+                .HasConstraintName("FK_EmpCert_Emp");
         });
 
         modelBuilder.Entity<EmployeeContactDetail>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Employee__3213E83F270EEA55");
-
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Address)
                 .HasMaxLength(200)
@@ -332,14 +318,11 @@ public partial class HrmsDBContext : DbContext
 
             entity.HasOne(d => d.Emp).WithMany(p => p.EmployeeContactDetails)
                 .HasForeignKey(d => d.EmpId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK_Empcontact");
+                .HasConstraintName("FK_EmpConDet_Emp");
         });
 
         modelBuilder.Entity<EmployeeGrade>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Employee__3213E83FDC40A79C");
-
             entity.ToTable("EmployeeGrade");
 
             entity.Property(e => e.Id).HasColumnName("id");
@@ -355,8 +338,6 @@ public partial class HrmsDBContext : DbContext
 
         modelBuilder.Entity<EmployeeJobHistory>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Employee__3213E83F5001B7DB");
-
             entity.ToTable("EmployeeJobHistory");
 
             entity.Property(e => e.Id).HasColumnName("id");
@@ -389,14 +370,11 @@ public partial class HrmsDBContext : DbContext
 
             entity.HasOne(d => d.Emp).WithMany(p => p.EmployeeJobHistories)
                 .HasForeignKey(d => d.EmpId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK_Empjobhistory");
+                .HasConstraintName("FK_EmpJobHis_Emp");
         });
 
         modelBuilder.Entity<EmployeeKyc>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Employee__3213E83FA2085E52");
-
             entity.ToTable("EmployeeKYC");
 
             entity.HasIndex(e => e.Passport, "UQ__Employee__5E2A085758A5A782").IsUnique();
@@ -449,14 +427,11 @@ public partial class HrmsDBContext : DbContext
 
             entity.HasOne(d => d.Emp).WithMany(p => p.EmployeeKycs)
                 .HasForeignKey(d => d.EmpId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK_Empkyc");
+                .HasConstraintName("FK_EmpKYC_Emp");
         });
 
         modelBuilder.Entity<EmployeeSkill>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Employee__3213E83FEEAC91DB");
-
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.CreatedBy)
                 .HasMaxLength(50)
@@ -480,8 +455,7 @@ public partial class HrmsDBContext : DbContext
 
             entity.HasOne(d => d.Emp).WithMany(p => p.EmployeeSkills)
                 .HasForeignKey(d => d.EmpId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK_Empskills");
+                .HasConstraintName("FK_EmpSkill_Emp");
         });
 
         modelBuilder.Entity<Log>(entity =>
@@ -535,13 +509,11 @@ public partial class HrmsDBContext : DbContext
 
             entity.HasOne(d => d.Emp).WithMany(p => p.LoginLogs)
                 .HasForeignKey(d => d.EmpId)
-                .HasConstraintName("FK_Emploginglogs");
+                .HasConstraintName("FK_Loginlogs_Emp");
         });
 
         modelBuilder.Entity<MasterKyc>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__MasterKY__3213E83F8817684F");
-
             entity.ToTable("MasterKYC");
 
             entity.Property(e => e.Id).HasColumnName("id");
@@ -572,7 +544,8 @@ public partial class HrmsDBContext : DbContext
 
             entity.HasOne(d => d.Empkyc).WithMany(p => p.MasterKycs)
                 .HasForeignKey(d => d.EmpkycId)
-                .HasConstraintName("FK_master_employee");
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_EmpKYC_MasterKYC");
         });
 
         modelBuilder.Entity<Permission>(entity =>
@@ -654,9 +627,9 @@ public partial class HrmsDBContext : DbContext
                 .HasColumnType("datetime")
                 .HasColumnName("updated_dt");
 
-            entity.HasOne(d => d.Permission).WithMany(p => p.RolePermissions)
-                .HasForeignKey(d => d.PermissionId)
-                .HasConstraintName("FK_permissions");
+            //entity.HasOne(d => d.Permission).WithMany(p => p.RolePermissions)
+            //    .HasForeignKey(d => d.PermissionId)
+            //    .HasConstraintName("FK_permissions");
 
             entity.HasOne(d => d.Role).WithMany(p => p.RolePermissions)
                 .HasForeignKey(d => d.RoleId)
@@ -668,7 +641,10 @@ public partial class HrmsDBContext : DbContext
             entity.HasKey(e => e.Id).HasName("PK__Users__3213E83F119926BB");
 
             entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.CreatedBy).HasColumnName("created_by");
+            entity.Property(e => e.CreatedBy)
+                .HasMaxLength(250)
+                .IsUnicode(false)
+                .HasColumnName("created_by");
             entity.Property(e => e.CreatedDt)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
@@ -678,7 +654,10 @@ public partial class HrmsDBContext : DbContext
                 .HasMaxLength(250)
                 .IsUnicode(false)
                 .HasColumnName("password_hash");
-            entity.Property(e => e.UpdatedBy).HasColumnName("updated_by");
+            entity.Property(e => e.UpdatedBy)
+                .HasMaxLength(250)
+                .IsUnicode(false)
+                .HasColumnName("updated_by");
             entity.Property(e => e.UpdatedDt)
                 .HasColumnType("datetime")
                 .HasColumnName("updated_dt");
@@ -689,7 +668,7 @@ public partial class HrmsDBContext : DbContext
 
             entity.HasOne(d => d.Emp).WithMany(p => p.Users)
                 .HasForeignKey(d => d.EmpId)
-                .HasConstraintName("FK_users_emp");
+                .HasConstraintName("FK_User_Emp");
         });
 
         modelBuilder.Entity<UserRole>(entity =>

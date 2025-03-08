@@ -5,9 +5,7 @@ namespace nep_hrms.Server.nep_hrms.DAL;
 
 public partial class EmployeeSkill
 {
-    public long Id { get; set; }
-
-    public long? EmpId { get; set; }
+    public int Id { get; set; }
 
     public string Skills { get; set; } = null!;
 
@@ -18,6 +16,8 @@ public partial class EmployeeSkill
     public DateTime? UpdatedDt { get; set; }
 
     public string? UpdatedBy { get; set; }
+
+    public int? EmpId { get; set; }
 
     public virtual Employee? Emp { get; set; }
 }

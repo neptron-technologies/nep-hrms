@@ -5,7 +5,7 @@ namespace nep_hrms.Server.nep_hrms.DAL;
 
 public partial class EmployeeGrade
 {
-    public long Id { get; set; }
+    public int Id { get; set; }
 
     public string? Grade { get; set; }
 

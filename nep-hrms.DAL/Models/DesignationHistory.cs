@@ -5,11 +5,7 @@ namespace nep_hrms.Server.nep_hrms.DAL;
 
 public partial class DesignationHistory
 {
-    public long Id { get; set; }
-
-    public long? EmpId { get; set; }
-
-    public long DesignationId { get; set; }
+    public int Id { get; set; }
 
     public DateOnly? StartDt { get; set; }
 
@@ -23,7 +19,11 @@ public partial class DesignationHistory
 
     public DateTime? UpdatedDt { get; set; }
 
-    public virtual Designation Designation { get; set; } = null!;
+    public int? EmpId { get; set; }
+
+    public int? DesignationId { get; set; }
+
+    public virtual Designation? Designation { get; set; }
 
     public virtual Employee? Emp { get; set; }
 }

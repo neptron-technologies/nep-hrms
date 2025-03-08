@@ -10,12 +10,6 @@ namespace nep_hrms.Domain.Interfaces
 {
     public interface ILoginService
     {
-
-        public Task<List<UserDto>> GetUsersWithRolesAndPermissionsAsync(UserRequest userRequest);
-
-
-
-
-
+        public Task<UserDto> GetUserAsync(UserRequest userRequest);
     }
 }

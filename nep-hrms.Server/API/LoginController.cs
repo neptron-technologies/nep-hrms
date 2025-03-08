@@ -8,7 +8,6 @@ using nep_hrms.Server.Authenticate;
 using nep_hrms.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace nep_hrms.Server.API
 {
     [Route("api/[controller]")]
@@ -26,30 +25,20 @@ namespace nep_hrms.Server.API
 
         [HttpPost]
         [Route("Login")]
-
-        public async Task<IActionResult> GetUsersWithRolesAndPermissions([FromBody] UserRequest request)
+        public async Task<IActionResult> GetUserAsync(
+            [FromBody] UserRequest request)
         {
-            var userDtos = await _loginService.GetUsersWithRolesAndPermissionsAsync(request);
-            var user = userDtos.FirstOrDefault();
+            var user = await _loginService.GetUserAsync(request);
             var token = _auth.GenerateToken(request.UserName);
-            user.Token = token;
-            
 
-            if (userDtos == null || !userDtos.Any())
-            {
-
+            if (user == null)
                 return Unauthorized("Invalid Username or Password");
-
+            else
+            {
+                user.Token = token;
+                return Ok(user);
             }
-            return Ok(userDtos);
-
-
+               
         }
-
-
-
-
-
-
     }
 }

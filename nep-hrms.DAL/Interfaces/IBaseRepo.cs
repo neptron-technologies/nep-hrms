@@ -1,4 +1,5 @@
-﻿using System;
+﻿using nep_hrms.Server.nep_hrms.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,19 +9,11 @@ namespace nep_hrms.DAL.Interfaces
 {
     public interface IBaseRepo<T> where T : class
     {
-        //public Task<IEnumerable<T>> GetAllAsync();
         public Task<List<T>> GetAllAsync();
-
-        //public Task<List<T>> GetUserByName(string username);
-
         public Task<T> GetByIdAsync(int id);
-
-        //public Task<T> GetUserAsync(string username);
-
-        public Task AddAsync(T entity);
-
+        public Task<T> AddAsync(T entity);
         public Task UpdateAsync(T entity);
-
         public Task DeleteAsync(int id);
+        public Task<List<T>> GetDataBySql(string sqlQry);
     }
 }

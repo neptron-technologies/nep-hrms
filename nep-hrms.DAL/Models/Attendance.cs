@@ -5,9 +5,7 @@ namespace nep_hrms.Server.nep_hrms.DAL;
 
 public partial class Attendance
 {
-    public long Id { get; set; }
-
-    public long? EmpId { get; set; }
+    public int Id { get; set; }
 
     public DateOnly? AttendanceDate { get; set; }
 
@@ -26,6 +24,8 @@ public partial class Attendance
     public string? ReviewedBy { get; set; }
 
     public DateTime? ReviewedDt { get; set; }
+
+    public int? EmpId { get; set; }
 
     public virtual Employee? Emp { get; set; }
 }

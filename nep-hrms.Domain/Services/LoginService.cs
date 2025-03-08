@@ -1,81 +1,39 @@
-﻿using Azure.Core;
+﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using nep_hrms.DAL.Interfaces;
 using nep_hrms.Domain.Interfaces;
 using nep_hrms.Domain.Models;
 using nep_hrms.Domain.RequestInfo;
-using nep_hrms.Domain.ViewModels;
 using nep_hrms.Server.nep_hrms.DAL;
-
+using System.Data;
 
 namespace nep_hrms.Domain.Services
 {
     public class LoginService : ILoginService
     {
-        
         private readonly HrmsDBContext _dbContext;
-        public LoginService(HrmsDBContext context)
+        private readonly IMapper _mapper;
+        public LoginService(HrmsDBContext context, IMapper mapper)
         {
             _dbContext = context;
-            
-
-
+            _mapper = mapper;
         }
-        public async Task<List<UserDto>> GetUsersWithRolesAndPermissionsAsync(UserRequest userRequest)
+        public async Task<UserDto> GetUserAsync(
+            UserRequest userRequest)
         {
-            var userEntities = await _dbContext.Users
-        .Include(u => u.UserRoles)
-            .ThenInclude(ur => ur.Role)
-                .ThenInclude(r => r.RolePermissions)
-                    .ThenInclude(rp => rp.Permission)
-        .FirstOrDefaultAsync(u => u.Username == userRequest.UserName);
+            var user =
+                await _dbContext.Users 
+                    .Include(ur => ur.Roles)
+                    //.ThenInclude(r => r.RolePermissions)
+                    //.ThenInclude(rp => rp.Permissions)
+                    .Where(u => u.Username == userRequest.UserName)
+                    .FirstOrDefaultAsync();
 
-
-            if (userEntities == null)
-            {
-                return new List<UserDto>();
-            }
-
-
-            var userDtos = new UserDto
-            {
-                Username = userEntities.Username,
-                RoleNames = userEntities.UserRoles.Select(ur => ur.Role.RoleName).ToList(),
-                Permissions = userEntities.UserRoles
-                    .SelectMany(ur => ur.Role.RolePermissions)
-                    .Select(rp => rp.Permission.PermissionType)
-                    .ToList()
-
-            };
-
-
-
-            return new List<UserDto> { userDtos };
-
-
-
-
-
+            UserDto userDto = new UserDto();
+            userDto.Username = user.Username;
+            userDto.Roles = _mapper.Map<List<UserRole>, List<UserRoleDto>>(user.Roles);
+            
+            
+            return userDto;
         }
-
-
-
-
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

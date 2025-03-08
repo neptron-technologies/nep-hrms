@@ -7,14 +7,14 @@ public partial class User
 {
     public long Id { get; set; }
 
-    public long EmpId { get; set; }
+    public int? EmpId { get; set; }
 
     public string? Username { get; set; }
 
     public string? PasswordHash { get; set; }
-    public string CreatedBy { get; set; }
+    public required string CreatedBy { get; set; }
     public DateTime? CreatedDt { get; set; }
-    public string UpdatedBy { get; set; }
+    public required string UpdatedBy { get; set; }
     public DateTime? UpdatedDt { get; set; }
 
     public virtual Employee Emp { get; set; } = null!;
@@ -23,5 +23,8 @@ public partial class User
 
 
     //public ICollection<UserRole> UserRole { get; set; }
-    public List<UserRole> UserRoles { get; set; }
+    public List<UserRole> Roles { get; set; }
+    public List<Permission> Permissions { get; set; }
+
+
 }
