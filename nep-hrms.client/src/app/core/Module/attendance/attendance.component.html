@@ -1,1 +1,47 @@
-<p>attendance works!</p>
+<form [formGroup]="attendanceForm" (ngSubmit)="onSubmit()">
+  <div class="attendance-form">
+    <h2>Employee Attendance</h2>
+
+    <!-- Date Picker to Select Any Day of the Week -->
+    <div class="start-date-entry">
+      <label for="selectedDate">Select Day of the Week:</label>
+      <input type="date" id="selectedDate" formControlName="selectedDate" (change)="onDateChange()"
+        [value]="selectedDateString" />
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th rowspan="2">Date</th>
+          <th colspan="2">Attendance Details</th>
+        </tr>
+        <tr>
+          <th>Hours Filled</th>
+          <th>Remarks</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Loop over 7 days -->
+        <tr *ngFor="let day of weekDates; let i = index">
+          <td rowspan="1">
+            <label for="attendanceDate{{i}}">Attendance Date (Day {{i + 1}}):</label>
+            <input type="date" id="attendanceDate{{i}}" class="attendance_Date attn"
+              formControlName="attendanceDate{{i}}" [value]="day" />
+          </td>
+          <td>
+            <label for="hoursFilled{{i}}">Hours Filled:</label>
+            <input type="text" id="hoursFilled{{i}}" class="hours_filled attn" formControlName="hoursFilled{{i}}"
+              [value]="9" />
+          </td>
+          <td>
+            <label for="remarks{{i}}">Remarks:</label>
+            <input type="text" id="remarks{{i}}" class="remarks attn" formControlName="remarks{{i}}" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="container">
+      <button type="submit" [disabled]="attendanceForm.invalid">Submit</button>
+    </div>
+  </div>
+</form>

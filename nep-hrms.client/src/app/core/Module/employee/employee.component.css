@@ -1,0 +1,70 @@
+.side-panel {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 400px;
+  height: 100vh;
+  background: white;
+  box-shadow: -3px 0 10px rgba(0, 0, 0, 0.2);
+  transition: right 0.75s ease-in-out;
+  z-index: 1050;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.side-panel.open {
+  right: 0;
+  /* Slide into view */
+}
+
+.validation-message {
+  color: red;
+  font-size: 10px;
+  font-weight: bold;
+  margin-top: 5px;
+  font-style: italic;
+}
+
+.side-panel .card {
+  border-radius: 0;
+}
+
+.btn-sm {
+  margin-left: 5px;
+}
+
+
+
+input[type="checkbox"] {
+  position: relative;
+  width: 42px;
+  height: 20px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: red;
+  outline: none;
+  border-radius: 2rem;
+  cursor: pointer;
+  box-shadow: inset 0 0 5px rgb(0 0 0 / 50%);
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: 0.5s;
+}
+
+input[type="checkbox"]:checked::before {
+  transform: translateX(100%);
+  background: #fff;
+}
+
+input[type="checkbox"]:checked {
+  background: #00ed64;
+}

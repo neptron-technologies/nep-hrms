@@ -1,2 +1,267 @@
-<p>employee works!</p>
-<button class="btn btn-primary">Add Employees</button>
+<div class="row">
+    <div class="grid-container">
+        <div class="card">
+            <div class="card-header bg-secondary text-white d-flex justify-content-between">
+                <strong>Employee Portal</strong>
+                <button class="btn btn-warning" (click)="openPanel()">Add New</button>
+            </div>
+
+
+
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Contact No</th>
+                        <th>DOJ</th>
+                        <th>Grade</th>
+                        <th>Designation</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for(item of employeeList; track $index){
+                    <tr>
+                        <td>{{item.id}}</td>
+                        <td>{{(item.employeeFirstName)+" "+(item.employeeLastName)}}</td>
+                        <td>{{item.tel}}</td>
+                        <td>{{item.doj}}</td>
+                        <td>{{item.grade}}</td>
+                        <td>{{item.designation}}</td>
+                        <td><button class="btn btn-success btn-sm" (click)="onEdit(item)">Edit</button>
+                            <button class="btn btn-danger btn-sm" (click)="onDelete(item.id)">Delete</button>
+                        </td>
+                        }
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<!-- Side panel for adding employee -->
+<div class="side-panel" [class.open]="PanelOpen">
+    <div class="card">
+        <div class="card-header bg-secondary d-flex justify-content-between">
+            <strong class="text-white">Add Employee</strong>
+            <button class="btn btn-danger btn-sm" (click)="closePanel()">X</button>
+        </div>
+        <div class="card-body overflow-auto">
+            <!-- Add Employee Form -->
+            <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+                <!-- Employee Code -->
+                <div class="mb-3">
+                    <label for="employeeCode" class="form-label">Employee Code</label>
+                    <input type="text" class="form-control" id="employeeCode" formControlName="employeeCode" readonly>
+                    <button class="btn btn-success btn-sm form-control" for="employeeCode"
+                        (click)="generateEmployeeCode()">Genrate</button>
+
+                </div>
+
+                <!-- First Name -->
+                <div class="mb-3">
+                    <label for="employeeFirstName" class="form-label">First Name</label>
+                    <input type="text" class="form-control" id="employeeFirstName" formControlName="employeeFirstName">
+                    <div class="validation-message"
+                        *ngIf="employeeForm.get('employeeFirstName')?.invalid && employeeForm.get('employeeFirstName')?.touched">
+                        *Employee First Name is Required*
+                    </div>
+                </div>
+
+                <!-- Last Name -->
+                <div class="mb-3">
+                    <label for="employeeLastName" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" id="employeeLastName" formControlName="employeeLastName">
+                    <div class="validation-message"
+                        *ngIf="employeeForm.get('employeeLastName')?.invalid && employeeForm.get('employeeLastName')?.touched">
+                        *Employee Last Name is Required*
+                    </div>
+                </div>
+
+                <!-- Date of Birth -->
+                <div class="mb-3">
+                    <label for="dob" class="form-label">DOB</label>
+                    <input type="date" class="form-control" id="dob" formControlName="dob">
+                    <div class="validation-message"
+                        *ngIf="employeeForm.get('dob')?.invalid && employeeForm.get('dob')?.touched">
+                        *Employee Date of Birth is Required*
+                    </div>
+                </div>
+
+                <!-- Gender -->
+                <div class="mb-3">
+                    <label for="gender" class="form-label">Gender</label> <br>
+                    <input type="radio" value="Male" formControlName="gender"> Male
+                    <input type="radio" value="Female" formControlName="gender"> Female
+                    <div class="validation-message"
+                        *ngIf="employeeForm.get('gender')?.invalid && employeeForm.get('gender')?.touched">
+                        *Employee Gender is Required*
+                    </div>
+                </div>
+
+                <!-- Date of Joining -->
+                <div class="mb-3">
+                    <label for="doj" class="form-label">DOJ</label>
+                    <input type="date" class="form-control" name="doj" id="doj" formControlName="doj">
+                    <div class="validation-message"
+                        *ngIf="employeeForm.get('doj')?.invalid && employeeForm.get('doj')?.touched">
+                        *Employee Date Of Joining is Required*
+                    </div>
+                </div>
+
+                <!-- Blood Group -->
+                <div class="mb-3">
+                    <label for="bloodGroup" class="form-label">Blood Group</label>
+                    <input type="text" class="form-control" formControlName="bloodGroup">
+                </div>
+
+                <!-- Designation -->
+                <div class="mb-3">
+                    <label for="designation" class="form-label">Designation</label>
+                    <input type="text" class="form-control" formControlName="designation">
+                </div>
+
+                <!-- Grade -->
+                <div class="mb-3">
+                    <label for="grade" class="form-label">Grade</label>
+                    <input type="text" class="form-control" formControlName="grade">
+                </div>
+
+                <!-- Active -->
+                <div class="mb-3">
+                    <label for="active" class="form-label">Active</label><br>
+                    <input type="radio" value="True" formControlName="active"> Active
+                    <input type="radio" value="False" formControlName="active"> Inactive
+                </div>
+
+                <!-- Email -->
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" formControlName="email">
+                </div>
+
+                <!-- Contractor -->
+                <div class="mb-3">
+                    <label for="active" class="form-label">Contractor</label><br>
+                    <input type="radio" value="True" formControlName="contractor"> Yes
+                    <input type="radio" value="False" formControlName="contractor"> No
+                </div>
+
+                <!-- (Additional Form Sections) -->
+
+                <!-- EMPLOYEE CONTACT DETAILS -->
+
+                <div class="mb-3">
+                    <div class="mb-3">
+                        <div class="card-header toggle-container bg-secondary d-flex justify-content-between">
+                            <strong class="text-white">Employee Contact Details</strong>
+                            <input type="checkbox" (change)="toggleContactVisibility()">
+                        </div>
+                        <div *ngIf="contactsVisible" class="mt-2">
+                            <div class="mb-2">
+                                <label for="address" class="form-label">Address</label>
+                                <input type="text" class="form-control" name="address" id="address"
+                                    formControlName="address" placeholder="Enter Address">
+                            </div>
+                            <div class="mb-2">
+                                <label for="city" class="form-label">City</label>
+                                <input type="text" class="form-control" name="city" id="city" formControlName="city"
+                                    placeholder="Enter City">
+                            </div>
+                            <div class="mb-2">
+                                <label for="state" class="form-label">State</label>
+                                <input type="text" class="form-control" name="state" id="state" formControlName="state"
+                                    placeholder="Enter State">
+                            </div>
+                            <div class="mb-3">
+                                <label for="country" class="form-label">Country</label>
+                                <input type="text" class="form-control" name="country" id="country"
+                                    formControlName="country" placeholder="Enter Country">
+                            </div>
+                            <div class="mb-3">
+                                <label for="pinCode" class="form-label">Pin Code</label>
+                                <input type="text" class="form-control" name="pinCode" id="pinCode"
+                                    formControlName="pinCode" placeholder="Enter Pin Code">
+                            </div>
+                            <div class="mb-3">
+
+                                <div class="input-group">
+                                    <span class="input-group-addon">Tel</span>
+                                    <input type="tel" class="form-control" formControlName="tel">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- EMPLOYEE JOB HISTORY -->
+                <div class="mb-3">
+                    <div class="mb-3">
+                        <div class="card-header bg-secondary d-flex justify-content-between">
+                            <strong class="text-white">Employee Job History</strong>
+
+
+                            <input type="checkbox" (change)="toggleJobHistory()">
+                        </div>
+                        <div *ngIf="jobHistoryVisible" class="mt-2">
+                            <div class="mb-2">
+                                <label for="jobTitle" class="form-label">Job Title</label>
+                                <input type="text" class="form-control" name="jobTitles" id="jobTitle"
+                                    formControlName="jobTitle" placeholder="Enter Job Title">
+                            </div>
+                            <div class="mb-2">
+                                <label for="startDate" class="form-label">Start Date</label>
+                                <input type="date" class="form-control" name="startDate" id="startDate"
+                                    formControlName="jobTitle" placeholder="Enter Start Date">
+                            </div>
+                            <div class="mb-2">
+                                <label for="endDate" class="form-label">End Date</label>
+                                <input type="date" class="form-control" name="endDate" id="endDate"
+                                    formControlName="endDate" placeholder="Enter End Date">
+                            </div>
+                            <div class="mb-3">
+                                <label for="jobLocation" class="form-label">Job Location</label>
+                                <input type="text" class="form-control" name="jobLocation" id="jobLocation"
+                                    formControlName="jobLocation" placeholder="Enter Location">
+                            </div>
+                            <div class="mb-3">
+                                <label for="salary" class="form-label">Salary</label>
+                                <input type="number" class="form-control" name="salary" id="salary"
+                                    formControlName="salary" placeholder="Enter Salary">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- EMPLOYEE SKILLS-->
+                <div class="mb-3">
+                    <div class="mb-3">
+                        <div class="card-header bg-secondary d-flex justify-content-between">
+                            <strong class="text-white">Employee Skills</strong>
+                            <input type="checkbox" (change)="toggleSkills()">
+
+                        </div>
+                        <div *ngIf="skillVisible" class="mt-2">
+                            <div class="mb-2">
+                                <label for="skills" class="form-label">Skills</label>
+                                <input type="text" class="form-control" name="skills" id="skills"
+                                    formControlName="skills" placeholder="Enter skills">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <!-- Submit Button -->
+                <button type="submit" [disabled]="employeeForm.invalid" class="btn btn-warning w-100">Save</button>
+            </form>
+        </div>
+    </div>
+</div>
