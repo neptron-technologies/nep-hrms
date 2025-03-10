@@ -13,7 +13,7 @@ public partial class RolePermission
 
     public long PermissionId { get; set; }
 
-    //public Permission Permission { get; set; }
+    public Permission Permission { get; set; }
 
     public string CreatedBy { get; set; } = null!;
 
@@ -24,6 +24,6 @@ public partial class RolePermission
     public DateTime UpdatedDt { get; set; }
 
     //public virtual Permission Permission { get; set; } = null!;
-    public virtual List<Permission> Permissions { get; set; } = null!;
+    // now done public virtual List<Permission> Permissions { get; set; } = null!;
     public virtual Role Role { get; set; } = null!;
 }

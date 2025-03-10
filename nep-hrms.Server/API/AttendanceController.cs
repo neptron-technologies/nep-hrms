@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using nep_hrms.Domain.Interfaces;
 using nep_hrms.Domain.Models;
-using nep_hrms.Domain.Services;
-using nep_hrms.Server.nep_hrms.DAL;
 
-namespace nep_hrms.Server.Controllers
+namespace nep_hrms.Server.API
 {
     [Route("api/controller")]
     [ApiController]
@@ -17,9 +15,8 @@ namespace nep_hrms.Server.Controllers
             _attendanceService = attendanceService;
         }
 
-        [HttpGet("{id}")]
-        //[Route("GetAttendanceForEmployee")]
-        public async Task<IActionResult> GetAttendanceById(int EmpId) //emp by id
+        [HttpGet("{EmpId}")]
+        public async Task<IActionResult>GetAttendanceById(int EmpId) //emp by id
         {
             var attendance = await _attendanceService.GetDataBySql(EmpId);
             if (attendance == null)
@@ -29,13 +26,14 @@ namespace nep_hrms.Server.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddAttendance([FromBody] AttendanceDto attendanceDto)
+        [Route("AddAttendance")]
+        public async Task<IActionResult> AddAttendance([FromBody] AttendanceDto attendanceDto)  //add
         {
             if (attendanceDto == null)
                 return BadRequest(new { message = "Invalid attendance data" });
 
             var createdAttendance = await _attendanceService.AddAsync(attendanceDto);
-            return CreatedAtAction(nameof(GetAttendanceById), new { id = createdAttendance.Id }, createdAttendance);
+            return Ok(createdAttendance.EmpId);
         }
     }
 }

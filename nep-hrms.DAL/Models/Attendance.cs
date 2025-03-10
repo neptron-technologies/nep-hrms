@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace nep_hrms.Server.nep_hrms.DAL;
 
@@ -7,7 +8,8 @@ public partial class Attendance
 {
     public int Id { get; set; }
 
-    public DateOnly? AttendanceDate { get; set; }
+    [Column("Date")]
+    public DateTime? AttendanceDate { get; set; }
 
     public double? HoursFilled { get; set; }
 
@@ -27,5 +29,6 @@ public partial class Attendance
 
     public int? EmpId { get; set; }
 
-    public virtual Employee? Emp { get; set; }
+    [NotMapped]
+    public  Employee? Emp { get; set; }
 }

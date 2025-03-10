@@ -52,7 +52,7 @@ public partial class HrmsDBContext : DbContext
     public virtual DbSet<UserRole> UserRoles { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Server=192.168.0.103,1433;Initial Catalog=np-hrms;Persist Security Info=True;User ID=npadmin;Password=admin123;Trust Server Certificate=True");
+        => optionsBuilder.UseSqlServer("Server=192.168.0.104,1433;Initial Catalog=np-hrms;Persist Security Info=True;User ID=npadmin;Password=admin123;Trust Server Certificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

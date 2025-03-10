@@ -16,5 +16,7 @@
 
         public DateTime? UpdatedDt { get; set; }
 
+        //public List<PermissionDto> Permissions { get; set; } //Added this line
+
     }
 }

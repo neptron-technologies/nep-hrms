@@ -9,6 +9,6 @@ namespace nep_hrms.DAL.Interfaces
 {
     public interface IAttendanceRepo : IBaseRepo<Attendance>
     {
-
+        Task<List<Attendance>> GetAttendanceByEmpId(int empId);
     }
 }

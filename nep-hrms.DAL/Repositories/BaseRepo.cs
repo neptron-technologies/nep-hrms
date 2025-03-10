@@ -11,13 +11,22 @@ namespace nep_hrms.DAL.Repositories
         private readonly DbSet<T> _dbSet;
         public BaseRepo(HrmsDBContext context)
         {
-            _dbContext = context ?? throw new ArgumentNullException(nameof(context));
+            _dbContext = context;
             _dbSet = _dbContext.Set<T>();
         }
      
         public async Task<List<T>> GetAllAsync()  //all emp
         {
-            return await _dbSet.ToListAsync();
+            List<T> all = null;
+            try
+            {
+                all = await _dbSet.ToListAsync();
+            }
+            catch (Exception ee)
+            {
+                string msg = ee.Message;
+            }
+            return all;
 
         }
 
@@ -58,7 +67,7 @@ namespace nep_hrms.DAL.Repositories
 
         public async Task<List<T>> GetDataBySql(string sqlQry)  //sql query to find specific id
         {
-            return await _dbContext.Database.SqlQueryRaw<T>(sqlQry).ToListAsync();
+            return await _dbContext.Set<T>().FromSqlRaw($"{sqlQry}").ToListAsync();
             //return await _dbContext.Database.SqlQuery<T>(sqlQry);
         }
     }

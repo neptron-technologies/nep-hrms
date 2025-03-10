@@ -37,8 +37,7 @@ namespace nep_hrms.Server.API
             {
                 user.Token = token;
                 return Ok(user);
-            }
-               
+            }     
         }
     }
 }

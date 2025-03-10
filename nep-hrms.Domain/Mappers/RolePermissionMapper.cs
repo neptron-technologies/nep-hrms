@@ -9,14 +9,12 @@ using System.Threading.Tasks;
 
 namespace nep_hrms.Domain.Mappers
 {
-    public class EmpMapper : Profile
+    public class RolePermissionMapper : Profile
     {
-        public EmpMapper()
+        public RolePermissionMapper()
         {
-            CreateMap<Employee, EmployeeDto>(); //.ReverseMap();
-
-            CreateMap<EmployeeDto, Employee>();
-
+            CreateMap<RolePermission, RolePermissionDto>();
+            CreateMap<RolePermissionDto, RolePermission>();
         }
     }
 }

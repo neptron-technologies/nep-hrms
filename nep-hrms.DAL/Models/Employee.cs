@@ -1,31 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace nep_hrms.Server.nep_hrms.DAL;
+﻿namespace nep_hrms.Server.nep_hrms.DAL;
 
 public partial class Employee
 {
     public int Id { get; set; }
 
-    public string EmpCode { get; set; } = null!;
+    public string EmpCode { get; set; }
 
-    public string Fname { get; set; } = null!;
+    public string Fname { get; set; }
 
-    public string Lname { get; set; } = null!;
+    public string Lname { get; set; }
 
-    public DateOnly Dob { get; set; }
+    public DateTime Dob { get; set; }
 
-    public DateOnly Doj { get; set; }
+    public DateTime Doj { get; set; }
 
     public string? BloodGroup { get; set; }
 
-    public string Designation { get; set; } = null!;
+    public string? Designation { get; set; }
 
     public string? Grade { get; set; }
 
     public string? BaseLoc { get; set; }
 
-    public string CompanyEmail { get; set; }
+    public string? CompanyEmail { get; set; }
 
     public bool? Active { get; set; }
 
@@ -42,6 +39,7 @@ public partial class Employee
     public int? GradeId { get; set; }
 
     public int? EmployeeId { get; set; }
+
 
     public virtual ICollection<Attendance> Attendances { get; set; } = new List<Attendance>();
 

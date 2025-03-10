@@ -11,32 +11,23 @@ namespace nep_hrms.Domain.Models
     public class EmployeeDto
     {
         public int Id { get; set; }
-        public string fname { get; set; }
-        public string lname { get; set; } 
-        public string emp_code { get; set; } 
-        public DateOnly dob { get; set; }
-        public DateOnly doj { get; set; }
-        public required string designation { get; set; } 
-
-        //[Required(ErrorMessage = "Company email is required")] //added
-        //[EmailAddress(ErrorMessage = "Invalid email format")] //added
-        public string company_email { get; set; } 
-
-        public string created_by { get; set; }
-
-        public int? EmployeeId { get; set; }
-
-        // Constructor to handle NULL values
-        //public EmployeeDto()
-        //{
-        //    BloodGroup = BloodGroup ?? "Not Provided";
-        //    Grade = Grade ?? "N/A";
-        //    BaseLoc = BaseLoc ?? "Unknown";
-        //    UpdatedBy = UpdatedBy ?? "Not Updated";
-        //    UpdatedDt = UpdatedDt ?? DateTime.MinValue;
-        //    EmployeeId = EmployeeId ?? 0;
-        //    company_email = company_email ?? "No Email";
-        //}
-
+        public string EmpCode { get; set; } = string.Empty;
+        public string Fname { get; set; } = string.Empty;
+        public string Lname { get; set; } = string.Empty;
+        public DateTime Dob { get; set; }
+        public DateTime Doj { get; set; }
+        public string? BloodGroup { get; set; }  
+        public string Designation { get; set; } = string.Empty;
+        public string? Grade { get; set; }  
+        public string? BaseLoc { get; set; }  
+        public bool? Active { get; set; }  
+        public bool? Contractor { get; set; }  
+        public string CreatedBy { get; set; } = string.Empty;
+        public DateTime? CreatedDt { get; set; }  
+        public string? UpdatedBy { get; set; }  
+        public DateTime? UpdatedDt { get; set; }  
+        public int? GradeId { get; set; }  
+        public int? EmployeeId { get; set; }  
+        public string? company_email { get; set; }  
     }
 }

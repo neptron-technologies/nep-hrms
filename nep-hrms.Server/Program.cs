@@ -10,7 +10,6 @@ using nep_hrms.Domain.Mappers;
 using nep_hrms.Server.Authenticate;
 using nep_hrms.Server.nep_hrms.DAL;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddAutoMapper(typeof(EmpMapper));
@@ -18,6 +17,7 @@ builder.Services.AddAutoMapper(typeof(AttendanceMap));
 builder.Services.AddAutoMapper(typeof(UserMapper));
 builder.Services.AddAutoMapper(typeof(UserRoleMapper));
 builder.Services.AddAutoMapper(typeof(PermissionMapper));
+builder.Services.AddAutoMapper(typeof(RolePermissionMapper));
 
 var configuration = builder.Configuration;
 
@@ -53,7 +53,6 @@ builder.Services.AddAuthentication(options =>
 });
 
 builder.Services.AddAuthorization();
-
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
