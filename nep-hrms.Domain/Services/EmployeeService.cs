@@ -1,19 +1,9 @@
 ﻿using AutoMapper;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 using nep_hrms.DAL.Interfaces;
 using nep_hrms.Domain.Interfaces;
-using nep_hrms.Server.nep_hrms.DAL;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using nep_hrms.DAL.Repositories;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 using nep_hrms.Domain.Models;
+using nep_hrms.Server.nep_hrms.DAL;
 
-//private readonly HrmsDBContext dbContext = new HrmsDBContext();
 
 namespace nep_hrms.Domain.Services
 {
@@ -30,7 +20,17 @@ namespace nep_hrms.Domain.Services
 
         public async Task<List<Employee>> GetAllAsync() //all emp
         {
-            return await _employeeRepo.GetAllAsync();
+            List<Employee> employees = null;
+            try
+            {
+                employees = await _employeeRepo.GetAllAsync();
+                var employeeDto = _mapper.Map<List<EmployeeDto>>(employees);
+            }
+            catch (Exception ex) 
+            {
+                string msg = ex.Message;
+            }
+            return employees;
         }
 
         public async Task<Employee> GetByIdAsync(int id) //emp by id

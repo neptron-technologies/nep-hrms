@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using nep_hrms.DAL.Interfaces;
 using nep_hrms.Domain.Interfaces;
 using nep_hrms.Domain.Models;
@@ -13,9 +14,9 @@ namespace nep_hrms.Domain.Services
 {
     public class AttendanceService : IAttendanceService
     {
-        //private readonly IBaseRepo<Attendance> _attendanceRepo;
         private readonly IAttendanceRepo _attendanceRepo;
         private readonly IMapper _mapper;
+        
 
         public AttendanceService(IAttendanceRepo attendanceRepo, IMapper mapper)
         {
@@ -30,12 +31,17 @@ namespace nep_hrms.Domain.Services
         }
         public async Task<List<Attendance>> GetDataBySql(int EmpId) //GET BY ID
         {
-            //return await _attendanceRepo.GetByIdAsync(id);
-            string sql = "SELECT * FROM Attendance where emp_id = " + EmpId.ToString();
-            var empAttendance = await _attendanceRepo.GetDataBySql(sql);
 
-            return empAttendance;
+            //string sql = "SELECT * FROM Attendance where emp_id = " + EmpId.ToString();
+            //var empAttendance = await _attendanceRepo.GetDataBySql(sql);
+
+            //return empAttendance;
+            return await _attendanceRepo.GetAttendanceByEmpId(EmpId);
+
+            //var sqlQuery = "SELECT * FROM Attendance WHERE emp_id = {0}";
+            //return await _dbContext.Attendances.FromSqlRaw(sqlQuery, EmpId).ToListAsync();
         }
+  
         public async Task<Attendance> AddAsync(Attendance attendance) //ADD
         {
             return await _attendanceRepo.AddAsync(attendance);
