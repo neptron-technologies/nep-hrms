@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../../services/service-login.service';
 import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -11,23 +12,31 @@ import { FormsModule } from '@angular/forms';
   standalone: true
 })
 
-export class LoginComponent implements OnInit {
-  username = '';
-  password = '';
+export class LoginComponent {
+  username: string = '';
+  password: string = '';
+  errorMessage: string = '';
 
-  constructor(private authService: LoginService, private router: Router) { }
-
-  ngOnInit(): void {
-    if (this.authService.isLoggedIn()) {
-      this.router.navigate(['/dashboard']); // Redirect if already logged in
-    }
-  }
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) { }
 
   login(): void {
-    if (this.authService.login(this.username, this.password)) {
-      this.router.navigate(['/dashboard']);
-    } else {
-      alert('Invalid Credentials');
+    if (!this.username || !this.password) {
+      this.errorMessage = 'Please enter both ID and Password';
+      return;
     }
+
+    const loginData = { username: this.username, password: this.password };
+    this.http.post<{ token: string }>('https://localhost:44362/api/Login/Login', loginData).subscribe({
+      next: (response) => {
+        localStorage.setItem('token', response.token);
+        this.router.navigate(['/dashboard']);
+      },
+      error: (err) => {
+        this.errorMessage = err.error?.message || 'Login failed';
+      }
+    });
   }
 }
