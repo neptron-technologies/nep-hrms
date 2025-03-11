@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from '../../services/service-login.service';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 

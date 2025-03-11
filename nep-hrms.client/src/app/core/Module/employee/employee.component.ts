@@ -41,15 +41,15 @@ export class EmployeeComponent implements OnInit {
     this.employeeObj = employee;
     this.editmode = true;
     this.employeeForm.patchValue({ ...employee });
-  } 
+  }
   onSubmit(): void {
     if (this.employeeForm.valid) {
 
       const employeeData = new Employee(
         this.employeeForm.value.id,
         this.employeeForm.value.employeeCode,
-        this.employeeForm.value.employeeFirstName,
-        this.employeeForm.value.employeeLastName,
+        this.employeeForm.value.fname,
+        this.employeeForm.value.lname,
         this.employeeForm.value.dob,
         this.employeeForm.value.gender,
         this.employeeForm.value.doj,
@@ -133,8 +133,8 @@ export class EmployeeComponent implements OnInit {
   resetForm() {
     this.employeeForm.reset({
       employeeCode: '',
-      employeeFirstName: '',
-      employeeLastName: '',
+      fname: '',
+      lname: '',
       dob: '',
       gender: '',
       doj: '',
@@ -241,8 +241,8 @@ export class EmployeeComponent implements OnInit {
     this.employeeForm = this.fb.group({
       id: [''],
       employeeCode: [''],
-      employeeFirstName: ['', Validators.required],
-      employeeLastName: ['', Validators.required],
+      fname: ['', Validators.required],
+      lname: ['', Validators.required],
       dob: ['', Validators.required],
       gender: ['', Validators.required],
       doj: ['', Validators.required],
