@@ -16,7 +16,7 @@ namespace nep_hrms.Server.API
         }
 
         [HttpGet("{EmpId}")]
-        public async Task<IActionResult>GetAttendanceById(int EmpId) //emp by id
+        public async Task<IActionResult>GetAttendanceById(int EmpId) 
         {
             var attendance = await _attendanceService.GetDataBySql(EmpId);
             if (attendance == null)
@@ -34,6 +34,17 @@ namespace nep_hrms.Server.API
 
             var createdAttendance = await _attendanceService.AddAsync(attendanceDto);
             return Ok(createdAttendance.EmpId);
+        }
+
+        [HttpGet("summary/{empId}")]
+        public async Task<IActionResult> GetAttendanceSummary(int empId)
+        {
+            var attendanceSummary = await _attendanceService.GetAttendanceSummary(empId);
+            if (attendanceSummary == null)
+            {
+                return NotFound("Employee not found");
+            }
+            return Ok(attendanceSummary);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using nep_hrms.DAL.Models;
 
 namespace nep_hrms.Server.nep_hrms.DAL;
 
@@ -23,6 +24,7 @@ public partial class Attendance
 
     public string? UpdatedBy { get; set; }
 
+    
     public string? ReviewedBy { get; set; }
 
     public DateTime? ReviewedDt { get; set; }
@@ -31,4 +33,12 @@ public partial class Attendance
 
     [NotMapped]
     public  Employee? Emp { get; set; }
+
+    public int? StatusId { get; set; }
+
+    public virtual AttendanceStatus? Status { get; set; }
+
+    public int? ProjectId { get; set; }
+
+    public virtual Project? Project { get; set; }
 }

@@ -1,13 +1,13 @@
 <form [formGroup]="attendanceForm" (ngSubmit)="onSubmit()">
   <div class="attendance-form">
     <h2>Employee Attendance</h2>
-
+ 
     <!-- Date Picker to Select Any Day of the Week -->
-    <div class="start-date-entry">
+    <!-- <div class="start-date-entry">
       <label for="selectedDate">Select Day of the Week:</label>
       <input type="date" id="selectedDate" formControlName="selectedDate" (change)="onDateChange()"
         [value]="selectedDateString" />
-    </div>
+    </div> -->
     <table>
       <thead>
         <tr>
@@ -17,6 +17,7 @@
         <tr>
           <th>Hours Filled</th>
           <th>Remarks</th>
+          <th>Project Info</th>
         </tr>
       </thead>
       <tbody>
@@ -36,12 +37,22 @@
             <label for="remarks{{i}}">Remarks:</label>
             <input type="text" id="remarks{{i}}" class="remarks attn" formControlName="remarks{{i}}" />
           </td>
+          <td>
+            <label for="projectId{{i}}">Project ID:</label>
+            <input type="text" id="projectId{{i}}" class="project_id attn" formControlName="projectId{{i}}" readonly/>
+          </td>
         </tr>
       </tbody>
     </table>
-
+ 
     <div class="container">
       <button type="submit" [disabled]="attendanceForm.invalid">Submit</button>
     </div>
+
+    <!-- <div [ngClass]="getStatusClass(attendanceStatus)">
+      {{ attendanceStatus }}
+    </div>
+     -->
   </div>
 </form>
+ 

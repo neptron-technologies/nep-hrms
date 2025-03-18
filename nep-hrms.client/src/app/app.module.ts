@@ -12,13 +12,16 @@ import { EmployeeComponent } from './core/Module/employee/employee.component';
 import { AttendanceComponent } from './core/Module/attendance/attendance.component';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { HttpHeaders } from '@angular/common/http'
+import { HttpHeaders } from '@angular/common/http';
+import { SuperadminComponent } from './core/Module/superadmin/superadmin.component';
+import { MatDialogModule } from '@angular/material/dialog';
+
 //import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-    declarations: [AppComponent, EmployeeComponent, AttendanceComponent,],
+    declarations: [AppComponent, EmployeeComponent, AttendanceComponent, SuperadminComponent],
     bootstrap: [AppComponent],
-    imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
+    imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule,MatDialogModule,],
     providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClient()]
 })
 export class AppModule { };

@@ -19,6 +19,8 @@ namespace nep_hrms.Domain.Mappers
             CreateMap<Attendance, AttendanceDto>();  
 
             CreateMap<AttendanceDto, Attendance>();
+
+            //CreateMap<AttendanceSummary, AttendanceSummaryDto>();
         }
     }
 }

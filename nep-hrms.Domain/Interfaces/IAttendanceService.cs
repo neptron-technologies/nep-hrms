@@ -19,6 +19,7 @@ namespace nep_hrms.Domain.Interfaces
         Task UpdateAsync(Attendance attendance);
         Task DeleteAsync(int id);
 
+        Task<AttendanceSummaryDto> GetAttendanceSummary(int empId);
         //Task<List<Attendance>> GetAttendance();
         // Task<IEnumerable<Attendance>> GetByEmployeeIdAsync(long empId);
         //req   public Task<AttendanceDto> AddAsync(AttendanceDto attendanceDto);

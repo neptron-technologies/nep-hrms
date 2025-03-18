@@ -17,40 +17,60 @@ h2 {
   color: #333;
 }
 
-/* Day Entry Styling */
+/* Flexbox Layout for Day Entry */
 .day-entry {
-  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 15px;
+  flex-wrap: nowrap; /* Prevents wrapping */
 }
 
+.day-entry > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25%; /* Ensures equal column width */
+}
+
+/* Label Styling */
 label {
   font-size: 14px;
   font-weight: 500;
   color: #555;
-  display: block;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
+  text-align: center;
 }
 
+/* Form Inputs Styling */
 .attn {
-  padding: 10px;
-  margin-bottom: 10px;
+  padding: 8px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  /* box-sizing: border-box; */
   transition: border-color 0.3s;
+  width: 100%; /* Makes all inputs uniform */
+  height: 40px; /* Ensures consistent height */
 }
 
 .attendance_Date .attn {
-  width: 150px;
+  min-width: 120px; /* Prevents shrinking */
 }
 
 .hours_filled .attn {
-  width: 150px;
+  min-width: 120px;
 }
 
 .remarks .attn {
-  width: 500px;
+  min-width: 250px;
   padding-left: 10px;
+}
+
+input[type="date"],
+input[type="number"],
+input[type="text"] {
+  height: 40px; /* Ensures consistent alignment */
 }
 
 input[type="date"]:focus,
@@ -60,7 +80,7 @@ input[type="text"]:focus {
   outline: none;
 }
 
-/* Styling for Error Messages */
+/* Error Message Styling */
 input.ng-invalid.ng-touched {
   border-color: red;
 }
@@ -69,19 +89,51 @@ input.ng-valid.ng-touched {
   border-color: green;
 }
 
+/* Container Flexbox */
 .container {
   display: flex;
   justify-content: center;
-  /* Centers horizontally */
   align-items: center;
-  /* Centers vertically (if height is set) */
 }
 
+/* Button Styling */
 button {
-  width: 30%;
-  align-items: center;
-  padding: 12px;
+  width: auto;
+  padding: 10px 20px;
   background-color: green;
-  justify-content: center;
-  font-size: 16px
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: darkgreen;
+}
+
+/* Status Colors */
+.to-be-submitted { color: orange; font-weight: bold; }
+.submitted { color: blue; font-weight: bold; }
+.approved { color: green; font-weight: bold; }
+.rejected { color: red; font-weight: bold; }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .day-entry {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .day-entry > div {
+    width: 100%;
+  }
+
+  .attn {
+    width: 100%;
+  }
+
+  button {
+    width: 100%;
+  }
 }
