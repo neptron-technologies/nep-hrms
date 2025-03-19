@@ -6,6 +6,7 @@ import { AuthGuard } from './core/auth/auth.guard';
 import { EmployeeComponent } from './core/Module/employee/employee.component';
 import { AttendanceComponent } from './core/Module/attendance/attendance.component';
 import { SuperadminComponent } from './core/Module/superadmin/superadmin.component';
+import { PayslipComponent } from './core/Module/payslip/payslip.component';
 const routes: Routes = [
   {
     path: '',
@@ -31,6 +32,10 @@ const routes: Routes = [
       {
         path: 'superadmin',
         component: SuperadminComponent
+      },
+      {
+        path: 'payslip',
+        component: PayslipComponent
       }
     ]
   },

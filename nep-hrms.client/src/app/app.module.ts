@@ -15,11 +15,12 @@ import { Validators } from '@angular/forms';
 import { HttpHeaders } from '@angular/common/http';
 import { SuperadminComponent } from './core/Module/superadmin/superadmin.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { PayslipComponent } from './core/Module/payslip/payslip.component';
 
 //import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-    declarations: [AppComponent, EmployeeComponent, AttendanceComponent, SuperadminComponent],
+    declarations: [AppComponent, EmployeeComponent, AttendanceComponent, SuperadminComponent, PayslipComponent],
     bootstrap: [AppComponent],
     imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule,MatDialogModule,],
     providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClient()]
