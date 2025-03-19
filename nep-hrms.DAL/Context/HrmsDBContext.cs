@@ -1,716 +1,913 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Reflection.Emit;
-using System.Security;
-using Microsoft.EntityFrameworkCore;
-using nep_hrms.DAL.Repositories;
-using static System.Net.Mime.MediaTypeNames;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-namespace nep_hrms.Server.nep_hrms.DAL;
+﻿using Microsoft.EntityFrameworkCore;
+using nep_hrms.DAL.Models;
 
-public partial class HrmsDBContext : DbContext
+namespace nep_hrms.Server.nep_hrms.DAL
 {
-    public HrmsDBContext(DbContextOptions<HrmsDBContext> options): base(options)
+    public partial class HrmsDBContext : DbContext
     {
+        public HrmsDBContext(DbContextOptions<HrmsDBContext> options) : base(options)
+        {
 
+        }
+        public virtual DbSet<Attendance> Attendances { get; set; }
+
+        public virtual DbSet<Designation> Designations { get; set; }
+
+        public virtual DbSet<DesignationHistory> DesignationHistories { get; set; }
+
+        public virtual DbSet<Employee> Employees { get; set; }
+
+        public virtual DbSet<EmployeeCertification> EmployeeCertifications { get; set; }
+
+        public virtual DbSet<EmployeeContactDetail> EmployeeContactDetails { get; set; }
+
+        public virtual DbSet<EmployeeGrade> EmployeeGrades { get; set; }
+
+        public virtual DbSet<EmployeeJobHistory> EmployeeJobHistories { get; set; }
+
+        public virtual DbSet<EmployeeKyc> EmployeeKycs { get; set; }
+
+        public virtual DbSet<EmployeeSkill> EmployeeSkills { get; set; }
+
+        public virtual DbSet<Log> Logs { get; set; }
+
+        public virtual DbSet<LoginLog> LoginLogs { get; set; }
+
+        public virtual DbSet<MasterKyc> MasterKycs { get; set; }
+
+        public virtual DbSet<Permission> Permissions { get; set; }
+
+        public virtual DbSet<Role> Roles { get; set; }
+
+        public virtual DbSet<Document> Documents { get; set; }
+
+        public virtual DbSet<RolePermission> RolePermissions { get; set; }
+
+        public virtual DbSet<User> Users { get; set; }
+
+        public virtual DbSet<UserRole> UserRoles { get; set; }
+
+        public virtual DbSet<Payroll> Payroll { get; set; }
+
+        public virtual DbSet<EmployeeBankDetail> EmployeeBankDetail { get; set; }
+
+        public virtual DbSet<Payslip> Payslip { get; set; }
+
+
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+            => optionsBuilder.UseSqlServer("Server=192.168.0.101,1433;Initial Catalog=np-hrms;Persist Security Info=True;User ID=npadmin;Password=admin123;Trust Server Certificate=True");
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Attendance>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("pk_attendance");
+
+                entity.ToTable("Attendance");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.AttendanceDate).HasColumnName("attendance_date");
+                entity.Property(e => e.CreatedBy)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("created_by");
+                entity.Property(e => e.CreatedDt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("created_dt");
+                entity.Property(e => e.EmpId).HasColumnName("emp_id");
+                entity.Property(e => e.HoursFilled).HasColumnName("hours_filled");
+                entity.Property(e => e.Remarks)
+                    .HasMaxLength(200)
+                    .IsUnicode(false)
+                    .HasColumnName("remarks");
+                entity.Property(e => e.ReviewedBy)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("reviewed_by");
+                entity.Property(e => e.ReviewedDt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("reviewed_dt");
+                entity.Property(e => e.UpdatedBy)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("updated_by");
+                entity.Property(e => e.UpdatedDt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_dt");
+
+                entity.HasOne(d => d.Emp).WithMany(p => p.Attendances)
+                    .HasForeignKey(d => d.EmpId)
+                    .HasConstraintName("FK_Attend_Emp");
+            });
+
+            modelBuilder.Entity<Designation>(entity =>
+            {
+                entity.ToTable("Designation");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.CreatedBy)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("created_by");
+                entity.Property(e => e.CreatedDt)
+                    .HasDefaultValueSql("(getdate())")
+                    .HasColumnType("datetime")
+                    .HasColumnName("created_dt");
+                entity.Property(e => e.DesigName)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("desig_name");
+                entity.Property(e => e.UpdatedBy)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("updated_by");
+                entity.Property(e => e.UpdatedDt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_dt");
+            });
+
+            modelBuilder.Entity<DesignationHistory>(entity =>
+            {
+                entity.ToTable("DesignationHistory");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.CreatedBy)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("created_by");
+                entity.Property(e => e.CreatedDt)
+                    .HasDefaultValueSql("(getdate())")
+                    .HasColumnType("datetime")
+                    .HasColumnName("created_dt");
+                entity.Property(e => e.DesignationId).HasColumnName("designation_id");
+                entity.Property(e => e.EmpId).HasColumnName("emp_id");
+                entity.Property(e => e.EndDt).HasColumnName("end_dt");
+                entity.Property(e => e.StartDt).HasColumnName("start_dt");
+                entity.Property(e => e.UpdatedBy)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("updated_by");
+                entity.Property(e => e.UpdatedDt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_dt");
+
+                entity.HasOne(d => d.Designation).WithMany(p => p.DesignationHistories)
+                    .HasForeignKey(d => d.DesignationId)
+                    .HasConstraintName("FK_DisigHist_Desig");
+
+                entity.HasOne(d => d.Emp).WithMany(p => p.DesignationHistories)
+                    .HasForeignKey(d => d.EmpId)
+                    .HasConstraintName("FK_EmpDesHis_Emp");
+            });
+
+            modelBuilder.Entity<Employee>(entity =>
+            {
+                entity.ToTable("Employee");
+
+                entity.HasIndex(e => e.CompanyEmail, "UQ__Employee__7C4661D143DC0782").IsUnique();
+
+                entity.HasIndex(e => e.EmpCode, "UQ__Employee__B1056ABCA966495B").IsUnique();
+
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Active)
+                    .HasDefaultValue(true)
+                    .HasColumnName("active");
+                entity.Property(e => e.BaseLoc)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("base_loc");
+                entity.Property(e => e.BloodGroup)
+                    .HasMaxLength(5)
+                    .IsUnicode(false)
+                    .HasColumnName("blood_group");
+                entity.Property(e => e.CompanyEmail)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("company_email");
+                entity.Property(e => e.Contractor)
+                    .HasDefaultValue(false)
+                    .HasColumnName("contractor");
+                entity.Property(e => e.CreatedBy)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("created_by");
+                entity.Property(e => e.CreatedDt)
+                    .HasDefaultValueSql("(getdate())")
+                    .HasColumnType("datetime")
+                    .HasColumnName("created_dt");
+                entity.Property(e => e.Designation)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("designation");
+                entity.Property(e => e.Dob).HasColumnName("dob");
+                entity.Property(e => e.Doj).HasColumnName("doj");
+                entity.Property(e => e.EmpCode)
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("emp_code");
+                entity.Property(e => e.EmployeeId).HasColumnName("employee_id");
+                entity.Property(e => e.Fname)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("fname");
+                entity.Property(e => e.Grade)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("grade");
+                entity.Property(e => e.GradeId).HasColumnName("grade_id");
+                entity.Property(e => e.Lname)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("lname");
+                entity.Property(e => e.UpdatedBy)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("updated_by");
+                entity.Property(e => e.UpdatedDt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_dt");
+
+                entity.HasOne(d => d.GradeNavigation).WithMany(p => p.Employees)
+                    .HasForeignKey(d => d.GradeId)
+                    .HasConstraintName("FK_Employee_Grade");
+
+            });
+
+            modelBuilder.Entity<EmployeeCertification>(entity =>
+            {
+                entity.ToTable("EmployeeCertification");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.CertificateId)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("certificate_id");
+                entity.Property(e => e.CertificateName)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("certificate_name");
+                entity.Property(e => e.CreatedBy)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("created_by");
+                entity.Property(e => e.CreatedDt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("created_dt");
+                entity.Property(e => e.Description)
+                    .HasMaxLength(200)
+                    .IsUnicode(false)
+                    .HasColumnName("description");
+                entity.Property(e => e.EmpId).HasColumnName("emp_id");
+                entity.Property(e => e.IssuedOn)
+                    .HasColumnType("datetime")
+                    .HasColumnName("issued_on");
+                entity.Property(e => e.UpdatedBy)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("updated_by");
+                entity.Property(e => e.UpdatedDt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_dt");
+                entity.Property(e => e.ValidUpto)
+                    .HasColumnType("datetime")
+                    .HasColumnName("valid_upto");
+
+                entity.HasOne(d => d.Emp).WithMany(p => p.EmployeeCertifications)
+                    .HasForeignKey(d => d.EmpId)
+                    .HasConstraintName("FK_EmpCert_Emp");
+            });
+
+            modelBuilder.Entity<EmployeeContactDetail>(entity =>
+            {
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Address)
+                    .HasMaxLength(200)
+                    .IsUnicode(false)
+                    .HasColumnName("address");
+                entity.Property(e => e.City)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("city");
+                entity.Property(e => e.Country)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("country");
+                entity.Property(e => e.CreatedBy)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("created_by");
+                entity.Property(e => e.CreatedDt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("created_dt");
+                entity.Property(e => e.EmpId).HasColumnName("emp_id");
+                entity.Property(e => e.Mobile)
+                    .HasMaxLength(15)
+                    .IsUnicode(false)
+                    .HasColumnName("mobile");
+                entity.Property(e => e.PinCode)
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("pin_code");
+                entity.Property(e => e.State)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("state");
+                entity.Property(e => e.UpdatedBy)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("updated_by");
+                entity.Property(e => e.UpdatedDt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_dt");
+
+                entity.HasOne(d => d.Emp).WithMany(p => p.EmployeeContactDetails)
+                    .HasForeignKey(d => d.EmpId)
+                    .HasConstraintName("FK_EmpConDet_Emp");
+            });
+
+            modelBuilder.Entity<EmployeeGrade>(entity =>
+            {
+                entity.ToTable("EmployeeGrade");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Grade)
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("grade");
+                entity.Property(e => e.Remarks)
+                    .HasMaxLength(150)
+                    .IsUnicode(false)
+                    .HasColumnName("remarks");
+            });
+
+            modelBuilder.Entity<EmployeeJobHistory>(entity =>
+            {
+                entity.ToTable("EmployeeJobHistory");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.CreatedBy)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("created_by");
+                entity.Property(e => e.CreatedDt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("created_dt");
+                entity.Property(e => e.EmpId).HasColumnName("emp_id");
+                entity.Property(e => e.EndDt).HasColumnName("end_dt");
+                entity.Property(e => e.JobTitle)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("job_title");
+                entity.Property(e => e.Loc)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("loc");
+                entity.Property(e => e.Salary).HasColumnName("salary");
+                entity.Property(e => e.StartDt).HasColumnName("start_dt");
+                entity.Property(e => e.UpdatedBy)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("updated_by");
+                entity.Property(e => e.UpdatedDt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_dt");
+
+                entity.HasOne(d => d.Emp).WithMany(p => p.EmployeeJobHistories)
+                    .HasForeignKey(d => d.EmpId)
+                    .HasConstraintName("FK_EmpJobHis_Emp");
+            });
+
+            modelBuilder.Entity<EmployeeKyc>(entity =>
+            {
+                entity.ToTable("EmployeeKYC");
+
+                entity.HasIndex(e => e.Passport, "UQ__Employee__5E2A085758A5A782").IsUnique();
+
+                entity.HasIndex(e => e.NationalId, "UQ__Employee__9560E95DCD05F911").IsUnique();
+
+                entity.HasIndex(e => e.VoterId, "UQ__Employee__B795031258A22A34").IsUnique();
+
+                entity.HasIndex(e => e.DrivingLicense, "UQ__Employee__CF3263C4264722A3").IsUnique();
+
+                entity.HasIndex(e => e.Pancard, "UQ__Employee__CF5A5D536CE5057C").IsUnique();
+
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.CreatedBy)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("created_by");
+                entity.Property(e => e.CreatedDt)
+                    .HasDefaultValueSql("(getdate())")
+                    .HasColumnType("datetime")
+                    .HasColumnName("created_dt");
+                entity.Property(e => e.DrivingLicense)
+                    .HasMaxLength(30)
+                    .IsUnicode(false)
+                    .HasColumnName("driving_license");
+                entity.Property(e => e.EmpId).HasColumnName("emp_id");
+                entity.Property(e => e.NationalId)
+                    .HasMaxLength(30)
+                    .IsUnicode(false)
+                    .HasColumnName("national_id");
+                entity.Property(e => e.Pancard)
+                    .HasMaxLength(30)
+                    .IsUnicode(false)
+                    .HasColumnName("pancard");
+                entity.Property(e => e.Passport)
+                    .HasMaxLength(30)
+                    .IsUnicode(false)
+                    .HasColumnName("passport");
+                entity.Property(e => e.UpdatedBy)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("updated_by");
+                entity.Property(e => e.UpdatedDt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_dt");
+                entity.Property(e => e.VoterId)
+                    .HasMaxLength(30)
+                    .IsUnicode(false)
+                    .HasColumnName("voter_id");
+
+                entity.HasOne(d => d.Emp).WithMany(p => p.EmployeeKycs)
+                    .HasForeignKey(d => d.EmpId)
+                    .HasConstraintName("FK_EmpKYC_Emp");
+            });
+
+            modelBuilder.Entity<EmployeeSkill>(entity =>
+            {
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.CreatedBy)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("created_by");
+                entity.Property(e => e.CreatedDt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("created_dt");
+                entity.Property(e => e.EmpId).HasColumnName("emp_id");
+                entity.Property(e => e.Skills)
+                    .HasMaxLength(200)
+                    .IsUnicode(false)
+                    .HasColumnName("skills");
+                entity.Property(e => e.UpdatedBy)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("updated_by");
+                entity.Property(e => e.UpdatedDt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_dt");
+
+                entity.HasOne(d => d.Emp).WithMany(p => p.EmployeeSkills)
+                    .HasForeignKey(d => d.EmpId)
+                    .HasConstraintName("FK_EmpSkill_Emp");
+            });
+
+            modelBuilder.Entity<Log>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK__Logs__3213E83F744634BD");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.LogDateTime)
+                    .HasColumnType("datetime")
+                    .HasColumnName("log_date_time");
+                entity.Property(e => e.Remarks)
+                    .HasMaxLength(200)
+                    .IsUnicode(false)
+                    .HasColumnName("remarks");
+                entity.Property(e => e.UserId).HasColumnName("user_id");
+
+                entity.HasOne(d => d.User).WithMany(p => p.Logs)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_User_Logs");
+            });
+
+            modelBuilder.Entity<LoginLog>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK__LoginLog__3213E83FD00ACF50");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.CreatedBy)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("created_by");
+                entity.Property(e => e.CreatedDt)
+                    .HasDefaultValueSql("(getdate())")
+                    .HasColumnType("datetime")
+                    .HasColumnName("created_dt");
+                entity.Property(e => e.EmpId).HasColumnName("emp_id");
+                entity.Property(e => e.LoginTime)
+                    .HasDefaultValueSql("(getdate())")
+                    .HasColumnType("datetime")
+                    .HasColumnName("login_time");
+                entity.Property(e => e.LogoutTime)
+                    .HasColumnType("datetime")
+                    .HasColumnName("logout_time");
+                entity.Property(e => e.UpdatedBy)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("updated_by");
+                entity.Property(e => e.UpdatedDt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_dt");
+
+                entity.HasOne(d => d.Emp).WithMany(p => p.LoginLogs)
+                    .HasForeignKey(d => d.EmpId)
+                    .HasConstraintName("FK_Loginlogs_Emp");
+            });
+
+            modelBuilder.Entity<MasterKyc>(entity =>
+            {
+                entity.ToTable("MasterKYC");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.CreatedBy)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("created_by");
+                entity.Property(e => e.CreatedDt)
+                    .HasDefaultValueSql("(getdate())")
+                    .HasColumnType("datetime")
+                    .HasColumnName("created_dt");
+                entity.Property(e => e.EmpkycId).HasColumnName("empkyc_id");
+                entity.Property(e => e.KycType)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("kyc_type");
+                entity.Property(e => e.UpdatedBy)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("updated_by");
+                entity.Property(e => e.UpdatedDt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_dt");
+                entity.Property(e => e.VerifiedBy)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("verified_by");
+
+                entity.HasOne(d => d.Empkyc).WithMany(p => p.MasterKycs)
+                    .HasForeignKey(d => d.EmpkycId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_EmpKYC_MasterKYC");
+            });
+
+            modelBuilder.Entity<Permission>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK__Permissi__3213E83FECFC3E9A");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.CreatedBy)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("created_by");
+                entity.Property(e => e.CreatedDt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("created_dt");
+                entity.Property(e => e.PermissionType)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("permission_type");
+                entity.Property(e => e.UpdatedBy)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("updated_by");
+                entity.Property(e => e.UpdatedDt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_dt");
+            });
+
+            modelBuilder.Entity<Role>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK__Roles__3213E83FD80EEB7F");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Comment)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("comment");
+                entity.Property(e => e.CreatedBy)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("created_by");
+                entity.Property(e => e.CreatedDt)
+                    .HasDefaultValueSql("(getdate())")
+                    .HasColumnType("datetime")
+                    .HasColumnName("created_dt");
+                entity.Property(e => e.RoleName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("role_name");
+                entity.Property(e => e.UpdatedBy)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("updated_by");
+                entity.Property(e => e.UpdatedDt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_dt");
+            });
+
+            modelBuilder.Entity<Document>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK__Document__3213E83F5E052592");
+                entity.ToTable("Document");
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .ValueGeneratedOnAdd();
+
+                entity.Property(e => e.Content)
+                      .IsRequired()
+                      .HasColumnName("content");
+
+                entity.Property(e => e.Description)
+                      .HasMaxLength(500)
+                      .IsUnicode(true)
+                      .HasColumnName("description");
+
+                entity.Property(e => e.Type)
+                      .IsRequired()
+                      .HasMaxLength(255)
+                      .IsUnicode(false)
+                      .HasColumnName("type");
+
+                entity.Property(e => e.CreatedBy)
+                      .IsRequired()
+                      .HasMaxLength(100)
+                      .IsUnicode(false)
+                      .HasColumnName("created_by");
+
+                entity.Property(e => e.CreatedDt)
+                      .HasColumnType("datetime")
+                      .HasColumnName("created_dt")
+                      .HasDefaultValueSql("GETDATE()");
+
+                entity.Property(e => e.UpdatedBy)
+                      .HasMaxLength(100)
+                      .IsUnicode(false)
+                      .HasColumnName("updated_by");
+
+                entity.Property(e => e.UpdatedDt)
+                      .HasColumnType("datetime")
+                      .HasColumnName("updated_dt");
+
+                entity.Property(e => e.Active)
+                      .HasColumnName("active");
+            });
+
+            modelBuilder.Entity<RolePermission>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK__RolePerm__3213E83FDC2FE512");
+
+                entity.ToTable("RolePermission");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.CreatedBy)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("created_by");
+                entity.Property(e => e.CreatedDt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("created_dt");
+                entity.Property(e => e.PermissionId).HasColumnName("permission_id");
+                entity.Property(e => e.RoleId).HasColumnName("role_id");
+                entity.Property(e => e.UpdatedBy)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("updated_by");
+                entity.Property(e => e.UpdatedDt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_dt");
+
+                //entity.HasOne(d => d.Permission).WithMany(p => p.RolePermissions)
+                //    .HasForeignKey(d => d.PermissionId)
+                //    .HasConstraintName("FK_permissions");
+
+                entity.HasOne(d => d.Role).WithMany(p => p.RolePermissions)
+                    .HasForeignKey(d => d.RoleId)
+                    .HasConstraintName("FK_role_permission");
+            });
+
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK__Users__3213E83F119926BB");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.CreatedBy)
+                    .HasMaxLength(250)
+                    .IsUnicode(false)
+                    .HasColumnName("created_by");
+                entity.Property(e => e.CreatedDt)
+                    .HasDefaultValueSql("(getdate())")
+                    .HasColumnType("datetime")
+                    .HasColumnName("created_dt");
+                entity.Property(e => e.EmpId).HasColumnName("emp_id");
+                entity.Property(e => e.PasswordHash)
+                    .HasMaxLength(250)
+                    .IsUnicode(false)
+                    .HasColumnName("password_hash");
+                entity.Property(e => e.UpdatedBy)
+                    .HasMaxLength(250)
+                    .IsUnicode(false)
+                    .HasColumnName("updated_by");
+                entity.Property(e => e.UpdatedDt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_dt");
+                entity.Property(e => e.Username)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("username");
+
+                entity.HasOne(d => d.Emp).WithMany(p => p.Users)
+                    .HasForeignKey(d => d.EmpId)
+                    .HasConstraintName("FK_User_Emp");
+            });
+
+            modelBuilder.Entity<UserRole>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK__UserRole__3213E83FD79ACC8F");
+
+                entity.ToTable("UserRole");
+
+                entity.HasIndex(e => e.RoleId, "UQ__UserRole__760965CD01A2E69E").IsUnique();
+
+                entity.HasIndex(e => e.UserId, "UQ__UserRole__B9BE370EC7B31193").IsUnique();
+
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.CreatedBy)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("created_by");
+                entity.Property(e => e.CreatedDt)
+                    .HasDefaultValueSql("(getdate())")
+                    .HasColumnType("datetime")
+                    .HasColumnName("created_dt");
+                entity.Property(e => e.RoleId).HasColumnName("role_id");
+                entity.Property(e => e.UpdatedBy)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("updated_by");
+                entity.Property(e => e.UpdatedDt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_dt");
+                entity.Property(e => e.UserId).HasColumnName("user_id");
+
+                entity.HasOne(d => d.Role).WithOne(p => p.UserRole)
+                    .HasForeignKey<UserRole>(d => d.RoleId)
+                    .HasConstraintName("FK_roles");
+
+                //entity.HasOne(d => d.User).WithOne(p => p.UserRole)
+                //    .HasForeignKey<UserRole>(d => d.UserId)
+                //    .HasConstraintName("FK_users_roles");
+            });
+
+            modelBuilder.Entity<Payroll>(entity =>
+            {
+                entity.ToTable("Payroll");
+                entity.HasKey(e => e.ID).HasName("PK__Payroll__D99FC944C01B7A18");
+
+                entity.Property(e => e.ID).HasColumnName("id");
+                entity.Property(e => e.EmpID).HasColumnName("emp_id");
+                entity.Property(e => e.BaseSalary)
+                    .HasColumnName("base_salary")
+                    .IsRequired();
+                entity.Property(e => e.Bonus)
+                    .HasColumnName("bonus")
+                    .HasDefaultValue(0);
+                    entity.Property(e => e.Deduction)
+                    .HasColumnName("deductions")
+                    .HasDefaultValue(0);
+                entity.Property(e => e.NetSalary)
+                    .HasColumnName("net_salary")
+                    .IsRequired();
+                entity.Property(e => e.PaymentDate)
+                    .HasColumnName("payment_date")
+                    .IsRequired()
+                    .HasColumnType("date");
+                entity.Property(e => e.PaymentMethod)
+                    .HasColumnName("payment_method")
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.Emp)
+                    .WithMany(p => p.Payrolls) // Make sure "Payrolls" is correctly mapped
+                    .HasForeignKey(d => d.EmpID)
+                    .HasConstraintName("FK_Payroll_Employee");
+            });
+
+            modelBuilder.Entity<EmployeeBankDetail>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK__Employee__7AD4DCAB281A07D2");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.EmpId).HasColumnName("emp_id");
+                entity.Property(e => e.UanNo)
+                    .HasColumnName("uan_no")
+                    .HasMaxLength(20)
+                    .IsRequired()
+                    .IsUnicode(false);
+                entity.Property(e => e.PfNo)
+                    .HasColumnName("pf_no")
+                    .HasMaxLength(20)
+                    .IsRequired()
+                    .IsUnicode(false);
+                entity.Property(e => e.Esi)
+                    .HasColumnName("esi")
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+                entity.Property(e => e.BankName)
+                    .HasColumnName("bank_name")
+                    .HasMaxLength(100)
+                    .IsRequired()
+                    .IsUnicode(false);
+                entity.Property(e => e.AccountNo)
+                    .HasColumnName("account_number")
+                    .HasMaxLength(30)
+                    .IsRequired()
+                    .IsUnicode(false);
+                entity.Property(e => e.IfscCode)
+                    .HasColumnName("ifsc_code")
+                    .HasMaxLength(15)
+                    .IsRequired()
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.Emp)
+                    .WithMany(p => p.EmployeeBankDetails) // Make sure "Payrolls" is correctly mapped
+                    .HasForeignKey(d => d.EmpId)
+                    .HasConstraintName("FK_Payroll_Employee");
+            });
+
+            modelBuilder.Entity<Payslip>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK__Payslip__3214EC07E00ECEAC");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.EmpId).HasColumnName("EmpId");
+
+                entity.Property(e => e.Hra)
+                    .HasColumnName("HRA")
+                    .HasColumnType("decimal(18,2)")
+                    .IsRequired();
+
+                entity.Property(e => e.ConveyanceAllowance)
+                    .HasColumnName("ConveyanceAllowance")
+                    .HasColumnType("decimal(18,2)")
+                    .IsRequired();
+
+                entity.Property(e => e.MedicalAllowance)
+                    .HasColumnName("MedicalAllowance")
+                    .HasColumnType("decimal(18,2)")
+                    .IsRequired();
+
+                entity.Property(e => e.OtherAllowance)
+                    .HasColumnName("OtherAllowance")
+                    .HasColumnType("decimal(18,2)")
+                    .IsRequired();
+
+                entity.Property(e => e.GrossSalary)
+                    .HasColumnName("GrossSalary")
+                    .HasColumnType("decimal(18,2)")
+                    .IsRequired();
+
+                entity.Property(e => e.EPF)
+                    .HasColumnName("EPF")
+                    .HasColumnType("decimal(18,2)")
+                    .IsRequired();
+
+                entity.Property(e => e.ESI)
+                    .HasColumnName("ESI")
+                    .HasColumnType("decimal(18,2)")
+                    .IsRequired();
+
+                entity.Property(e => e.ProfessionalTax)
+                    .HasColumnName("ProfessionalTax")
+                    .HasColumnType("decimal(18,2)")
+                    .IsRequired();
+
+                entity.Property(e => e.TotalDeduction)
+                    .HasColumnName("TotalDeduction")
+                    .HasColumnType("decimal(18,2)")
+                    .IsRequired();
+
+                entity.Property(e => e.NetSalary)
+                    .HasColumnName("NetSalary")
+                    .HasColumnType("decimal(18,2)") 
+                    .IsRequired();
+
+                entity.Property(e => e.SalaryMonth)
+                    .HasColumnName("SalaryMonth")
+                    .HasColumnType("date")
+                    .IsRequired();
+
+                entity.HasOne(e => e.Emp)
+                    .WithMany(p => p.Payslips)  // Assuming no navigation property in Employee for Payslip
+                    .HasForeignKey(e => e.EmpId)
+                    .HasConstraintName("FK_Employee");
+            });
+
+            OnModelCreatingPartial(modelBuilder);
+        }
+
+        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
-    public virtual DbSet<Attendance> Attendances { get; set; }
-
-    public virtual DbSet<Designation> Designations { get; set; }
-
-    public virtual DbSet<DesignationHistory> DesignationHistories { get; set; }
-
-    public virtual DbSet<Employee> Employees { get; set; }
-
-    public virtual DbSet<EmployeeCertification> EmployeeCertifications { get; set; }
-
-    public virtual DbSet<EmployeeContactDetail> EmployeeContactDetails { get; set; }
-
-    public virtual DbSet<EmployeeGrade> EmployeeGrades { get; set; }
-
-    public virtual DbSet<EmployeeJobHistory> EmployeeJobHistories { get; set; }
-
-    public virtual DbSet<EmployeeKyc> EmployeeKycs { get; set; }
-
-    public virtual DbSet<EmployeeSkill> EmployeeSkills { get; set; }
-
-    public virtual DbSet<Log> Logs { get; set; }
-
-    public virtual DbSet<LoginLog> LoginLogs { get; set; }
-
-    public virtual DbSet<MasterKyc> MasterKycs { get; set; }
-
-    public virtual DbSet<Permission> Permissions { get; set; }
-
-    public virtual DbSet<Role> Roles { get; set; }
-
-    public virtual DbSet<RolePermission> RolePermissions { get; set; }
-
-    public virtual DbSet<User> Users { get; set; }
-
-    public virtual DbSet<UserRole> UserRoles { get; set; }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Server=192.168.0.104,1433;Initial Catalog=np-hrms;Persist Security Info=True;User ID=npadmin;Password=admin123;Trust Server Certificate=True");
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.Entity<Attendance>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("pk_attendance");
-
-            entity.ToTable("Attendance");
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.AttendanceDate).HasColumnName("attendance_date");
-            entity.Property(e => e.CreatedBy)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("created_by");
-            entity.Property(e => e.CreatedDt)
-                .HasColumnType("datetime")
-                .HasColumnName("created_dt");
-            entity.Property(e => e.EmpId).HasColumnName("emp_id");
-            entity.Property(e => e.HoursFilled).HasColumnName("hours_filled");
-            entity.Property(e => e.Remarks)
-                .HasMaxLength(200)
-                .IsUnicode(false)
-                .HasColumnName("remarks");
-            entity.Property(e => e.ReviewedBy)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("reviewed_by");
-            entity.Property(e => e.ReviewedDt)
-                .HasColumnType("datetime")
-                .HasColumnName("reviewed_dt");
-            entity.Property(e => e.UpdatedBy)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("updated_by");
-            entity.Property(e => e.UpdatedDt)
-                .HasColumnType("datetime")
-                .HasColumnName("updated_dt");
-
-            entity.HasOne(d => d.Emp).WithMany(p => p.Attendances)
-                .HasForeignKey(d => d.EmpId)
-                .HasConstraintName("FK_Attend_Emp");
-        });
-
-        modelBuilder.Entity<Designation>(entity =>
-        {
-            entity.ToTable("Designation");
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.CreatedBy)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("created_by");
-            entity.Property(e => e.CreatedDt)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime")
-                .HasColumnName("created_dt");
-            entity.Property(e => e.DesigName)
-                .HasMaxLength(100)
-                .IsUnicode(false)
-                .HasColumnName("desig_name");
-            entity.Property(e => e.UpdatedBy)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("updated_by");
-            entity.Property(e => e.UpdatedDt)
-                .HasColumnType("datetime")
-                .HasColumnName("updated_dt");
-        });
-
-        modelBuilder.Entity<DesignationHistory>(entity =>
-        {
-            entity.ToTable("DesignationHistory");
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.CreatedBy)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("created_by");
-            entity.Property(e => e.CreatedDt)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime")
-                .HasColumnName("created_dt");
-            entity.Property(e => e.DesignationId).HasColumnName("designation_id");
-            entity.Property(e => e.EmpId).HasColumnName("emp_id");
-            entity.Property(e => e.EndDt).HasColumnName("end_dt");
-            entity.Property(e => e.StartDt).HasColumnName("start_dt");
-            entity.Property(e => e.UpdatedBy)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("updated_by");
-            entity.Property(e => e.UpdatedDt)
-                .HasColumnType("datetime")
-                .HasColumnName("updated_dt");
-
-            entity.HasOne(d => d.Designation).WithMany(p => p.DesignationHistories)
-                .HasForeignKey(d => d.DesignationId)
-                .HasConstraintName("FK_DisigHist_Desig");
-
-            entity.HasOne(d => d.Emp).WithMany(p => p.DesignationHistories)
-                .HasForeignKey(d => d.EmpId)
-                .HasConstraintName("FK_EmpDesHis_Emp");
-        });
-
-        modelBuilder.Entity<Employee>(entity =>
-        {
-            entity.ToTable("Employee");
-
-            entity.HasIndex(e => e.CompanyEmail, "UQ__Employee__7C4661D143DC0782").IsUnique();
-
-            entity.HasIndex(e => e.EmpCode, "UQ__Employee__B1056ABCA966495B").IsUnique();
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.Active)
-                .HasDefaultValue(true)
-                .HasColumnName("active");
-            entity.Property(e => e.BaseLoc)
-                .HasMaxLength(100)
-                .IsUnicode(false)
-                .HasColumnName("base_loc");
-            entity.Property(e => e.BloodGroup)
-                .HasMaxLength(5)
-                .IsUnicode(false)
-                .HasColumnName("blood_group");
-            entity.Property(e => e.CompanyEmail)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("company_email");
-            entity.Property(e => e.Contractor)
-                .HasDefaultValue(false)
-                .HasColumnName("contractor");
-            entity.Property(e => e.CreatedBy)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("created_by");
-            entity.Property(e => e.CreatedDt)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime")
-                .HasColumnName("created_dt");
-            entity.Property(e => e.Designation)
-                .HasMaxLength(100)
-                .IsUnicode(false)
-                .HasColumnName("designation");
-            entity.Property(e => e.Dob).HasColumnName("dob");
-            entity.Property(e => e.Doj).HasColumnName("doj");
-            entity.Property(e => e.EmpCode)
-                .HasMaxLength(20)
-                .IsUnicode(false)
-                .HasColumnName("emp_code");
-            entity.Property(e => e.EmployeeId).HasColumnName("employee_id");
-            entity.Property(e => e.Fname)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("fname");
-            entity.Property(e => e.Grade)
-                .HasMaxLength(10)
-                .IsUnicode(false)
-                .HasColumnName("grade");
-            entity.Property(e => e.GradeId).HasColumnName("grade_id");
-            entity.Property(e => e.Lname)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("lname");
-            entity.Property(e => e.UpdatedBy)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("updated_by");
-            entity.Property(e => e.UpdatedDt)
-                .HasColumnType("datetime")
-                .HasColumnName("updated_dt");
-
-            entity.HasOne(d => d.GradeNavigation).WithMany(p => p.Employees)
-                .HasForeignKey(d => d.GradeId)
-                .HasConstraintName("FK_Employee_Grade");
-        });
-
-        modelBuilder.Entity<EmployeeCertification>(entity =>
-        {
-            entity.ToTable("EmployeeCertification");
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.CertificateId)
-                .HasMaxLength(100)
-                .IsUnicode(false)
-                .HasColumnName("certificate_id");
-            entity.Property(e => e.CertificateName)
-                .HasMaxLength(100)
-                .IsUnicode(false)
-                .HasColumnName("certificate_name");
-            entity.Property(e => e.CreatedBy)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("created_by");
-            entity.Property(e => e.CreatedDt)
-                .HasColumnType("datetime")
-                .HasColumnName("created_dt");
-            entity.Property(e => e.Description)
-                .HasMaxLength(200)
-                .IsUnicode(false)
-                .HasColumnName("description");
-            entity.Property(e => e.EmpId).HasColumnName("emp_id");
-            entity.Property(e => e.IssuedOn)
-                .HasColumnType("datetime")
-                .HasColumnName("issued_on");
-            entity.Property(e => e.UpdatedBy)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("updated_by");
-            entity.Property(e => e.UpdatedDt)
-                .HasColumnType("datetime")
-                .HasColumnName("updated_dt");
-            entity.Property(e => e.ValidUpto)
-                .HasColumnType("datetime")
-                .HasColumnName("valid_upto");
-
-            entity.HasOne(d => d.Emp).WithMany(p => p.EmployeeCertifications)
-                .HasForeignKey(d => d.EmpId)
-                .HasConstraintName("FK_EmpCert_Emp");
-        });
-
-        modelBuilder.Entity<EmployeeContactDetail>(entity =>
-        {
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.Address)
-                .HasMaxLength(200)
-                .IsUnicode(false)
-                .HasColumnName("address");
-            entity.Property(e => e.City)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("city");
-            entity.Property(e => e.Country)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("country");
-            entity.Property(e => e.CreatedBy)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("created_by");
-            entity.Property(e => e.CreatedDt)
-                .HasColumnType("datetime")
-                .HasColumnName("created_dt");
-            entity.Property(e => e.EmpId).HasColumnName("emp_id");
-            entity.Property(e => e.Mobile)
-                .HasMaxLength(15)
-                .IsUnicode(false)
-                .HasColumnName("mobile");
-            entity.Property(e => e.PinCode)
-                .HasMaxLength(20)
-                .IsUnicode(false)
-                .HasColumnName("pin_code");
-            entity.Property(e => e.State)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("state");
-            entity.Property(e => e.UpdatedBy)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("updated_by");
-            entity.Property(e => e.UpdatedDt)
-                .HasColumnType("datetime")
-                .HasColumnName("updated_dt");
-
-            entity.HasOne(d => d.Emp).WithMany(p => p.EmployeeContactDetails)
-                .HasForeignKey(d => d.EmpId)
-                .HasConstraintName("FK_EmpConDet_Emp");
-        });
-
-        modelBuilder.Entity<EmployeeGrade>(entity =>
-        {
-            entity.ToTable("EmployeeGrade");
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.Grade)
-                .HasMaxLength(20)
-                .IsUnicode(false)
-                .HasColumnName("grade");
-            entity.Property(e => e.Remarks)
-                .HasMaxLength(150)
-                .IsUnicode(false)
-                .HasColumnName("remarks");
-        });
-
-        modelBuilder.Entity<EmployeeJobHistory>(entity =>
-        {
-            entity.ToTable("EmployeeJobHistory");
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.CreatedBy)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("created_by");
-            entity.Property(e => e.CreatedDt)
-                .HasColumnType("datetime")
-                .HasColumnName("created_dt");
-            entity.Property(e => e.EmpId).HasColumnName("emp_id");
-            entity.Property(e => e.EndDt).HasColumnName("end_dt");
-            entity.Property(e => e.JobTitle)
-                .HasMaxLength(100)
-                .IsUnicode(false)
-                .HasColumnName("job_title");
-            entity.Property(e => e.Loc)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("loc");
-            entity.Property(e => e.Salary).HasColumnName("salary");
-            entity.Property(e => e.StartDt).HasColumnName("start_dt");
-            entity.Property(e => e.UpdatedBy)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("updated_by");
-            entity.Property(e => e.UpdatedDt)
-                .HasColumnType("datetime")
-                .HasColumnName("updated_dt");
-
-            entity.HasOne(d => d.Emp).WithMany(p => p.EmployeeJobHistories)
-                .HasForeignKey(d => d.EmpId)
-                .HasConstraintName("FK_EmpJobHis_Emp");
-        });
-
-        modelBuilder.Entity<EmployeeKyc>(entity =>
-        {
-            entity.ToTable("EmployeeKYC");
-
-            entity.HasIndex(e => e.Passport, "UQ__Employee__5E2A085758A5A782").IsUnique();
-
-            entity.HasIndex(e => e.NationalId, "UQ__Employee__9560E95DCD05F911").IsUnique();
-
-            entity.HasIndex(e => e.VoterId, "UQ__Employee__B795031258A22A34").IsUnique();
-
-            entity.HasIndex(e => e.DrivingLicense, "UQ__Employee__CF3263C4264722A3").IsUnique();
-
-            entity.HasIndex(e => e.Pancard, "UQ__Employee__CF5A5D536CE5057C").IsUnique();
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.CreatedBy)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("created_by");
-            entity.Property(e => e.CreatedDt)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime")
-                .HasColumnName("created_dt");
-            entity.Property(e => e.DrivingLicense)
-                .HasMaxLength(30)
-                .IsUnicode(false)
-                .HasColumnName("driving_license");
-            entity.Property(e => e.EmpId).HasColumnName("emp_id");
-            entity.Property(e => e.NationalId)
-                .HasMaxLength(30)
-                .IsUnicode(false)
-                .HasColumnName("national_id");
-            entity.Property(e => e.Pancard)
-                .HasMaxLength(30)
-                .IsUnicode(false)
-                .HasColumnName("pancard");
-            entity.Property(e => e.Passport)
-                .HasMaxLength(30)
-                .IsUnicode(false)
-                .HasColumnName("passport");
-            entity.Property(e => e.UpdatedBy)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("updated_by");
-            entity.Property(e => e.UpdatedDt)
-                .HasColumnType("datetime")
-                .HasColumnName("updated_dt");
-            entity.Property(e => e.VoterId)
-                .HasMaxLength(30)
-                .IsUnicode(false)
-                .HasColumnName("voter_id");
-
-            entity.HasOne(d => d.Emp).WithMany(p => p.EmployeeKycs)
-                .HasForeignKey(d => d.EmpId)
-                .HasConstraintName("FK_EmpKYC_Emp");
-        });
-
-        modelBuilder.Entity<EmployeeSkill>(entity =>
-        {
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.CreatedBy)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("created_by");
-            entity.Property(e => e.CreatedDt)
-                .HasColumnType("datetime")
-                .HasColumnName("created_dt");
-            entity.Property(e => e.EmpId).HasColumnName("emp_id");
-            entity.Property(e => e.Skills)
-                .HasMaxLength(200)
-                .IsUnicode(false)
-                .HasColumnName("skills");
-            entity.Property(e => e.UpdatedBy)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("updated_by");
-            entity.Property(e => e.UpdatedDt)
-                .HasColumnType("datetime")
-                .HasColumnName("updated_dt");
-
-            entity.HasOne(d => d.Emp).WithMany(p => p.EmployeeSkills)
-                .HasForeignKey(d => d.EmpId)
-                .HasConstraintName("FK_EmpSkill_Emp");
-        });
-
-        modelBuilder.Entity<Log>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PK__Logs__3213E83F744634BD");
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.LogDateTime)
-                .HasColumnType("datetime")
-                .HasColumnName("log_date_time");
-            entity.Property(e => e.Remarks)
-                .HasMaxLength(200)
-                .IsUnicode(false)
-                .HasColumnName("remarks");
-            entity.Property(e => e.UserId).HasColumnName("user_id");
-
-            entity.HasOne(d => d.User).WithMany(p => p.Logs)
-                .HasForeignKey(d => d.UserId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK_User_Logs");
-        });
-
-        modelBuilder.Entity<LoginLog>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PK__LoginLog__3213E83FD00ACF50");
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.CreatedBy)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("created_by");
-            entity.Property(e => e.CreatedDt)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime")
-                .HasColumnName("created_dt");
-            entity.Property(e => e.EmpId).HasColumnName("emp_id");
-            entity.Property(e => e.LoginTime)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime")
-                .HasColumnName("login_time");
-            entity.Property(e => e.LogoutTime)
-                .HasColumnType("datetime")
-                .HasColumnName("logout_time");
-            entity.Property(e => e.UpdatedBy)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("updated_by");
-            entity.Property(e => e.UpdatedDt)
-                .HasColumnType("datetime")
-                .HasColumnName("updated_dt");
-
-            entity.HasOne(d => d.Emp).WithMany(p => p.LoginLogs)
-                .HasForeignKey(d => d.EmpId)
-                .HasConstraintName("FK_Loginlogs_Emp");
-        });
-
-        modelBuilder.Entity<MasterKyc>(entity =>
-        {
-            entity.ToTable("MasterKYC");
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.CreatedBy)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("created_by");
-            entity.Property(e => e.CreatedDt)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime")
-                .HasColumnName("created_dt");
-            entity.Property(e => e.EmpkycId).HasColumnName("empkyc_id");
-            entity.Property(e => e.KycType)
-                .HasMaxLength(100)
-                .IsUnicode(false)
-                .HasColumnName("kyc_type");
-            entity.Property(e => e.UpdatedBy)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("updated_by");
-            entity.Property(e => e.UpdatedDt)
-                .HasColumnType("datetime")
-                .HasColumnName("updated_dt");
-            entity.Property(e => e.VerifiedBy)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("verified_by");
-
-            entity.HasOne(d => d.Empkyc).WithMany(p => p.MasterKycs)
-                .HasForeignKey(d => d.EmpkycId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_EmpKYC_MasterKYC");
-        });
-
-        modelBuilder.Entity<Permission>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PK__Permissi__3213E83FECFC3E9A");
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.CreatedBy)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("created_by");
-            entity.Property(e => e.CreatedDt)
-                .HasColumnType("datetime")
-                .HasColumnName("created_dt");
-            entity.Property(e => e.PermissionType)
-                .HasMaxLength(100)
-                .IsUnicode(false)
-                .HasColumnName("permission_type");
-            entity.Property(e => e.UpdatedBy)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("updated_by");
-            entity.Property(e => e.UpdatedDt)
-                .HasColumnType("datetime")
-                .HasColumnName("updated_dt");
-        });
-
-        modelBuilder.Entity<Role>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PK__Roles__3213E83FD80EEB7F");
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.Comment)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("comment");
-            entity.Property(e => e.CreatedBy)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("created_by");
-            entity.Property(e => e.CreatedDt)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime")
-                .HasColumnName("created_dt");
-            entity.Property(e => e.RoleName)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("role_name");
-            entity.Property(e => e.UpdatedBy)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("updated_by");
-            entity.Property(e => e.UpdatedDt)
-                .HasColumnType("datetime")
-                .HasColumnName("updated_dt");
-        });
-
-        modelBuilder.Entity<RolePermission>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PK__RolePerm__3213E83FDC2FE512");
-
-            entity.ToTable("RolePermission");
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.CreatedBy)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("created_by");
-            entity.Property(e => e.CreatedDt)
-                .HasColumnType("datetime")
-                .HasColumnName("created_dt");
-            entity.Property(e => e.PermissionId).HasColumnName("permission_id");
-            entity.Property(e => e.RoleId).HasColumnName("role_id");
-            entity.Property(e => e.UpdatedBy)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("updated_by");
-            entity.Property(e => e.UpdatedDt)
-                .HasColumnType("datetime")
-                .HasColumnName("updated_dt");
-
-            //entity.HasOne(d => d.Permission).WithMany(p => p.RolePermissions)
-            //    .HasForeignKey(d => d.PermissionId)
-            //    .HasConstraintName("FK_permissions");
-
-            entity.HasOne(d => d.Role).WithMany(p => p.RolePermissions)
-                .HasForeignKey(d => d.RoleId)
-                .HasConstraintName("FK_role_permission");
-        });
-
-        modelBuilder.Entity<User>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PK__Users__3213E83F119926BB");
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.CreatedBy)
-                .HasMaxLength(250)
-                .IsUnicode(false)
-                .HasColumnName("created_by");
-            entity.Property(e => e.CreatedDt)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime")
-                .HasColumnName("created_dt");
-            entity.Property(e => e.EmpId).HasColumnName("emp_id");
-            entity.Property(e => e.PasswordHash)
-                .HasMaxLength(250)
-                .IsUnicode(false)
-                .HasColumnName("password_hash");
-            entity.Property(e => e.UpdatedBy)
-                .HasMaxLength(250)
-                .IsUnicode(false)
-                .HasColumnName("updated_by");
-            entity.Property(e => e.UpdatedDt)
-                .HasColumnType("datetime")
-                .HasColumnName("updated_dt");
-            entity.Property(e => e.Username)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("username");
-
-            entity.HasOne(d => d.Emp).WithMany(p => p.Users)
-                .HasForeignKey(d => d.EmpId)
-                .HasConstraintName("FK_User_Emp");
-        });
-
-        modelBuilder.Entity<UserRole>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PK__UserRole__3213E83FD79ACC8F");
-
-            entity.ToTable("UserRole");
-
-            entity.HasIndex(e => e.RoleId, "UQ__UserRole__760965CD01A2E69E").IsUnique();
-
-            entity.HasIndex(e => e.UserId, "UQ__UserRole__B9BE370EC7B31193").IsUnique();
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.CreatedBy)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("created_by");
-            entity.Property(e => e.CreatedDt)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime")
-                .HasColumnName("created_dt");
-            entity.Property(e => e.RoleId).HasColumnName("role_id");
-            entity.Property(e => e.UpdatedBy)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("updated_by");
-            entity.Property(e => e.UpdatedDt)
-                .HasColumnType("datetime")
-                .HasColumnName("updated_dt");
-            entity.Property(e => e.UserId).HasColumnName("user_id");
-
-            entity.HasOne(d => d.Role).WithOne(p => p.UserRole)
-                .HasForeignKey<UserRole>(d => d.RoleId)
-                .HasConstraintName("FK_roles");
-
-            //entity.HasOne(d => d.User).WithOne(p => p.UserRole)
-            //    .HasForeignKey<UserRole>(d => d.UserId)
-            //    .HasConstraintName("FK_users_roles");
-        });
-
-        OnModelCreatingPartial(modelBuilder);
-    }
-
-    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

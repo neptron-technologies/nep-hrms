@@ -1,14 +1,16 @@
-using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using nep_hrms.DAL.Interfaces;
 using nep_hrms.DAL.Repositories;
 using nep_hrms.Domain.Interfaces;
-using nep_hrms.Domain.Services;
 using nep_hrms.Domain.Mappers;
+using nep_hrms.Domain.Services;
 using nep_hrms.Server.Authenticate;
 using nep_hrms.Server.nep_hrms.DAL;
+using System.Text;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -60,12 +62,23 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped<IEmployeeBankDetailRepo, EmployeeBankDetailRepo>();
 builder.Services.AddScoped<IEmployeeRepo, EmployeeRepo>();
 builder.Services.AddScoped<IAttendanceRepo, AttendanceRepo>();
+builder.Services.AddScoped<IDocumentRepo, DocumentRepo>();
+builder.Services.AddScoped<IPayrollRepo, PayrollRepo>();
+builder.Services.AddScoped<IPayslipRepo, PayslipRepo>();
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 builder.Services.AddScoped(typeof(IBaseRepo<>), typeof(BaseRepo<>));
 builder.Services.AddScoped<IAttendanceService, AttendanceService>();
+builder.Services.AddScoped<IDocumentService, DocumentService>();
+builder.Services.AddScoped<IPayrollService, PayrollService>();
+builder.Services.AddScoped<IEmployeeBankDetailService, EmployeeBankDetailService>();
+builder.Services.AddScoped<IPayslipService, PayslipService>();
+
+
+
 builder.Services.AddScoped<Auth>();
 
 var app = builder.Build();

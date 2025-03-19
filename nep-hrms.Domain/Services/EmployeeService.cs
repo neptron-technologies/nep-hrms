@@ -59,6 +59,12 @@ namespace nep_hrms.Domain.Services
             await _employeeRepo.UpdateAsync(employee);
         }
 
+        //public async Task<bool> UploadEmployeeDocument(int id, string documentName, string documentType, byte[] documentContent)
+        //{
+        //    return await _employeeRepo.UploadEmployeeDocument(id, documentName, documentType, documentContent);
+        //}
+
+
         public async Task DeleteAsync(int id) //delete
         {
             await _employeeRepo.DeleteAsync(id);

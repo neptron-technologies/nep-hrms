@@ -33,6 +33,7 @@ namespace nep_hrms.Domain.Services
                 throw new Exception("Incorrect password");
 
             UserDto userDto = new UserDto();
+            userDto.EmpId = user.EmpId;
             userDto.Username = user.Username;
 
             userDto.Roles = _mapper.Map<List<UserRole>, List<UserRoleDto>>(user.Roles);

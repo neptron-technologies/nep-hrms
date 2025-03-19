@@ -18,10 +18,10 @@ namespace nep_hrms.DAL.Repositories
             _baseRepo = baseRepo;
             _dbContext = context;
         }
-        public async Task<List<Attendance>> GetAttendanceByEmpId(int empId)
+        public async Task<List<Attendance>> GetAttendanceByEmpId(int empId, DateTime startDate, DateTime endDate)
         {
-            var sqlQuery = "SELECT * FROM Attendance WHERE emp_id = {0}";
-            return await _dbContext.Attendances.FromSqlRaw(sqlQuery, empId).ToListAsync();
+            var sqlQuery = "SELECT * FROM Attendance WHERE emp_id = {0} and attendance_date between {1} and {2}";
+            return await _dbContext.Attendances.FromSqlRaw(sqlQuery, empId, startDate, endDate).ToListAsync();
         }
 
     }

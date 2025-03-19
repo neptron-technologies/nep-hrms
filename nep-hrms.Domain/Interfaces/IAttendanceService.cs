@@ -13,7 +13,7 @@ namespace nep_hrms.Domain.Interfaces
     {
         //public Task<List<Attendance>> GetAllAsync();
         //public Task<Attendance?> GetByIdAsync(int id);
-        Task<List<Attendance>> GetDataBySql(int EmpId);
+        Task<List<Attendance>> GetEmpAttendanceByDateRange(int EmpId, DateTime startDate, DateTime endDate);
         Task<Attendance> AddAsync(Attendance attendance);
         Task<AttendanceDto> AddAsync(AttendanceDto attendanceDto);
         Task UpdateAsync(Attendance attendance);

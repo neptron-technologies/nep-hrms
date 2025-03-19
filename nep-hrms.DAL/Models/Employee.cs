@@ -1,4 +1,6 @@
-﻿namespace nep_hrms.Server.nep_hrms.DAL;
+﻿using nep_hrms.DAL.Models;
+
+namespace nep_hrms.Server.nep_hrms.DAL;
 
 public partial class Employee
 {
@@ -60,4 +62,12 @@ public partial class Employee
     public virtual ICollection<LoginLog> LoginLogs { get; set; } = new List<LoginLog>();
 
     public virtual ICollection<User> Users { get; set; } = new List<User>();
+
+    public virtual ICollection<Payroll> Payrolls { get; set; } = new List<Payroll>();
+
+    public virtual ICollection<EmployeeBankDetail> EmployeeBankDetails { get; set; } = new List<EmployeeBankDetail>();
+
+    public virtual ICollection<Payslip> Payslips { get; set; } = new List<Payslip>();
+
+    //public virtual ICollection<Document> Documents { get; set; } = new List<Document>();
 }

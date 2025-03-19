@@ -4,7 +4,7 @@ using nep_hrms.Domain.Models;
 
 namespace nep_hrms.Server.API
 {
-    [Route("api/controller")]
+    [Route("api/[controller]")]
     [ApiController]
     public class AttendanceController : ControllerBase
     {
@@ -15,14 +15,21 @@ namespace nep_hrms.Server.API
             _attendanceService = attendanceService;
         }
 
-        [HttpGet("{EmpId}")]
-        public async Task<IActionResult>GetAttendanceById(int EmpId) //emp by id
-        {
-            var attendance = await _attendanceService.GetDataBySql(EmpId);
-            if (attendance == null)
-                return NotFound(new { message = "Attendance not found" });
+        //[HttpGet("{EmpId}")]
+        //public async Task<IActionResult>GetAttendanceById(int EmpId) //emp by id
+        //{
+            
+        //    var attendance = await _attendanceService.GetEmpAttendanceByDateRange(EmpId);
+        //    if (attendance == null)
+        //        return NotFound(new { message = "Attendance not found" });
 
-            return Ok(attendance);
+        //    return Ok(attendance);
+        //}
+        [HttpGet("GetAttendanceByDateRange")]
+        public async Task<IActionResult> GetAttendanceByDateRange(int empId, DateTime startDate, DateTime endDate)
+        {
+            var attendanceRecords = await _attendanceService.GetEmpAttendanceByDateRange(empId, startDate, endDate);
+            return Ok(attendanceRecords);
         }
 
         [HttpPost]

@@ -17,5 +17,7 @@ namespace nep_hrms.Domain.Interfaces
         Task<EmployeeDto> AddAsync(EmployeeDto employeeDto);
         Task UpdateAsync(Employee employee);
         Task DeleteAsync(int id);
+
+        //Task<bool> UploadEmployeeDocument(int id, string documentName, string documentType, byte[] documentContent);
     }
 }

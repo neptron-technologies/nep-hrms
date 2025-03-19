@@ -3,16 +3,14 @@ using nep_hrms.Server.nep_hrms.DAL;
 
 namespace nep_hrms.DAL.Repositories
 {
-    public class EmployeeRepo : BaseRepo<Employee>, IEmployeeRepo
+    public class DocumentRepo: BaseRepo<Document>, IDocumentRepo
     {
-        private readonly IBaseRepo<Employee> _baseRepo;
+        private readonly IBaseRepo<Document> _baseRepo;
         private readonly HrmsDBContext _dbContext;
-
-        public EmployeeRepo(HrmsDBContext context, IBaseRepo<Employee> baseRepo) : base(context)
+        public DocumentRepo(HrmsDBContext context, IBaseRepo<Document> baseRepo) : base(context)
         {
             _baseRepo = baseRepo;
             _dbContext = context;
         }
-
     }
 }

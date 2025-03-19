@@ -29,14 +29,14 @@ namespace nep_hrms.Domain.Services
         {
             return await _attendanceRepo.GetDataBySql(sqlQry);
         }
-        public async Task<List<Attendance>> GetDataBySql(int EmpId) //GET BY ID
+        public async Task<List<Attendance>> GetEmpAttendanceByDateRange(int EmpId, DateTime startDate, DateTime endDate) //GET BY ID
         {
 
             //string sql = "SELECT * FROM Attendance where emp_id = " + EmpId.ToString();
             //var empAttendance = await _attendanceRepo.GetDataBySql(sql);
 
             //return empAttendance;
-            return await _attendanceRepo.GetAttendanceByEmpId(EmpId);
+            return await _attendanceRepo.GetAttendanceByEmpId(EmpId, startDate, endDate);
 
             //var sqlQuery = "SELECT * FROM Attendance WHERE emp_id = {0}";
             //return await _dbContext.Attendances.FromSqlRaw(sqlQuery, EmpId).ToListAsync();

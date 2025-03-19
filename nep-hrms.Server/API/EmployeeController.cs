@@ -37,7 +37,7 @@ namespace nep_hrms.Server.API
 
             return Ok(employee);
         }
-
+        
         [HttpPost]
         [Route("AddEmployee")]
         public async Task<IActionResult> AddEmployee([FromBody] EmployeeDto employeeDto) //add
@@ -46,7 +46,17 @@ namespace nep_hrms.Server.API
                 return BadRequest(new { message = "Invalid employee data" });
 
             var createdEmployee = await _employeeService.AddAsync(employeeDto);
-            return Ok(createdEmployee.EmployeeId);
+            return Ok(createdEmployee);
+        }
+
+        [HttpPut]
+        [Route("UpdateEmployee")]
+        public async Task<IActionResult> UpdateEmployee(int id, [FromBody] Employee employee)
+        {
+            if (id != employee.Id)
+                return BadRequest();
+            await _employeeService.UpdateAsync(employee);
+            return NoContent();
         }
 
         [HttpDelete]
