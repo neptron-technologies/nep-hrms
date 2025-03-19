@@ -59,13 +59,14 @@ builder.Services.AddAuthorization();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddScoped<IEmployeeBankDetailRepo, EmployeeBankDetailRepo>();
 builder.Services.AddScoped<IEmployeeRepo, EmployeeRepo>();
 builder.Services.AddScoped<IAttendanceRepo, AttendanceRepo>();
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 builder.Services.AddScoped(typeof(IBaseRepo<>), typeof(BaseRepo<>));
 builder.Services.AddScoped<IAttendanceService, AttendanceService>();
+builder.Services.AddScoped<IEmployeeBankDetailService, EmployeeBankDetailService>();
 builder.Services.AddScoped<Auth>();
 
 var app = builder.Build();
