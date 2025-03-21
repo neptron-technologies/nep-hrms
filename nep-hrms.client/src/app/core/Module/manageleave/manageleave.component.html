@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="grid-container">
+    <div class="card">
+      <div class="card-header bg-secondary text-white d-flex justify-content-between">
+        <strong>Leave Requests</strong>
+
+      </div>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Leave Type</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Applied On</th>
+            <th>No Of Days</th>
+            <th>Approved Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(item of Leavelist; track $index){
+          <tr>
+            <td>{{item.id}}</td>
+            <td>{{item.leaveType}}</td>
+            <td>{{item.startDate}}</td>
+            <td>{{item.endDate}}</td>
+            <td>{{item.appliedOn}}</td>
+            <td>{{item.noOfDays}}</td>
+            <td>{{item.approvedStatus}}</td>
+            <td>
+              <button class="btn btn-success btn-sm" (click)="onApprove(item.id)">Approve</button>
+              <button class="btn btn-danger btn-sm" (click)="onReject(item.id)">Reject</button>
+            </td>
+            }
+
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>

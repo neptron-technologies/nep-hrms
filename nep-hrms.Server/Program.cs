@@ -9,6 +9,7 @@ using nep_hrms.Domain.Services;
 using nep_hrms.Domain.Mappers;
 using nep_hrms.Server.Authenticate;
 using nep_hrms.Server.nep_hrms.DAL;
+using nep_hrms.DAL.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +19,7 @@ builder.Services.AddAutoMapper(typeof(UserMapper));
 builder.Services.AddAutoMapper(typeof(UserRoleMapper));
 builder.Services.AddAutoMapper(typeof(PermissionMapper));
 builder.Services.AddAutoMapper(typeof(RolePermissionMapper));
-
+builder.Services.AddAutoMapper(typeof(LeaveMapper));
 var configuration = builder.Configuration;
 
 builder.Services.AddDbContext<HrmsDBContext>(options =>
@@ -62,10 +63,19 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IEmployeeRepo, EmployeeRepo>();
 builder.Services.AddScoped<IAttendanceRepo, AttendanceRepo>();
+builder.Services.AddScoped<ILeaveRepo, LeaveRepo>();
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 builder.Services.AddScoped(typeof(IBaseRepo<>), typeof(BaseRepo<>));
 builder.Services.AddScoped<IAttendanceService, AttendanceService>();
+builder.Services.AddScoped<ILeaveService, LeaveService>();
+builder.Services.AddScoped<IEmpLeaveBalRepo, EmpLeaveBalRepo>();
+builder.Services.AddScoped<IEmpLeaveCancelled, EmpLeaveCancelRepo>();
+builder.Services.AddScoped<IEmpDashBoradService, EmpDashBoardService>();
+
+
+builder.Services.AddScoped<IHolidayRepo, HolidayRepo>();
+
 builder.Services.AddScoped<Auth>();
 
 var app = builder.Build();

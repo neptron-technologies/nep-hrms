@@ -5,6 +5,9 @@ import { DashboardComponent } from './Dashb/dashboard/dashboard.component';
 import { AuthGuard } from './core/auth/auth.guard';
 import { EmployeeComponent } from './core/Module/employee/employee.component';
 import { AttendanceComponent } from './core/Module/attendance/attendance.component';
+import { ApplyleaveComponent } from './core/Module/applyleave/applyleave.component';
+import { ManageleaveComponent } from './core/Module/manageleave/manageleave.component';
+import { EmpdashboardComponent } from './core/Module/empdashboard/empdashboard.component';
 
 const routes: Routes = [
   {
@@ -27,7 +30,21 @@ const routes: Routes = [
       {
         path: 'attendance',
         component: AttendanceComponent
+
+      },
+      {
+        path: 'applyleave',
+        component: ApplyleaveComponent
+      },
+      {
+        path: 'manageleave',
+        component: ManageleaveComponent
+      },
+      {
+        path: 'empdashborad',
+        component: EmpdashboardComponent
       }
+
     ]
   },
 ];

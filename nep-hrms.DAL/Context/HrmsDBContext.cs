@@ -5,6 +5,7 @@ using System.Reflection.Emit;
 using System.Security;
 using Microsoft.EntityFrameworkCore;
 using nep_hrms.DAL.Repositories;
+
 using static System.Net.Mime.MediaTypeNames;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace nep_hrms.Server.nep_hrms.DAL;
@@ -50,9 +51,18 @@ public partial class HrmsDBContext : DbContext
     public virtual DbSet<User> Users { get; set; }
 
     public virtual DbSet<UserRole> UserRoles { get; set; }
+    public virtual DbSet<EmpLeave> EmpLeave { get; set; }
+    public virtual DbSet<EmpLeaveCancelled> EmpLeaveCancelled { get; set; }
+
+
+    public virtual DbSet<EmpLeaveBalance> EmpLeaveBalance { get; set; }
+
+    public virtual DbSet<Holiday> Holiday { get; set; }
+
+
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Server=192.168.0.104,1433;Initial Catalog=np-hrms;Persist Security Info=True;User ID=npadmin;Password=admin123;Trust Server Certificate=True");
+        => optionsBuilder.UseSqlServer("Server=192.168.0.101,1433;Initial Catalog=np-hrms;Persist Security Info=True;User ID=npadmin;Password=admin123;Trust Server Certificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -708,6 +718,9 @@ public partial class HrmsDBContext : DbContext
             //    .HasForeignKey<UserRole>(d => d.UserId)
             //    .HasConstraintName("FK_users_roles");
         });
+        
+
+        
 
         OnModelCreatingPartial(modelBuilder);
     }

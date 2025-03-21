@@ -1,0 +1,62 @@
+.maindiv {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 100vh;   
+    margin: 0;
+    padding: 20px; 
+    height: 300px;
+}
+
+
+.progress-card {
+    width: 13rem;
+    border-radius: 1.5rem;
+    background-color:rgb(209, 202, 202);
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: 300px;
+    width: 300px;
+}
+
+.subheading {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #757575;
+}
+
+.heading {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: black;
+}
+
+.progress-text {
+    font-size: 0.875rem;
+    font-weight: bold;
+    color: black;
+}
+
+
+
+.graph-container {
+    
+    position: absolute;
+    top: 5px; 
+    right: 20px;
+    width: 350px; 
+    height: 300px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff; 
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); 
+    border-radius: 8px; 
+    height: 100vh;   
+    margin: 0;
+    padding: 20px; 
+    
+  }
+  

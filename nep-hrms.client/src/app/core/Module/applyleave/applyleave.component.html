@@ -1,0 +1,97 @@
+<div class="row">
+  <div class="grid-container">
+    <div class="card">
+      <div class="card-header bg-secondary text-white d-flex justify-content-between">
+        <strong>Leaves</strong>
+        <button class="btn btn-warning" (click)="openPanel()">Apply leave </button>
+      </div>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Leave Type</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Applied On</th>
+            <th>No Of Days</th>
+            <th>Approved Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(item of Leavelist; track $index){
+          <tr>
+            <td>{{item.id}}</td>
+            <td>{{item.leaveType}}</td>
+            <td>{{item.startDate}}</td>
+            <td>{{item.endDate}}</td>
+            <td>{{item.appliedOn}}</td>
+            <td>{{item.noOfDays}}</td>
+            <td>{{item.approvedStatus}}</td>
+            <td>
+              <button class="btn btn-danger btn-sm" (click)="onCancel(item.id)">Cancel Leave</button>
+            </td>
+            }
+
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
+<div class="side-panel" [class.open]="PanelOpen">
+  <div class="card">
+    <div class="card-header bg-secondary d-flex justify-content-between">
+      <strong class="text-white">Apply Leave</strong>
+      <button class="btn btn-danger btn-sm" (click)="closePanel()">X</button>
+    </div>
+    <div class="card-body overflow-auto">
+
+      <div class="card container p-4 border rounded">
+
+
+        <form [formGroup]="leaveForm" (ngSubmit)="submitForm()">
+          <div class="mb-3">
+            <label class="form-label">Leave Type</label>
+            <select class="form-control" formControlName="leaveType" required>
+              <option *ngFor="let type of leaveTypes" [value]="type">{{ type }}</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Start Date</label>
+            <input type="date" class="form-control" formControlName="startDate" required>
+            <div *ngIf="isStartDateHoliday" class="text-danger mt-1">
+              This day is a holiday. Please select another date.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">End Date</label>
+            <input type="date" class="form-control" formControlName="endDate" required>
+            <div *ngIf="isEndDateHoliday" class="text-danger mt-1">
+              ⚠ This day is a holiday. Please select another date.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Number of Days</label>
+            <input type="number" class="form-control" formControlName="noOfDays">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Leave Description</label>
+            <textarea class="form-control" formControlName="leaveDesc" maxlength="200"></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Approved Status</label>
+            <input class="form-control" formControlName="approvedStatus" maxlength="200">
+          </div>
+
+          <button type="submit" class="btn btn-primary" [disabled]="isStartDateHoliday || isEndDateHoliday">
+            Submit
+          </button>
+
+        </form>
+      </div>
+    </div>
+  </div>
