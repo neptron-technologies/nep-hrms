@@ -19,13 +19,19 @@ namespace nep_hrms.Domain.Services
         }
         public async Task<UserDto> GetUserAsync(UserRequest userRequest)
         {
-            var user =
-                await _dbContext.Users
-              .Include(ur => ur.Roles)
-              //.ThenInclude(r => r.RolePermissions) //added
-              //.ThenInclude(rp => rp.Permission) //added
-            .Where(u => u.Username == userRequest.UserName)
-            .FirstOrDefaultAsync();
+
+            var user = await _dbContext.Users
+                .Include(u => u.UserRoles)
+                .Where(u => u.Username == userRequest.UserName)
+                .FirstOrDefaultAsync();
+
+            var roles = user.UserRoles;
+            var roleIds = user?.UserRoles.Select(u => u.RoleId).ToList();
+            var permissionIds = _dbContext.RolePermissions
+                                    .Where(rp => roleIds.Contains(rp.RoleId))
+                                    .Select(rp => rp.PermissionId)
+                                    .ToList();
+            var permissions = _dbContext.Permissions.Where(p => permissionIds.Contains(p.Id)).ToList();
 
             if (user == null)
                 throw new Exception("User not found");
@@ -36,10 +42,9 @@ namespace nep_hrms.Domain.Services
             userDto.EmpId = user.EmpId;
             userDto.Username = user.Username;
 
-            userDto.Roles = _mapper.Map<List<UserRole>, List<UserRoleDto>>(user.Roles);
-            //userDto.Permissions = _mapper.Map<List<Permission>, List<PermissionDto>>(user.Roles.SelectMany(ur => ur.Role.RolePermissions.Select(rp => rp.Permission)).ToList());                
-            //userDto.Permissions = _mapper.Map<List<Permission>, List<PermissionDto>>(user.Permissions); //added
-            //userDto.RolePermissions = _mapper.Map<List<RolePermission>, List<RolePermissionDto>>(user.RolePermissions); //added
+            userDto.Roles = _mapper.Map<List<UserRole>, List<UserRoleDto>>(roles);
+            userDto.Permissions = _mapper.Map<List<Permission>, List<PermissionDto>>(permissions);
+
             return userDto;
         }
     }

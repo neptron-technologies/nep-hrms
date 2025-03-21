@@ -1,15 +1,9 @@
-﻿using Microsoft.VisualBasic;
-using nep_hrms.DAL.Interfaces;
-using nep_hrms.DAL.Models;
+﻿using nep_hrms.DAL.Interfaces;
 using nep_hrms.Domain.Interfaces;
 using nep_hrms.Domain.Models;
-using nep_hrms.Server.nep_hrms.DAL;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading.Tasks;
+
+
+
 
 namespace nep_hrms.Domain.Services
 {
@@ -17,18 +11,20 @@ namespace nep_hrms.Domain.Services
     {
         //private readonly HrmsDBContext _dbContext;
         private readonly IPayslipRepo _payslipRepo;
-
-        public PayslipService(IPayslipRepo payslipRepo)
+        private readonly IEmployeeBankDetailRepo _bankRepo;
+        public PayslipService(IPayslipRepo payslipRepo, IEmployeeBankDetailRepo bankRepo)
         {
             _payslipRepo = payslipRepo;
+            _bankRepo = bankRepo;
         }
-
         public async Task<PayslipDto?> GetPayslipAsync(int EmpId)
         {
             var payslip = await _payslipRepo.GetPayslipAsync(EmpId);
 
             if (payslip == null)
                 return null;
+
+            var bankDetails = await _bankRepo.GetBankDetailsById(EmpId);
 
             decimal grossSalary = payslip.GrossSalary;
             decimal epf = CalculateEPF(grossSalary);
@@ -52,9 +48,19 @@ namespace nep_hrms.Domain.Services
                 ProfessionalTax = professionalTax,
                 TotalDeduction = totalDeduction,
                 NetSalary = netSalary,
-                SalaryMonth = payslip.SalaryMonth
+                SalaryMonth = payslip.SalaryMonth,
+
+
+                UanNo = bankDetails?.UanNo,
+                PfNo = bankDetails?.PfNo,
+                BankName = bankDetails?.BankName,
+                IfscCode = bankDetails?.IfscCode,
+                AccountNo = bankDetails?.AccountNo,
+                EsiNo = bankDetails?.Esi,
+                AccountName = bankDetails?.AccountName
             };
         }
+
         private decimal CalculateEPF(decimal grossSalary)
         {
             return grossSalary * 0.12m;

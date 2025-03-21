@@ -1,0 +1,104 @@
+
+
+.payslip-container {
+  width: 210mm; 
+  height: 297mm; 
+  padding: 20px;
+  background: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  overflow: hidden; 
+  page-break-inside: avoid; 
+  margin-inline: auto;
+}
+  
+  .header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .header h2 {
+    font-size: 22px;
+    margin: 0;
+  }
+  
+  .header p {
+    font-size: 14px;
+    color: #555;
+    margin: 5px 0;
+  }
+  
+  .header h3 {
+    font-size: 18px;
+    margin-top: 10px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  .employee-details td, 
+  .summary-table td, 
+  .payslip-table td, 
+  .payslip-table th {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .employee-details td:nth-child(odd),
+  .summary-table th {
+    font-weight: bold;
+  }
+  
+  .summary-table th {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .earnings-deductions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+  }
+  
+  .earnings-deductions .payslip-table {
+    width: 48%;
+    border-radius: 8px;
+  }
+  
+  .earnings-deductions th {
+    text-align: left;
+    font-size: 16px;
+    padding: 10px;
+    background: #f8f9fa;
+  }
+  
+  .net-salary {
+    text-align: right;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+    padding-right: 10px;
+  }
+  
+  button.downloadPDF {
+    margin: 10px 0;
+    padding: 8px 15px;
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  button.downloadPDF:hover {
+    background: #0056b3;
+  }
+  
+  

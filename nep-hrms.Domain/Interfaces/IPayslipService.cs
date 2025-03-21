@@ -9,7 +9,10 @@ namespace nep_hrms.Domain.Interfaces
 {
     public interface IPayslipService
     {
-       Task<PayslipDto?> GetPayslipAsync(int EmpId);
+        Task<PayslipDto?> GetPayslipAsync(int EmpId);
+
+       // Task<PayslipDto> AddAsync(PayslipDto payslipDto);
+      //  Task<byte[]> GeneratePayslipPdfAsync(PayslipDto payslip);
 
         //Task<PayslipDto> GeneratePayslip(int EmpId, DateTime SalaryMonth);
 

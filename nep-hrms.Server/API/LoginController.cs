@@ -25,19 +25,39 @@ namespace nep_hrms.Server.API
 
         [HttpPost]
         [Route("Login")]
-        public async Task<IActionResult> GetUserAsync(
-            [FromBody] UserRequest request)
+        public async Task<IActionResult> GetUserAsync([FromBody] UserRequest request)
         {
-            var user = await _loginService.GetUserAsync(request);
-            var token = _auth.GenerateToken(request.UserName);
+            //var user = await _loginService.GetUserAsync(request);
+            //var token = _auth.GenerateToken(request.UserName);
 
-            if (user == null)
-                return Unauthorized("Invalid Username or Password");
-            else
+            //if (user == null)
+            //    return Unauthorized("Invalid Username or Password");
+            //else
+            //{
+            //    user.Token = token;
+            //    return Ok(user);
+            //}     
+            try
             {
+                var user = await _loginService.GetUserAsync(request);
+
+                if (user == null)
+                    return Unauthorized(new { message = "Invalid Username or Password" });
+
+                var token = _auth.GenerateToken(user.Username); // Generate token after user verification
+
                 user.Token = token;
                 return Ok(user);
-            }     
+                //return Ok(new
+                //{
+                //    token,
+                //    user  // Ensure full user object is returned
+                //});
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
 export class Employee {
   id: number;
-  employeeCode: string;
+  empCode: string;
   fname: string;
   lname: string;
   dob: string; // Format: YYYY-MM-DD
@@ -27,7 +27,7 @@ export class Employee {
   // Constructor to initialize values (optional)
   constructor(
     id: number,
-    employeeCode: string,
+    empCode: string,
     fname: string,
     lname: string,
     dob: string,
@@ -53,7 +53,7 @@ export class Employee {
     skills: string
   ) {
     this.id = id;
-    this.employeeCode = employeeCode;
+    this.empCode = empCode;
     this.fname = fname;
     this.lname = lname;
     this.dob = dob;

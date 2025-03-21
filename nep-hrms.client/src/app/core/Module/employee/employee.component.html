@@ -55,9 +55,9 @@
       <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
         <!-- Employee Code -->
         <div class="mb-3">
-          <label for="employeeCode" class="form-label">Employee Code</label>
-          <input type="text" class="form-control" id="employeeCode" formControlName="employeeCode" readonly>
-          <button class="btn btn-success btn-sm form-control" for="employeeCode"
+          <label for="empCode" class="form-label">Employee Code</label>
+          <input type="text" class="form-control" id="empCode" formControlName="empCode" readonly>
+          <button class="btn btn-success btn-sm form-control" for="empCode"
                   (click)="generateEmployeeCode()">
             Genrate
           </button>
@@ -153,6 +153,10 @@
           <input type="radio" value="False" formControlName="contractor"> No
         </div>
 
+        <!-- <div>
+          <input type="file" (change)="onFileSelected($event)">
+          <button (click)="uploadFile()" style="background-color: rgb(255, 118, 118); margin-top: 2px; margin-bottom: 5px;">Upload</button>
+        </div> -->
         <!-- (Additional Form Sections) -->
         <!-- EMPLOYEE CONTACT DETAILS -->
 

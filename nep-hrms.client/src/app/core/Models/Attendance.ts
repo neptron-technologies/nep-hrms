@@ -1,17 +1,20 @@
 export class Attendance {
-    id: number;
-    attendance_date: Date;
-    hours_filled: number;
-    remarks: Text;
+    id?: number;
+    emp_id: number;
+    attendanceDate: Date;
+    hoursFilled: number;
+    remarks: string;
 
     constructor(
         id: number,
-        attendance_date: Date,
-        hours_filled: number,
-        remarks: Text) {
+        emp_id: number,
+        attendanceDate: Date,
+        hoursFilled: number,
+        remarks: string) {
         this.id = id;
-        this.attendance_date = attendance_date;
-        this.hours_filled = hours_filled;
+        this.emp_id = emp_id;
+        this.attendanceDate = attendanceDate;
+        this.hoursFilled = hoursFilled;
         this.remarks = remarks;
     }
 }

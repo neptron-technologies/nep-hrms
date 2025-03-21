@@ -1,14 +1,15 @@
 import { Component, inject, signal, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { EmpService } from '../../services/emp.service';
 import { Employee } from '../../Models/Employee';
 import Swal from 'sweetalert2';
+import { HttpClient } from '@angular/common/http';
+
 @Component({
   selector: 'app-employee',
   standalone: false,
   templateUrl: './employee.component.html',
   styleUrl: './employee.component.css',
-
 })
 
 export class EmployeeComponent implements OnInit {
@@ -22,11 +23,12 @@ export class EmployeeComponent implements OnInit {
   employeeObj: Employee | any;
   employeeList: Employee[] = [];
   employeeForm!: FormGroup;
+  selectedFile: File | null = null;
 
   constructor(
     private fb: FormBuilder,
     private employeeService: EmpService,
-
+    private http: HttpClient
   ) { }
 
   ngOnInit(): void {
@@ -47,7 +49,7 @@ export class EmployeeComponent implements OnInit {
 
       const employeeData = new Employee(
         this.employeeForm.value.id,
-        this.employeeForm.value.employeeCode,
+        this.employeeForm.value.empCode,
         this.employeeForm.value.fname,
         this.employeeForm.value.lname,
         this.employeeForm.value.dob,
@@ -72,7 +74,9 @@ export class EmployeeComponent implements OnInit {
         this.employeeForm.value.salary,
         this.employeeForm.value.skills
       );
-      console.log('Form Data:', this.employeeForm.value);
+
+      console.log('Sending Employee Data:', employeeData);
+      //console.log('Form Data:', this.employeeForm.value);
       if (this.editmode) {
 
         this.employeeService.updateEmployee(employeeData.id, employeeData).subscribe(
@@ -116,6 +120,7 @@ export class EmployeeComponent implements OnInit {
             this.getEmployees();
           },
           (error) => {
+            console.log('Response body:', error.error);
             Swal.fire({
               title: 'Error!',
               text: 'There was an error adding the employee.',
@@ -132,7 +137,7 @@ export class EmployeeComponent implements OnInit {
 
   resetForm() {
     this.employeeForm.reset({
-      employeeCode: '',
+      empCode: '',
       fname: '',
       lname: '',
       dob: '',
@@ -221,7 +226,7 @@ export class EmployeeComponent implements OnInit {
   generateEmployeeCode(): void {
     const code = this.getRandomCode(4);
     this.employeeForm.patchValue({
-      employeeCode: code,
+      empCode: code,
     });
   }
 
@@ -240,7 +245,7 @@ export class EmployeeComponent implements OnInit {
 
     this.employeeForm = this.fb.group({
       id: [''],
-      employeeCode: [''],
+      empCode: [''],
       fname: ['', Validators.required],
       lname: ['', Validators.required],
       dob: ['', Validators.required],
@@ -265,15 +270,24 @@ export class EmployeeComponent implements OnInit {
       salary: [''],
       skills: [''],
     });
-
-
   }
 
+  
 
-
-
-
-
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+  }
+  uploadFile() {
+    if(this.selectedFile){
+      const formData = new FormData();
+      formData.append('file', this.selectedFile);
+      this.http.post('api_url', formData).subscribe(responce =>{
+        //handle responce
+      }, error => {
+        //handle error
+      });
+    }
+  }
 }
 
 

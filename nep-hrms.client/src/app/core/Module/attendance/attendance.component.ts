@@ -1,130 +1,174 @@
-
-
-import { Component, inject, signal, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { EmpService } from '../../services/emp.service';
-import { ReactiveFormsModule } from '@angular/forms';
-import { NgModule } from '@angular/core';
-import { FormControl, Validator } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, FormsModule, NgModel, Validators } from '@angular/forms';
 import { AttendanceService } from '../../services/attendance.service';
 import { Attendance } from '../../Models/Attendance';
+import { CommonModule } from '@angular/common';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+
 
 @Component({
   selector: 'app-attendance',
   templateUrl: './attendance.component.html',
-  styleUrl: './attendance.component.css',
-  standalone: false
+  styleUrls: ['./attendance.component.css'],
+  standalone: true,
+  imports: [CommonModule, FormsModule]
 })
 export class AttendanceComponent implements OnInit {
   attendanceForm!: FormGroup;
+  weekDates: string[] = [];
+  selectedDate!: Date;
+  isCurrentWeek: boolean = true;
+  maxWeeksBack: number = 4; // Allow only 4 weeks back
+  weekOffset: number = 0; // Tracks how many weeks back the user is
+  AttendanceList: Attendance[] = [];
+  displayedColumns: string[] = ['date', 'hoursFilled', 'remarks'];
+  dataSource = new MatTableDataSource<Attendance>();
 
-  weekDates: string[] = []; // Store the dates for the week (Monday to Sunday)
-  selectedDate!: Date; // The date selected by the user (could be any day of the week)
-  selectedDateString: string = ''; // To bind the selected date in the input field
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private fb: FormBuilder,
-    private attendanceSerive: AttendanceService,
-  ) { }
+  constructor(private fb: FormBuilder, private attendanceService: AttendanceService) {}
 
   ngOnInit(): void {
-    // Initialize the form group with 7 days of data
-    const formControls: { [key: string]: any } = {};
+    this.initializeForm();
+    this.setCurrentWeekDates();
+  }
 
-    // Loop to create form controls for 7 days
+  weeklyAttendance: Attendance[] = [];
+
+  // Fetch Attendance for Selected Week 
+  // getEmployeeAttendance(): void {
+  //   const empId = 2; // Replace with actual employee ID
+  //   const startDt = new Date(this.weekDates[0]); 
+  //   const endDt = new Date(this.weekDates[6]); 
+  
+  //   this.attendanceService.getAttendanceById(empId, startDt, endDt).subscribe((data) => {
+  //     if(data.length === 0){
+  //       console.warn("No attendance data found for the selected week");
+  //     }else{
+  //       console.log('Attendance Data:', data);
+  //     }
+
+  //     this.weeklyAttendance = data; //Assign data to weeklyAttendance
+  //   },
+  //   (error) => {
+  //     console.error('Error fetching attendance:', error);
+  //   });
+  // }
+  getEmployeeAttendance(): void {
+    let empId: number = 2; // Replace with dynamic Employee ID
+    const startDt = new Date(this.weekDates[0]); 
+    const endDt = new Date(this.weekDates[6]); 
+  
+    this.attendanceService.getAttendanceById(empId, startDt, endDt).subscribe((data) => {
+      if (data.length > 0) {
+        // ✅ Convert API response to match the `Attendance` model
+        this.weeklyAttendance = data.map(record => ({
+          emp_id: record.emp_id,
+          attendanceDate: new Date(record.attendanceDate), // ✅ Rename field
+          hoursFilled: record.hoursFilled, // ✅ Rename field
+          remarks: record.remarks
+        }));
+      } else {
+        // ✅ Create a blank structure for the current week
+        this.weeklyAttendance = this.weekDates.map(date => ({
+          emp_id: empId, 
+          attendanceDate: new Date(date), // ✅ Use correct property name
+          hoursFilled: 9, // ✅ Use correct property name
+          remarks: ''
+        }));
+      }
+      console.log(this.weeklyAttendance);
+    }, error => {
+      console.error("Error fetching attendance", error);
+    });
+  }
+  
+  
+
+  //Initialize Form with Weekly Fields 
+  initializeForm(): void {
+    const formControls: { [key: string]: any } = {};
     for (let i = 0; i < 7; i++) {
       formControls[`attendanceDate${i}`] = ['', Validators.required];
       formControls[`hoursFilled${i}`] = ['9', [Validators.required, Validators.min(0), Validators.max(24)]];
       formControls[`remarks${i}`] = ['', Validators.maxLength(200)];
     }
-
     this.attendanceForm = this.fb.group(formControls);
-    this.weekDates = Array(7).fill(''); // Initialize an empty array for dates
-
-    // Auto-set the current date and calculate the week
-    this.setCurrentWeekDates();
   }
 
-  // Method to calculate the Monday of the selected date's week
+  // Get Monday of a Given Week 
   getMonday(date: Date): Date {
     const d = new Date(date);
-    const day = d.getDay(),
-      diff = d.getDate() - day + (day == 0 ? -6 : 1); // Get the Monday of the week
+    const day = d.getDay();
+    const diff = d.getDate() - day + (day === 0 ? -6 : 1);
     return new Date(d.setDate(diff));
   }
 
-  // Method to populate the week starting from Monday based on the current date
-  calculateWeekDates(selectedDate: Date): void {
-    const monday = this.getMonday(selectedDate); // Get the Monday of the selected week
-    const dates = [];
 
+  calculateWeekDates(selectedDate: Date): void {
+    const monday = this.getMonday(selectedDate);
+    this.weekDates = [];
+  
     for (let i = 0; i < 7; i++) {
       const currentDate = new Date(monday);
-      currentDate.setDate(monday.getDate() + i); // Increment the date by i days
-      dates.push(currentDate.toISOString().split('T')[0]); // Push in YYYY-MM-DD format
+      currentDate.setDate(monday.getDate() + i);
+      this.weekDates.push(currentDate.toISOString().split('T')[0]);
     }
-
-    this.weekDates = dates;
-
-    // Auto-populate the form with the calculated dates
-    this.weekDates.forEach((date, index) => {
-      this.attendanceForm.patchValue({
-        [`attendanceDate${index}`]: date
-      });
-    });
+    this.getEmployeeAttendance();
   }
+  
 
-  // Method to set the current week’s dates based on today's date
+  // Set Current Week 
   setCurrentWeekDates(): void {
-    const currentDate = new Date(); // Get today's date
-    this.selectedDate = currentDate; // Set the selected date to today's date
-
-    // Convert the selected date to a string in 'YYYY-MM-DD' format for input
-    this.selectedDateString = currentDate.toISOString().split('T')[0];
-
-    // Calculate and populate the week starting from the current week's Monday
+    this.selectedDate = new Date();
     this.calculateWeekDates(this.selectedDate);
+    this.isCurrentWeek = true;
+    this.weekOffset = 0;
   }
 
-  // Event handler for when the user selects a date
-  onDateChange(): void {
-    const selectedDate = this.attendanceForm.get('selectedDate')?.value;
-
-    if (selectedDate) {
-      this.selectedDate = new Date(selectedDate);
-      this.calculateWeekDates(this.selectedDate); // Recalculate the week's dates
+  //Navigate to Previous Week 
+  previousWeek(): void {
+    if (this.weekOffset < this.maxWeeksBack) {
+      this.weekOffset++;
+      this.selectedDate.setDate(this.selectedDate.getDate() - 7);
+      this.calculateWeekDates(this.selectedDate);
+      this.isCurrentWeek = false;
     }
   }
 
-  // Handle form submission
+  // Navigate to Next Week
+  nextWeek(): void {
+    if (!this.isCurrentWeek) {
+      this.weekOffset--;
+      this.selectedDate.setDate(this.selectedDate.getDate() + 7);
+      this.calculateWeekDates(this.selectedDate);
+      this.isCurrentWeek = this.weekOffset === 0;
+    }
+  }
+
+  //Submit Attendance
   onSubmit(): void {
-
     if (this.attendanceForm.valid) {
-      const attendanceData = new Attendance(
-        this.attendanceForm.value.id,
-        this.attendanceForm.value.attendance_date,
-        this.attendanceForm.value.hours_filled,
-        this.attendanceForm.value.remarks
-      );
-      console.log('Form Data', this.attendanceForm.value);
-      this.attendanceSerive.addAttendance(attendanceData).subscribe(
-        (response) => {
+      const empId = 2; // Replace with actual employee ID
+      const attendanceData: Attendance[] = this.weekDates.map((date, index) => ({
+        emp_id: empId,
+        attendanceDate: new Date(date),
+        hoursFilled: this.attendanceForm.value[`hoursFilled${index}`],
+        remarks: this.attendanceForm.value[`remarks${index}`]
+      }));
 
-          console.log('Employee added:', response);
-          this.resetForm();
+      console.log('Submitting:', attendanceData);
+      this.attendanceService.addAttendance(attendanceData).subscribe(
+        (response) => {
+          console.log('Attendance added:', response);
+          this.attendanceForm.reset();
+          this.getEmployeeAttendance();
         },
         (error) => {
-
-          console.error('Error adding employee:', error);
+          console.error('Error adding attendance:', error);
         }
       );
     }
   }
-  resetForm() {
-    this.attendanceForm.reset({
-      attendance_date: '',
-      hours_filled: '',
-      remarks: ''
-    })
-  }
 }
-

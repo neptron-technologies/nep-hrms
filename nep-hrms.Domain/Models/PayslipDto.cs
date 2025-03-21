@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace nep_hrms.Domain.Models
+﻿namespace nep_hrms.Domain.Models
 {
     public class PayslipDto
     {
@@ -22,5 +16,13 @@ namespace nep_hrms.Domain.Models
         public decimal NetSalary { get; set; }
         public DateTime SalaryMonth { get; set; }
         public virtual EmployeeDto? Emp { get; set; }
+
+        public string? UanNo { get; set; }
+        public string? PfNo { get; set; }
+        public string? BankName { get; set; }
+        public string? IfscCode { get; set; }
+        public string? AccountNo { get; set; }
+        public string? EsiNo { get; set; }
+        public string? AccountName { get; set; }
     }
 }

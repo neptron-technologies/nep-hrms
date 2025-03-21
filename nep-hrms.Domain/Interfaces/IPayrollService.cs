@@ -9,6 +9,6 @@ namespace nep_hrms.Domain.Interfaces
 {
     public interface IPayrollService
     {
-        Task<Payroll> GetPayrollByEmpId(int empId);
+        Task<Payroll?> GetPayrollByEmpId(int empId);
     }
 }

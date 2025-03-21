@@ -2,11 +2,6 @@
 using nep_hrms.DAL.Interfaces;
 using nep_hrms.DAL.Models;
 using nep_hrms.Server.nep_hrms.DAL;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace nep_hrms.DAL.Repositories
 {
@@ -20,7 +15,14 @@ namespace nep_hrms.DAL.Repositories
 
         public async Task<Payslip?> GetPayslipAsync(int EmpId)
         {
-            return await _dbContext.Payslip.FirstOrDefaultAsync(p => p.EmpId == EmpId);
+            //return await _dbContext.Payslip
+            //    .Include(p=>p.EmpId)
+            //    .ThenInclude(e=>e.)
+            //    .FirstOrDefaultAsync(p => p.EmpId == EmpId);
+            return await _dbContext.Payslip
+                .Include(p => p.Emp)
+                .ThenInclude(e => e.EmployeeBankDetails) // Ensures bank details are loaded
+                .FirstOrDefaultAsync(p => p.EmpId == EmpId);
         }
     }
 }

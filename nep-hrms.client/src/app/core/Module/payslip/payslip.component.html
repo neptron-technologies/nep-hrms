@@ -1,0 +1,86 @@
+<div>
+  <button class="downloadPDF"  (click)="downloadPDF()">Download PDF</button>
+</div>
+
+<div class="payslip-container" #payslip>
+    <div class="header">
+      <h2>Neptron Technologies</h2>
+      <p>Office no-112, Bhoomi Mall, Belapur CBD, 410210.</p>
+      <h3>Pay Slip for <strong>{{ payslipData?.salaryMonth | date:'MMMM yyyy' }}</strong></h3>
+    </div>
+
+    <table class="employee-details">
+      <tr>
+        <td><strong>Employee ID:</strong></td>
+        <td>{{ payslipData?.empId }}</td>
+        <td><strong>UAN No.:</strong></td>
+        <td>{{ payslipData?.uanNo || 'Loading...' }}</td>
+      </tr>
+      <tr>
+        <td><strong>PF No.:</strong></td>
+        <td>{{ payslipData?.pfNo }}</td>
+        <td><strong>ESI No.:</strong></td>
+        <td>{{ payslipData?.esi }}</td>
+      </tr>
+      <tr>
+        <td><strong>Bank:</strong></td>
+        <td>{{ payslipData?.bankName }}</td>
+        <td><strong>Account No.:</strong></td>
+        <td>{{ payslipData?.accountNo }}</td>
+      </tr>
+      <tr>
+        <td><strong>IFSC no:</strong></td>
+        <td>{{ payslipData?.ifscCode }}</td>
+        <td><strong>Account Holder name:</strong></td>
+       <td>{{ payslipData?.accountName }}</td>
+      </tr>
+    </table> 
+
+    <table class="summary-table">
+      <tr>
+        <th>Gross Wages</th>
+        <td>₹{{ payslipData?.grossSalary || 0 }}</td>
+        <th>Total Working Days</th>
+        <td>30</td>
+      </tr>
+      <tr>
+        <th>Leaves</th>
+        <td>0</td>
+        <th>Paid Days</th>
+        <td>30</td>
+      </tr>
+      <tr>
+        <th>LOP Days</th>
+        <td>0</td>
+        <th>Net Pay</th>
+        <td>₹{{ payslipData?.netSalary || 0 }}</td>
+      </tr>
+    </table>
+
+    <div class="earnings-deductions">
+      <table class="payslip-table earnings">
+        <tr>
+          <th colspan="2">Earnings</th>
+        </tr>
+        <tr><td>HRA</td><td>₹{{ payslipData?.hra || 0 }}</td></tr>
+        <tr><td>Conveyance Allowance</td><td>₹{{ payslipData?.conveyanceAllowance || 0 }}</td></tr>
+        <tr><td>Medical Allowance</td><td>₹{{ payslipData?.medicalAllowance || 0 }}</td></tr>
+        <tr><td>Other Allowances</td><td>₹{{ payslipData?.otherAllowance || 0 }}</td></tr>
+        <tr><th>Total Earnings</th><th>₹{{ payslipData?.grossSalary || 0 }}</th></tr>
+      </table>
+
+      <table class="payslip-table deductions">
+        <tr>
+          <th colspan="2">Deductions</th>
+        </tr>
+        <tr><td>EPF</td><td>₹{{ payslipData?.epf || 0 }}</td></tr>
+        <tr><td>ESI</td><td>₹{{ payslipData?.esi || 0 }}</td></tr>
+        <tr><td>Professional Tax</td><td>₹{{ payslipData?.professionalTax || 0 }}</td></tr>
+        <tr><th>Total Deductions</th><th>₹{{ payslipData?.totalDeduction || 0 }}</th></tr>
+      </table>
+    </div>
+
+    <div class="net-salary">
+      <strong>Net Salary:</strong> ₹{{ payslipData?.netSalary || 0 }}
+    </div>
+  </div>

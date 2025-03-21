@@ -3,6 +3,8 @@ using nep_hrms.Domain.Interfaces;
 
 namespace nep_hrms.Server.API
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class PayslipController : ControllerBase
     {
         private readonly IPayslipService _payslipService;
@@ -13,7 +15,7 @@ namespace nep_hrms.Server.API
         }
 
         [HttpGet]
-        [Route("{EmpId}")]
+        [Route("GetPayslipByEmpId")]
         public async Task<IActionResult> GetPayslipAsync(int EmpId)
         {
             var payslip = await _payslipService.GetPayslipAsync(EmpId);

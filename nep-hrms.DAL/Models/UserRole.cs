@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace nep_hrms.Server.nep_hrms.DAL;
 
@@ -7,12 +8,10 @@ public partial class UserRole
 {
     public long Id { get; set; }
 
+    [Column("role_id")]
     public long RoleId { get; set; }
 
-    //public User User { get; set; }
-
-    //public Role Role { get; set; }
-
+    [Column("user_id")]
     public long UserId { get; set; }
 
     public string CreatedBy { get; set; } = null!;
@@ -26,6 +25,6 @@ public partial class UserRole
     public virtual Role Role { get; set; } = null!;
 
     public virtual User User { get; set; } = null!;
-    public List<RolePermission> RolePermissions { get; set; }
+    public List<RolePermission> RolePermissions { get; set; } = new();
 
 }

@@ -18,7 +18,7 @@ namespace nep_hrms.Domain.Services
             _payrollRepo = payrollRepo;
         }
 
-        public async Task<Payroll> GetPayrollByEmpId(int empId)
+        public async Task<Payroll?> GetPayrollByEmpId(int empId)
         {
             return await _payrollRepo.GetPayrollByEmpId(empId);
         }

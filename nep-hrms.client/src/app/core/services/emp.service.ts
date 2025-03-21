@@ -15,7 +15,7 @@ export class EmpService {
 
 
   addEmployee(obj: Employee): Observable<Employee> {
-    return this.http.post<Employee>("http://localhost:3001/addmethod", obj);
+    return this.http.post<Employee>("https://localhost:44362/api/Employee/AddEmployee/", obj);
   }
 
   updateEmployee(id: number, obj: Employee) {

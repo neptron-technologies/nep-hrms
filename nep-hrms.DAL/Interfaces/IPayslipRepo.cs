@@ -10,5 +10,6 @@ namespace nep_hrms.DAL.Interfaces
     public interface IPayslipRepo
     {
         Task<Payslip?> GetPayslipAsync(int EmpId);
+        //Task<Payslip?> AddAsync(Payslip payslipDto);
     }
 }

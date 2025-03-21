@@ -22,10 +22,9 @@ public partial class User
 
     public virtual ICollection<Log> Logs { get; set; } = new List<Log>();
 
-
-    //public ICollection<UserRole> UserRole { get; set; }
-    public List<UserRole> Roles { get; set; }
-    public List<Permission> Permissions { get; set; }
+    public List<UserRole> UserRoles { get; set; }
+    //public List<UserRole> Roles { get; set; }
+    //public List<Permission> Permissions { get; set; }
 
 
 }

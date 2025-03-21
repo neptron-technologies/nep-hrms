@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace nep_hrms.Server.nep_hrms.DAL;
+﻿namespace nep_hrms.Server.nep_hrms.DAL;
 
 public partial class EmployeeSkill
 {

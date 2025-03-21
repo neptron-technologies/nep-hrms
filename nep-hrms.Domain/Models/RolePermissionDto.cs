@@ -8,7 +8,7 @@ namespace nep_hrms.Domain.Models
 {
     public class RolePermissionDto
     {
-        public string RoleName { get; set; }
-        public List<PermissionDto> Permissions { get; set; }
+        public string RoleName { get; set; } = null!;
+        public List<PermissionDto> Permissions { get; set; } = null!;
     }
 }

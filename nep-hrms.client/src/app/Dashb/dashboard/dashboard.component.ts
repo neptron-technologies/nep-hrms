@@ -2,6 +2,7 @@ import { Component, importProvidersFrom, HostListener } from '@angular/core';
 import { LoginService } from '../../core/services/service-login.service';
 import { Location } from '@angular/common';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { DataTransferService } from '../../core/services/data-transfer.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,10 +12,10 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-  constructor(private authService: LoginService, private location: Location) { }
+  constructor(private dataTransferService: LoginService, private location: Location,) { }
 
   logout(): void {
-    this.authService.logout();
+    this.dataTransferService.logout();
   }
 
   @HostListener('window:popstate', ['$event'])
