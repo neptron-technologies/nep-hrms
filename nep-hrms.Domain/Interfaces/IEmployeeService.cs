@@ -1,5 +1,4 @@
-﻿using nep_hrms.DAL.Interfaces;
-using nep_hrms.Domain.Models;
+﻿using nep_hrms.Domain.Models;
 using nep_hrms.Server.nep_hrms.DAL;
 using System;
 using System.Collections.Generic;

@@ -4,6 +4,7 @@ using System.Data;
 using System.Reflection.Emit;
 using System.Security;
 using Microsoft.EntityFrameworkCore;
+using nep_hrms.DAL.Models;
 using nep_hrms.DAL.Repositories;
 using static System.Net.Mime.MediaTypeNames;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -33,6 +34,8 @@ public partial class HrmsDBContext : DbContext
 
     public virtual DbSet<EmployeeKyc> EmployeeKycs { get; set; }
 
+    public virtual DbSet<EmployeeProject> EmployeeProjects { get; set; }   //added on monday
+
     public virtual DbSet<EmployeeSkill> EmployeeSkills { get; set; }
 
     public virtual DbSet<Log> Logs { get; set; }
@@ -42,6 +45,8 @@ public partial class HrmsDBContext : DbContext
     public virtual DbSet<MasterKyc> MasterKycs { get; set; }
 
     public virtual DbSet<Permission> Permissions { get; set; }
+    
+    public virtual DbSet<Project> Projects { get; set; } //added
 
     public virtual DbSet<Role> Roles { get; set; }
 
@@ -52,7 +57,7 @@ public partial class HrmsDBContext : DbContext
     public virtual DbSet<UserRole> UserRoles { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Server=192.168.0.104,1433;Initial Catalog=np-hrms;Persist Security Info=True;User ID=npadmin;Password=admin123;Trust Server Certificate=True");
+        => optionsBuilder.UseSqlServer("Server=192.168.0.101,1433;Initial Catalog=np-hrms;Persist Security Info=True;User ID=npadmin;Password=admin123;Trust Server Certificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -161,8 +166,9 @@ public partial class HrmsDBContext : DbContext
         {
             entity.ToTable("Employee");
 
-            entity.HasIndex(e => e.CompanyEmail, "UQ__Employee__7C4661D143DC0782").IsUnique();
+            entity.HasKey(e => e.Id);
 
+            entity.HasIndex(e => e.CompanyEmail, "UQ__Employee__7C4661D143DC0782").IsUnique();
             entity.HasIndex(e => e.EmpCode, "UQ__Employee__B1056ABCA966495B").IsUnique();
 
             entity.Property(e => e.Id).HasColumnName("id");
@@ -202,7 +208,6 @@ public partial class HrmsDBContext : DbContext
                 .HasMaxLength(20)
                 .IsUnicode(false)
                 .HasColumnName("emp_code");
-            entity.Property(e => e.EmployeeId).HasColumnName("employee_id");
             entity.Property(e => e.Fname)
                 .HasMaxLength(50)
                 .IsUnicode(false)
@@ -212,6 +217,7 @@ public partial class HrmsDBContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("grade");
             entity.Property(e => e.GradeId).HasColumnName("grade_id");
+            entity.Property(e => e.EmployeeId).HasColumnName("employee_id");
             entity.Property(e => e.Lname)
                 .HasMaxLength(50)
                 .IsUnicode(false)
@@ -224,9 +230,15 @@ public partial class HrmsDBContext : DbContext
                 .HasColumnType("datetime")
                 .HasColumnName("updated_dt");
 
-            entity.HasOne(d => d.GradeNavigation).WithMany(p => p.Employees)
+            entity.HasOne(d => d.GradeNavigation)
+                .WithMany(p => p.Employees)
                 .HasForeignKey(d => d.GradeId)
                 .HasConstraintName("FK_Employee_Grade");
+
+            //entity.HasMany(e => e.EmployeeProjects)
+            //    .WithOne(ep => ep.Employee)
+            //    .HasForeignKey(ep => ep.EmployeeId)
+            //    .HasConstraintName("FK_Employee_EmployeeProject");
         });
 
         modelBuilder.Entity<EmployeeCertification>(entity =>
@@ -430,6 +442,33 @@ public partial class HrmsDBContext : DbContext
                 .HasConstraintName("FK_EmpKYC_Emp");
         });
 
+        modelBuilder.Entity<EmployeeProject>(entity =>
+        {
+            entity.ToTable("EmployeeProject");
+
+            entity.Property(ep => ep.EmployeeId)
+                .HasColumnName("EmployeeId"); 
+
+            entity.Property(ep => ep.ProjectId)
+                .HasColumnName("ProjectId");
+
+            // Composite PK
+            entity.HasKey(ep => new { ep.EmployeeId, ep.ProjectId })
+                .HasName("PK_EmployeeProject");
+
+            entity.HasOne(ep => ep.Employee)
+                .WithMany(e => e.EmployeeProjects)
+                .HasForeignKey(ep => ep.EmployeeId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_EmployeeProject_Employee");
+
+            entity.HasOne(ep => ep.Project)
+                .WithMany(p => p.EmployeeProjects)
+                .HasForeignKey(ep => ep.ProjectId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_EmployeeProject_Project");
+        });
+
         modelBuilder.Entity<EmployeeSkill>(entity =>
         {
             entity.Property(e => e.Id).HasColumnName("id");
@@ -571,6 +610,100 @@ public partial class HrmsDBContext : DbContext
             entity.Property(e => e.UpdatedDt)
                 .HasColumnType("datetime")
                 .HasColumnName("updated_dt");
+        });
+
+        modelBuilder.Entity<Project>(entity =>
+        {
+            entity.ToTable("Project");
+
+            entity.HasKey(e => e.Id).HasName("PK_Project");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.ProjectName)
+                .HasColumnName("ProjectName")
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .IsRequired();
+            entity.Property(e => e.Description)
+                .HasColumnName("Description")
+                .HasMaxLength(500)
+                .IsUnicode(false);
+            entity.Property(e => e.StartDate)
+                .HasColumnName("StartDate")
+                .HasColumnType("datetime");
+            entity.Property(e => e.EndDate)
+                .HasColumnName("EndDate")
+                .HasColumnType("datetime");
+            entity.Property(e => e.Status)
+                .HasColumnName("Status")
+                .HasMaxLength(50)
+                .HasDefaultValue("Active")
+                .IsRequired();
+            entity.Property(e => e.CreatedBy)
+                .HasColumnName("CreatedBy")
+                .HasMaxLength(100)
+                .IsRequired();
+            entity.Property(e => e.CreatedDt)
+                .HasColumnName("CreatedDt")
+                .HasColumnType("datetime")
+                .HasDefaultValueSql("(getdate())");
+            entity.Property(e => e.UpdatedBy)
+                .HasColumnName("UpdatedBy")
+                .HasMaxLength(100);
+            entity.Property(e => e.UpdatedDt)
+                .HasColumnName("UpdatedDt")
+                .HasColumnType("datetime");
+
+            entity.HasMany(p => p.EmployeeProjects)
+                .WithOne(ep => ep.Project)
+                .HasForeignKey(ep => ep.ProjectId)
+                .HasConstraintName("FK_Project_EmployeeProject");
+        });
+
+        modelBuilder.Entity<Recruitment>(entity =>
+        {
+            entity.ToTable("Recruitment");
+
+            entity.HasKey(r => r.Id);
+
+            entity.Property(r => r.CandidateName)
+                .IsRequired()
+                .HasMaxLength(100);
+
+            entity.Property(r => r.Email)
+                .IsRequired()
+                .HasMaxLength(100);
+
+            entity.Property(r => r.PhoneNumber)
+                .IsRequired()
+                .HasMaxLength(15);
+
+            entity.Property(r => r.PositionApplied)
+                .IsRequired()
+                .HasMaxLength(100);
+
+            entity.Property(r => r.Status)
+                .IsRequired()
+                .HasMaxLength(50)
+                .HasDefaultValue("Pending");
+
+            entity.Property(r => r.InterviewLevel)
+                .IsRequired()
+                .HasDefaultValue(1);
+
+            entity.Property(r => r.InterviewDate)
+                .HasColumnType("datetime");
+
+            entity.Property(r => r.Feedback)
+                .HasMaxLength(500);
+
+            entity.Property(r => r.CreatedAt)
+                .HasColumnType("datetime")
+                .HasDefaultValueSql("GETDATE()");
+
+            entity.Property(r => r.UpdatedAt)
+                .HasColumnType("datetime")
+                .HasDefaultValueSql("GETDATE()");
         });
 
         modelBuilder.Entity<Role>(entity =>

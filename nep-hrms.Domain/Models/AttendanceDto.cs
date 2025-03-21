@@ -19,6 +19,5 @@ namespace nep_hrms.Domain.Models
         public string? updated_by { get; set; }
         public string? reviewed_by { get; set; }
         public DateTime? reviewed_dt { get; set; }
-
     }
 }

@@ -1,4 +1,5 @@
-﻿using nep_hrms.Server.nep_hrms.DAL;
+﻿using nep_hrms.DAL.Models;
+using nep_hrms.Server.nep_hrms.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace nep_hrms.DAL.Interfaces
 {
-    public interface IAttendanceRepo : IBaseRepo<Attendance>
+    public interface IRecruitmentRepo : IBaseRepo<Recruitment>
     {
-        Task<List<Attendance>> GetAttendanceByEmpId(int empId);
+
     }
 }

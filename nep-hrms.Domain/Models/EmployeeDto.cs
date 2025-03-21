@@ -28,6 +28,7 @@ namespace nep_hrms.Domain.Models
         public DateTime? UpdatedDt { get; set; }  
         public int? GradeId { get; set; }  
         public int? EmployeeId { get; set; }  
-        public string? company_email { get; set; }  
+        public string? company_email { get; set; }
+        public int? ProjectId { get; set; }  //added on sat
     }
 }

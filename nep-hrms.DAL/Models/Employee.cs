@@ -1,8 +1,11 @@
-﻿namespace nep_hrms.Server.nep_hrms.DAL;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using nep_hrms.DAL.Models;
+
+namespace nep_hrms.Server.nep_hrms.DAL;
 
 public partial class Employee
 {
-    public int Id { get; set; }
+    public int Id { get; set; } // Primary Key
 
     public string EmpCode { get; set; }
 
@@ -40,7 +43,13 @@ public partial class Employee
 
     public int? EmployeeId { get; set; }
 
+    // Many-to-Many Relationship with Projects via EmployeeProject
+    
 
+    // ❌ Remove this because Projects are linked via EmployeeProject
+    // public virtual ICollection<Project> Projects { get; set; } = new List<Project>();
+
+    // Other Relationships
     public virtual ICollection<Attendance> Attendances { get; set; } = new List<Attendance>();
 
     public virtual ICollection<DesignationHistory> DesignationHistories { get; set; } = new List<DesignationHistory>();
@@ -60,4 +69,6 @@ public partial class Employee
     public virtual ICollection<LoginLog> LoginLogs { get; set; } = new List<LoginLog>();
 
     public virtual ICollection<User> Users { get; set; } = new List<User>();
+    public virtual ICollection<EmployeeProject> EmployeeProjects { get; set; }
+
 }

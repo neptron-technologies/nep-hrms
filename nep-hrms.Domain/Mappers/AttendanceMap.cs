@@ -13,11 +13,7 @@ namespace nep_hrms.Domain.Mappers
     {
         public AttendanceMap()
         {
-            //CreateMap<Attendance, AttendanceDto>(); //.ReverseMap();
-
-            //CreateMap<AttendanceDto, Attendance>();
             CreateMap<Attendance, AttendanceDto>();  
-
             CreateMap<AttendanceDto, Attendance>();
         }
     }

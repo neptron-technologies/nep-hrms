@@ -5,6 +5,8 @@ import { DashboardComponent } from './Dashb/dashboard/dashboard.component';
 import { AuthGuard } from './core/auth/auth.guard';
 import { EmployeeComponent } from './core/Module/employee/employee.component';
 import { AttendanceComponent } from './core/Module/attendance/attendance.component';
+import { ProjectManagerComponent } from './core/Module/projectmanager/projectmanager.component';
+import { RecruitmentComponent } from './core/Module/recruitment/recruitment.component';
 
 const routes: Routes = [
   {
@@ -27,7 +29,20 @@ const routes: Routes = [
       {
         path: 'attendance',
         component: AttendanceComponent
+      },
+      { 
+        path: 'recruitment', 
+        component: RecruitmentComponent 
+      },
+      {
+        path: 'projectmanager',
+        component: ProjectManagerComponent
       }
+      // { 
+      //   path: '', 
+      //   redirectTo: 'recruitment', 
+      //   pathMatch: 'full' 
+      // }
     ]
   },
 ];
