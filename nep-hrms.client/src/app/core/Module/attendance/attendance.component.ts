@@ -39,35 +39,34 @@ export class AttendanceComponent implements OnInit {
     }
  
     this.attendanceForm = this.fb.group(formControls);
-    this.weekDates = Array(7).fill(''); // Initialize an empty array for dates
+    this.weekDates = Array(7).fill(''); 
  
-    // Auto-set the current date and calculate the week
+    
     this.setCurrentWeekDates();
     this.fetchEmployeeProjectId(); 
   }
  
-  // Method to calculate the Monday of the selected date's week
+  
   getMonday(date: Date): Date {
     const d = new Date(date);
     const day = d.getDay(),
-      diff = d.getDate() - day + (day == 0 ? -6 : 1); // Get the Monday of the week
+      diff = d.getDate() - day + (day == 0 ? -6 : 1); 
     return new Date(d.setDate(diff));
   }
  
-  // Method to populate the week starting from Monday based on the current date
+ 
   calculateWeekDates(selectedDate: Date): void {
-    const monday = this.getMonday(selectedDate); // Get the Monday of the selected week
+    const monday = this.getMonday(selectedDate);
     const dates = [];
  
     for (let i = 0; i < 7; i++) {
       const currentDate = new Date(monday);
-      currentDate.setDate(monday.getDate() + i); // Increment the date by i days
-      dates.push(currentDate.toISOString().split('T')[0]); // Push in YYYY-MM-DD format
+      currentDate.setDate(monday.getDate() + i); 
+      dates.push(currentDate.toISOString().split('T')[0]);
     }
  
     this.weekDates = dates;
  
-    // Auto-populate the form with the calculated dates
     this.weekDates.forEach((date, index) => {
       this.attendanceForm.patchValue({
         [`attendanceDate${index}`]: date
@@ -75,25 +74,23 @@ export class AttendanceComponent implements OnInit {
     });
   }
  
-  // Method to set the current week’s dates based on today's date
-  setCurrentWeekDates(): void {
-    const currentDate = new Date(); // Get today's date
-    this.selectedDate = currentDate; // Set the selected date to today's date
  
-    // Convert the selected date to a string in 'YYYY-MM-DD' format for input
+  setCurrentWeekDates(): void {
+    const currentDate = new Date(); 
+    this.selectedDate = currentDate; 
+    
     this.selectedDateString = currentDate.toISOString().split('T')[0];
  
-    // Calculate and populate the week starting from the current week's Monday
     this.calculateWeekDates(this.selectedDate);
   }
  
-  // Event handler for when the user selects a date
+  
   onDateChange(): void {
     const selectedDate = this.attendanceForm.get('selectedDate')?.value;
  
     if (selectedDate) {
       this.selectedDate = new Date(selectedDate);
-      this.calculateWeekDates(this.selectedDate); // Recalculate the week's dates
+      this.calculateWeekDates(this.selectedDate); 
     }
   }
 
@@ -113,9 +110,6 @@ export class AttendanceComponent implements OnInit {
   }
   
   
-  
- 
-  // Handle form submission
   onSubmit(): void {
  
     if (this.attendanceForm.valid) {

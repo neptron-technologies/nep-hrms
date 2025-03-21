@@ -17,6 +17,8 @@ namespace nep_hrms.DAL.Models
         public string IfscCode { get; set; }
         public string AccountNo { get; set; }
         public string? Esi { get; set; }
-        public virtual Employee? Emp { get; set; }
+
+        public string? AccountName { get; set; }
+        public virtual Employee Emp { get; set; }
     }
 }

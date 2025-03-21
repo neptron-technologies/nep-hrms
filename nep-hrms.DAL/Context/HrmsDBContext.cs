@@ -766,6 +766,11 @@ public partial class HrmsDBContext : DbContext
                 .HasMaxLength(15)
                 .IsRequired()
                 .IsUnicode(false);
+            entity.Property(e => e.AccountName)
+               .HasColumnName("account_name")
+               .HasMaxLength(50)
+               .IsRequired()
+               .IsUnicode(false);
 
             entity.HasOne(d => d.Emp)
                 .WithMany(p => p.EmployeeBankDetails) // Make sure "Payrolls" is correctly mapped

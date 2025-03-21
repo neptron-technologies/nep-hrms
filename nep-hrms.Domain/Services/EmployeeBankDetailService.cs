@@ -21,6 +21,7 @@ namespace nep_hrms.Domain.Services
         public async Task<EmployeeBankDetail> GetBankDetailsById(int empId)
         {
             return await _employeeBankDetailRepo.GetBankDetailsById(empId);
+
         }
     }
 }

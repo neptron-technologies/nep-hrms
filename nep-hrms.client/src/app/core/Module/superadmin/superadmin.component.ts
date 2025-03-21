@@ -10,38 +10,29 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   standalone: false,
   templateUrl: './superadmin.component.html',
   styleUrl: './superadmin.component.css'
-  
+
 })
 export class SuperadminComponent {
   employeeList: Employee[] = [];
   attendanceDetails: any = [];
-  attendanceInfo: number[]=[];
+  attendanceInfo: number[] = [];
   isOpen = false;
-  employeeForm: FormGroup;
-  private apiUrl = 'https://your-api-url.com/employees'; 
+  isPaymentOpen = false;
+  selectedEmployeeId: number | null = null;
 
-  // constructor(private http: HttpClient,
-  //   private superadminService: SuperAdminService,
-  //   private cdRef: ChangeDetectorRef 
-  // ) {}
-  
+  private apiUrl = 'https://your-api-url.com/employees';
+
+  constructor(private http: HttpClient,
+    private superadminService: SuperAdminService) { }
+
   ngOnInit(): void {
-    this.getEmployees(); // Fetch data when component loads
+    this.getEmployees();
   }
-  constructor(private fb: FormBuilder,private http: HttpClient,
-    private superadminService: SuperAdminService,
-    private cdRef: ChangeDetectorRef ) {
-    this.employeeForm = this.fb.group({
-      name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      jobTitle: ['', Validators.required],
-      department: ['', Validators.required]
-    });
-  }
+
 
   openModal(empId: number) {
     this.isOpen = true;
-    this.getAttendance(empId);  
+    this.getAttendance(empId);
   }
 
   closeModal() {
@@ -49,15 +40,17 @@ export class SuperadminComponent {
     this.attendanceDetails = null;
   }
 
-  openPayment() {
-    this.isOpen = true;  
+  openPayment(empId: number) {
+    this.selectedEmployeeId = empId;
+    this.isPaymentOpen = true;
   }
 
   closePayment() {
-    this.isOpen = false;
+    this.isPaymentOpen = false;
+    this.selectedEmployeeId = null;
   }
-  
-  getEmployees(){
+
+  getEmployees() {
     this.superadminService.getEmployees().subscribe((res: any) => {
       this.employeeList = res as Employee[];
     });

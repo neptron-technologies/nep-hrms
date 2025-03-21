@@ -23,7 +23,12 @@ namespace nep_hrms.DAL.Repositories
 
         public async Task<EmployeeBankDetail?> GetBankDetailsById(int empId)
         {
+            //var employeeBankDetail = _dbContext.EmployeeBankDetail
+            //      .Include(e => e.Emp) // This ensures the Emp property is populated
+            //      .FirstOrDefault(e => e.Id == empId); // Use the correct ID
             return await _dbContext.EmployeeBankDetail.FirstOrDefaultAsync(p => p.EmpId == empId);
+        
+        //return employeeBankDetail;
         }
     }
 }
