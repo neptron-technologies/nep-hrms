@@ -17,7 +17,7 @@ namespace nep_hrms.Domain.Models
         public string Status { get; set; }
         public int EmpId { get; set; }
         public string Fname { get; set; } = string.Empty; // added for ref
-        public List<EmployeeDto> Employees { get; set; } = new List<EmployeeDto>(); //added
-       // public List<EmployeeDTO> Employees { get; set; } = new List<EmployeeDTO>();
+        //public List<EmployeeDto>? Employees { get; set; } = new List<EmployeeDto>(); //added
+       //public List<EmployeeDTO> Employees { get; set; }
     }
 }

@@ -45,7 +45,9 @@ namespace nep_hrms.Domain.Services
         {
             var project = _mapper.Map<Project>(projectDto);
             var createdProject = await _projectRepo.AddAsync(project);
-            return _mapper.Map<ProjectDto>(createdProject);
+            var result = _mapper.Map<ProjectDto>(createdProject);
+            //result.Employees = null; // employees not included
+            return result;
         }
 
         public async Task UpdateAsync(ProjectDto projectDto)

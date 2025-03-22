@@ -18,7 +18,7 @@ namespace nep_hrms.Domain.Mappers
             //    //.ForMember(dest => dest.Fname, opt => opt.MapFrom(src => src.Employees != null ? src.Employees.Fname : "N/A"));
             //CreateMap<ProjectDto, Project>();
             CreateMap<Project, ProjectDto>();
-               // .ForMember(dest => dest.Employees, opt => opt.MapFrom(src => src.Employees));
+               // .ForMember(dest => dest.Employees, opt => opt.Ignore()); // Ignore Employees for Project CRUD
             CreateMap<ProjectDto, Project>();
         }  
     }
