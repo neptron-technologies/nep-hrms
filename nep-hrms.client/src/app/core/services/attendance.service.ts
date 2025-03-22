@@ -25,10 +25,6 @@ export class AttendanceService {
 
     return this.http.get<Attendance[]>(`${this.apiUrl}`, {params});
   }
-
-  // addAttendance(attendance: Attendance[]): Observable<any> {  // ✅ Accept an array
-  //   return this.http.post<any>('https://localhost:44362/api/Attendance/AddAttendance', attendance);
-  // }
   addAttendance(attendance: Attendance[]): Observable<{ success: boolean; message: string }> {  
     return this.http.post<{ success: boolean; message: string }>(
         'https://localhost:44362/api/Attendance/AddAttendance', attendance

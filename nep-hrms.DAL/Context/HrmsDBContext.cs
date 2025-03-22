@@ -761,44 +761,6 @@ namespace nep_hrms.Server.nep_hrms.DAL
                     .HasConstraintName("FK_User_Emp");
             });
 
-            //modelBuilder.Entity<UserRole>(entity =>
-            //{
-            //    entity.HasKey(e => e.Id).HasName("PK__UserRole__3213E83FD79ACC8F");
-
-            //    entity.ToTable("UserRole");
-
-            //    entity.HasIndex(e => e.RoleId, "UQ__UserRole__760965CD01A2E69E").IsUnique();
-
-            //    entity.HasIndex(e => e.UserId, "UQ__UserRole__B9BE370EC7B31193").IsUnique();
-
-            //    entity.Property(e => e.Id).HasColumnName("id");
-            //    entity.Property(e => e.CreatedBy)
-            //        .HasMaxLength(50)
-            //        .IsUnicode(false)
-            //        .HasColumnName("created_by");
-            //    entity.Property(e => e.CreatedDt)
-            //        .HasDefaultValueSql("(getdate())")
-            //        .HasColumnType("datetime")
-            //        .HasColumnName("created_dt");
-            //    entity.Property(e => e.RoleId).HasColumnName("role_id");
-            //    entity.Property(e => e.UpdatedBy)
-            //        .HasMaxLength(50)
-            //        .IsUnicode(false)
-            //        .HasColumnName("updated_by");
-            //    entity.Property(e => e.UpdatedDt)
-            //        .HasColumnType("datetime")
-            //        .HasColumnName("updated_dt");
-            //    entity.Property(e => e.UserId).HasColumnName("user_id");
-
-            //    entity.HasOne(d => d.Role).WithOne(p => p.UserRole)
-            //        .HasForeignKey<UserRole>(d => d.RoleId)
-            //        .HasConstraintName("FK_roles");
-
-            //    //entity.HasOne(d => d.User).WithOne(p => p.UserRole)
-            //    //    .HasForeignKey<UserRole>(d => d.UserId)
-            //    //    .HasConstraintName("FK_users_roles");
-            //});
-
             modelBuilder.Entity<UserRole>(entity =>
             {
                 entity.HasKey(e => e.Id).HasName("PK_UserRole");

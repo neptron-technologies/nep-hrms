@@ -13,7 +13,6 @@ export class ApplyleaveService {
   
   applyLeave(leaveData: Applyleave): Observable<Applyleave[]> {
     console.log(leaveData);
-    //return this.http.post<any>('https://localhost:44362/api/controller/ApplyLeave',leaveData)
     return this.http.post<any>('https://localhost:44362/api/controller/ApplyLeave',leaveData);
     }
 

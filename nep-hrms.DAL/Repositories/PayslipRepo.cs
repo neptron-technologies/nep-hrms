@@ -15,10 +15,6 @@ namespace nep_hrms.DAL.Repositories
 
         public async Task<Payslip?> GetPayslipAsync(int EmpId)
         {
-            //return await _dbContext.Payslip
-            //    .Include(p=>p.EmpId)
-            //    .ThenInclude(e=>e.)
-            //    .FirstOrDefaultAsync(p => p.EmpId == EmpId);
             return await _dbContext.Payslip
                 .Include(p => p.Emp)
                 .ThenInclude(e => e.EmployeeBankDetails) // Ensures bank details are loaded

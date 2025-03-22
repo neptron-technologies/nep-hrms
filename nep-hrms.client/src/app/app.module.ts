@@ -18,13 +18,21 @@ import {MatCardModule } from '@angular/material/card';
 import { SuperadminComponent } from './core/Module/superadmin/superadmin.component';
 
 
-//import { HttpClientModule } from '@angular/common/http';
-
 @NgModule({
-    declarations: [AppComponent, EmployeeComponent, PayslipComponent, ApplyleaveComponent, ManageleaveComponent, EmpdashboardComponent, SuperadminComponent],
+    declarations: [AppComponent, 
+        EmployeeComponent, 
+        PayslipComponent, 
+        ApplyleaveComponent, 
+        ManageleaveComponent, 
+        EmpdashboardComponent, 
+        SuperadminComponent],
+
     bootstrap: [AppComponent],
-    imports: [BrowserModule, AppRoutingModule, 
-        ReactiveFormsModule, AttendanceComponent, 
+
+    imports: [BrowserModule, 
+        AppRoutingModule, 
+        ReactiveFormsModule, 
+        AttendanceComponent, 
         CommonModule, 
         NgxChartsModule, 
         BrowserAnimationsModule, 

@@ -56,7 +56,7 @@
   <div class="modal-content">
 
     <h2>Payment Details</h2>
+    <button type="button" class="close-btn" (click)="closePayment()">Close</button>
     <app-payslip *ngIf="selectedEmployeeId" [empId]="selectedEmployeeId"></app-payslip>
-    <button type="button" (click)="closePayment()">Close</button>
   </div>
 </div>

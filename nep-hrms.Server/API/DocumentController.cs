@@ -19,20 +19,16 @@ namespace nep_hrms.Server.Controllers
             _documentService = documentService;
         }
 
-        /// <summary>
-        /// Get all documents.
-        /// </summary>
-        [HttpGet("get-all")]
+        [HttpGet]
+        [Route("get-all")]
         public async Task<ActionResult<List<Document>>> GetAllDocuments()
         {
             var documents = await _documentService.GetAllAsync();
             return Ok(documents);
         }
 
-        /// <summary>
-        /// Get document by ID.
-        /// </summary>
-        [HttpGet("{id}")]
+        [HttpGet]
+        [Route("{id}")]
         public async Task<ActionResult<Document>> GetDocumentById(int id)
         {
             var document = await _documentService.GetByIdAsync(id);
@@ -42,10 +38,8 @@ namespace nep_hrms.Server.Controllers
             return Ok(document);
         }
 
-        /// <summary>
-        /// Upload a new document.
-        /// </summary>
-        [HttpPost("upload")]
+        [HttpPost]
+        [Route("upload")]
         public async Task<ActionResult<Document>> UploadDocument([FromForm] DocumentUploadDto documentDto)
         {
             if (documentDto.File == null || documentDto.File.Length == 0)
@@ -68,9 +62,6 @@ namespace nep_hrms.Server.Controllers
             return CreatedAtAction(nameof(GetDocumentById), new { id = createdDocument.Id }, createdDocument);
         }
 
-        /// <summary>
-        /// Update document details (except file content).
-        /// </summary>
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateDocument(int id, [FromBody] Document document)
         {
@@ -87,10 +78,8 @@ namespace nep_hrms.Server.Controllers
             return NoContent();
         }
 
-        /// <summary>
-        /// Delete a document.
-        /// </summary>
-        [HttpDelete("{id}")]
+        [HttpDelete]
+        [Route("{id}")]
         public async Task<IActionResult> DeleteDocument(int id)
         {
             var existingDocument = await _documentService.GetByIdAsync(id);
@@ -101,10 +90,9 @@ namespace nep_hrms.Server.Controllers
             return NoContent();
         }
 
-        /// <summary>
-        /// Download document file.
-        /// </summary>
-        [HttpGet("download/{id}")]
+    
+        [HttpGet]
+        [Route("download/{id}")]
         public async Task<IActionResult> DownloadDocument(int id)
         {
             var document = await _documentService.GetByIdAsync(id);

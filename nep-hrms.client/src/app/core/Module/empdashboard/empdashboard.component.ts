@@ -36,26 +36,6 @@ export class EmpdashboardComponent implements OnInit {
     this.getAttendanceInfo();
   }
 
-  // getAttendanceInfo(): void {
-  //   this.empId = this.dataTransferService.getEmpId();
-  //   if (!this.empId) {
-      
-  //   this.empDashBoardServ.getAttndanceInfo(this.empId).subscribe((res: any) => {
-  //     console.log('API Response:', res); // Debugging
-  //     this.attendanceInfo = res;
-      
-  //     // Dynamically update the chart data
-  //     this.data = [
-  //       { name: 'Monthly Attendance', value: res.monthlyAttendance || 0 },
-  //       { name: 'Quarterly Attendance', value: res.quarterlyAttendance || 0 },
-  //       { name: 'Total EL', value: res.totalEl || 0 },
-  //       { name: 'EL Balance', value: res.elBalance || 0 },
-  //       { name: 'Optional Balance', value: res.optionalBal || 0 },
-  //       { name: 'Leave Without Pay', value: res.leaveWithoutPay || 0 },
-  //     ];
-  //   });
-  //   }
-  // }
   getAttendanceInfo(): void {
     this.empId = this.dataTransferService.getEmpId();
     
@@ -78,5 +58,4 @@ export class EmpdashboardComponent implements OnInit {
       console.error('Invalid Employee ID:', this.empId);
     }
   }
-  
 }

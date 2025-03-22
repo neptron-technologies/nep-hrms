@@ -9,23 +9,24 @@ export class DataTransferService {
 
   saveUserData(user: any): void {
     if (user) {
-      console.log('Saving User Data:', user);
-      localStorage.setItem('user', JSON.stringify(user));
+      console.log('Saving User Data:', user); // Debug log
+      if (!user.empId) {
+        console.warn('Warning: empId is missing from user data');
+      }
+      localStorage.setItem('user', JSON.stringify(user)); // Store user in localStorage
     } else {
       console.warn('Attempted to save undefined user data');
     }
   }
   
-  // getEmpId(): number | null {
-  //   const user = localStorage.getItem('user');
-  //   return user ? JSON.parse(user).empId : null;
-  // }
   getEmpId(): number | null {
     const user = localStorage.getItem('user');
+    //console.log('Raw User Data from LocalStorage:', user);
     const empId = user ? JSON.parse(user).empId : null;
-    console.log('Retrieved empId:', empId); 
+    //console.log('Retrieved empId:', empId);
     return empId;
   }
+  
 
   saveToken(token: string): void {
     localStorage.setItem('token', token);
@@ -44,3 +45,4 @@ export class DataTransferService {
     localStorage.removeItem('token');
   }
 }
+

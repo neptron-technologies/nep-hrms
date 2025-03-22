@@ -18,7 +18,6 @@ const routes: Routes = [
   },
   { path: 'login', loadComponent: () => import('./core/LoginPg/login/login.component').then(m => m.LoginComponent) },
   {
-    // path: 'dashboard', loadComponent: () => import('./Dashb/dashboard/dashboard.component').then(m => m.DashboardComponent), canActivate: [AuthGuard], 
 
     path: '',
     component: DashboardComponent,
@@ -60,8 +59,6 @@ const routes: Routes = [
         path: '**',
         redirectTo: 'login'
       },
-
-
     ]
   },
 ];
