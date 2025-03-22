@@ -9,16 +9,26 @@ import { AttendanceComponent } from './core/Module/attendance/attendance.compone
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule, DatePipe } from '@angular/common';
 import { PayslipComponent } from './core/Module/payslip/payslip.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ApplyleaveComponent } from './core/Module/applyleave/applyleave.component';
+import { ManageleaveComponent } from './core/Module/manageleave/manageleave.component';
+import { EmpdashboardComponent } from './core/Module/empdashboard/empdashboard.component'
+import {MatCardModule } from '@angular/material/card';
+import { SuperadminComponent } from './core/Module/superadmin/superadmin.component';
+
+
 //import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-    declarations: [AppComponent, EmployeeComponent, PayslipComponent, ],
+    declarations: [AppComponent, EmployeeComponent, PayslipComponent, ApplyleaveComponent, ManageleaveComponent, EmpdashboardComponent, SuperadminComponent],
     bootstrap: [AppComponent],
     imports: [BrowserModule, AppRoutingModule, 
         ReactiveFormsModule, AttendanceComponent, 
-        CommonModule
-        
-        
+        CommonModule, 
+        NgxChartsModule, 
+        BrowserAnimationsModule, 
+        MatCardModule
     ],
     providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClient(), DatePipe]
 })

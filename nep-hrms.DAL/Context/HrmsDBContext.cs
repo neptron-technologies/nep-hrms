@@ -53,10 +53,23 @@ namespace nep_hrms.Server.nep_hrms.DAL
 
         public virtual DbSet<Payslip> Payslip { get; set; }
 
+        public virtual DbSet<EmpLeave> EmpLeave { get; set; }
+        public virtual DbSet<EmpLeaveCancelled> EmpLeaveCancelled { get; set; }
+
+
+        public virtual DbSet<EmpLeaveBalance> EmpLeaveBalance { get; set; }
+
+        public virtual DbSet<Holiday> Holiday { get; set; }
+
+        public virtual DbSet<AttendanceStatus> AttendanceStatuses { get; set; }
+        public virtual DbSet<Project> Projects { get; set; }
+
+
+
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseSqlServer("Server=192.168.0.101,1433;Initial Catalog=np-hrms;Persist Security Info=True;User ID=npadmin;Password=admin123;Trust Server Certificate=True");
+            => optionsBuilder.UseSqlServer("Server= 192.168.0.100,1433;Initial Catalog=np-hrms;Persist Security Info=True;User ID=npadmin;Password=admin123;Trust Server Certificate=True");
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -99,7 +112,32 @@ namespace nep_hrms.Server.nep_hrms.DAL
                 entity.HasOne(d => d.Emp).WithMany(p => p.Attendances)
                     .HasForeignKey(d => d.EmpId)
                     .HasConstraintName("FK_Attend_Emp");
+
+                entity.Property(e => e.ProjectId).HasColumnName("project_id");
+
+                entity.Property(e => e.StatusId).HasColumnName("status_id");
+
+
+                entity.HasOne(d => d.Status).WithMany(p => p.Attendances)
+                   .HasForeignKey(d => d.StatusId)
+                   .OnDelete(DeleteBehavior.Cascade)
+                   .HasConstraintName("FK_Attendance_Status");
+
             });
+
+            modelBuilder.Entity<AttendanceStatus>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK__Attendan__3213E83FD278E46A");
+
+                entity.ToTable("AttendanceStatus");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Status)
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("status");
+            });
+
 
             modelBuilder.Entity<Designation>(entity =>
             {

@@ -6,6 +6,10 @@ import { AuthGuard } from './core/auth/auth.guard';
 import { EmployeeComponent } from './core/Module/employee/employee.component';
 import { AttendanceComponent } from './core/Module/attendance/attendance.component';
 import { PayslipComponent } from './core/Module/payslip/payslip.component';
+import { ApplyleaveComponent } from './core/Module/applyleave/applyleave.component';
+import { ManageleaveComponent } from './core/Module/manageleave/manageleave.component';
+import { EmpdashboardComponent } from './core/Module/empdashboard/empdashboard.component';
+import { SuperadminComponent } from './core/Module/superadmin/superadmin.component';
 
 const routes: Routes = [
   {
@@ -37,9 +41,26 @@ const routes: Routes = [
         component: PayslipComponent
       },
       {
+        path: 'applyleave',
+        component: ApplyleaveComponent
+      },
+      {
+        path: 'manageleave',
+        component: ManageleaveComponent
+      },
+      {
+        path: 'empdashborad',
+        component: EmpdashboardComponent
+      },
+      {
+        path: 'superadmin',
+        component: SuperadminComponent
+      },
+      {
         path: '**',
         redirectTo: 'login'
-      }
+      },
+
 
     ]
   },

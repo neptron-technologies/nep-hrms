@@ -1,14 +1,8 @@
 ﻿using AutoMapper;
-using Microsoft.EntityFrameworkCore;
 using nep_hrms.DAL.Interfaces;
 using nep_hrms.Domain.Interfaces;
 using nep_hrms.Domain.Models;
 using nep_hrms.Server.nep_hrms.DAL;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace nep_hrms.Domain.Services
 {
@@ -60,5 +54,19 @@ namespace nep_hrms.Domain.Services
         {
             await _attendanceRepo.DeleteAsync(id);
         }
+        public async Task<AttendanceSummaryDto> GetAttendanceSummary(int empId)
+        {
+            var monthlyAttendance = await _attendanceRepo.GetMonthlyAttendance(empId);
+            var quarterlyAttendance = await _attendanceRepo.GetQuarterlyAttendance(empId); // Fixed
+                                                                                           // var leaveBalance = await _attendanceRepo.GetLeaveBalance(empId);
+
+            return new AttendanceSummaryDto
+            {
+                MonthlyAttendance = monthlyAttendance,
+                QuarterlyAttendance = quarterlyAttendance, // Use count instead of List
+                                                           // LeaveBalance = leaveBalance
+            };
+        }
+
     }
 }

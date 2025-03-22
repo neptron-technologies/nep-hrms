@@ -15,16 +15,6 @@ namespace nep_hrms.Server.API
             _attendanceService = attendanceService;
         }
 
-        //[HttpGet("{EmpId}")]
-        //public async Task<IActionResult>GetAttendanceById(int EmpId) //emp by id
-        //{
-            
-        //    var attendance = await _attendanceService.GetEmpAttendanceByDateRange(EmpId);
-        //    if (attendance == null)
-        //        return NotFound(new { message = "Attendance not found" });
-
-        //    return Ok(attendance);
-        //}
         [HttpGet("GetAttendanceByDateRange")]
         public async Task<IActionResult> GetAttendanceByDateRange(int empId, DateTime startDate, DateTime endDate)
         {
@@ -42,5 +32,18 @@ namespace nep_hrms.Server.API
             var createdAttendance = await _attendanceService.AddAsync(attendanceDto);
             return Ok(createdAttendance.EmpId);
         }
+
+        [HttpGet]
+        [Route("summary/{empId}")]
+        public async Task<IActionResult> GetAttendanceSummary(int empId)
+        {
+            var attendanceSummary = await _attendanceService.GetAttendanceSummary(empId);
+            if (attendanceSummary == null)
+            {
+                return NotFound("Employee not found");
+            }
+            return Ok(attendanceSummary);
+        }
+
     }
 }

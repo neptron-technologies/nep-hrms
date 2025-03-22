@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { PayslipService } from '../../services/payslip.service';
 import { CommonModule } from '@angular/common';
 import { DataTransferService } from '../../services/data-transfer.service';
@@ -13,7 +13,8 @@ import html2canvas from 'html2canvas';
 })
 export class PayslipComponent implements OnInit {
   payslipData: any;
-  empId: number | null = null;
+  @Input() empId: number | null = null;
+
   @ViewChild('payslip', { static: false }) payslip!: ElementRef;
 
   constructor(

@@ -20,5 +20,8 @@ namespace nep_hrms.Domain.Models
         public string? reviewed_by { get; set; }
         public DateTime? reviewed_dt { get; set; }
 
+        public int? StatusId { get; set; }
+        public int? project_id { get; set; }
+
     }
 }

@@ -1,0 +1,62 @@
+<div class="superadmin-dashboard">
+  <h2>Super Admin Dashboard</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Employee ID</th>
+        <th>Employee Name</th>
+        <th>Attendance</th>
+        <th>Monthly Payment (₹)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of employeeList; let i = index">
+        <td>{{ employee.id }}</td>
+        <td>{{ employee.fname }}</td>
+        <td>
+          <button (click)="openModal(employee.id)" class="btn btn-success">View Attendance</button>
+          <div *ngIf="isOpen" class="modal-overlay">
+            <div class="modal-content">
+
+              <button type="button" (click)="closeModal()">Close</button>
+            </div>
+          </div>
+        </td>
+        <td>
+          <button (click)="openPayment(employee.id)" class="btn btn-success">View Payment</button>
+          <div *ngIf="isPaymentOpen" class="modal-overlay">
+            <div class="modal-content">
+              <button type="button" (click)="closePayment()">Close</button>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="isOpen" class="modal-overlay">
+  <div class="modal-content">
+    <h2>Attendance Details</h2>
+
+    <table>
+      <tr *ngFor="let record of attendanceDetails">
+        <td><strong>{{ record.type }}:</strong></td>
+        <td>{{ record.days }} days</td>
+      </tr>
+    </table>
+
+    <button type="button" (click)="closeModal()">Close</button>
+  </div>
+</div>
+
+
+<div *ngIf="isPaymentOpen" class="modal-overlay">
+  <div class="modal-content">
+
+    <h2>Payment Details</h2>
+    <app-payslip *ngIf="selectedEmployeeId" [empId]="selectedEmployeeId"></app-payslip>
+    <button type="button" (click)="closePayment()">Close</button>
+  </div>
+</div>

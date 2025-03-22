@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using nep_hrms.DAL.Interfaces;
+using nep_hrms.DAL.Models;
 using nep_hrms.DAL.Repositories;
 using nep_hrms.Domain.Interfaces;
 using nep_hrms.Domain.Mappers;
@@ -20,6 +21,8 @@ builder.Services.AddAutoMapper(typeof(UserMapper));
 builder.Services.AddAutoMapper(typeof(UserRoleMapper));
 builder.Services.AddAutoMapper(typeof(PermissionMapper));
 builder.Services.AddAutoMapper(typeof(RolePermissionMapper));
+builder.Services.AddAutoMapper(typeof(LeaveMapper));
+
 
 var configuration = builder.Configuration;
 
@@ -68,6 +71,8 @@ builder.Services.AddScoped<IAttendanceRepo, AttendanceRepo>();
 builder.Services.AddScoped<IDocumentRepo, DocumentRepo>();
 builder.Services.AddScoped<IPayrollRepo, PayrollRepo>();
 builder.Services.AddScoped<IPayslipRepo, PayslipRepo>();
+builder.Services.AddScoped<ILeaveRepo, LeaveRepo>();
+builder.Services.AddScoped<IHolidayRepo, HolidayRepo>();
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 builder.Services.AddScoped(typeof(IBaseRepo<>), typeof(BaseRepo<>));
@@ -76,6 +81,10 @@ builder.Services.AddScoped<IDocumentService, DocumentService>();
 builder.Services.AddScoped<IPayrollService, PayrollService>();
 builder.Services.AddScoped<IEmployeeBankDetailService, EmployeeBankDetailService>();
 builder.Services.AddScoped<IPayslipService, PayslipService>();
+builder.Services.AddScoped<ILeaveService, LeaveService>();
+builder.Services.AddScoped<IEmpLeaveBalRepo, EmpLeaveBalRepo>();
+builder.Services.AddScoped<IEmpLeaveCancelled, EmpLeaveCancelRepo>();
+builder.Services.AddScoped<IEmpDashBoradService, EmpDashBoardService>();
 
 
 

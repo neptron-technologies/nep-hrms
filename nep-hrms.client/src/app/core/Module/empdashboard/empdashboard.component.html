@@ -1,0 +1,33 @@
+<div class="maindiv">
+  <div class="progress-card">
+    <div>
+      <p class="heading">Attendance Info</p>
+     
+    </div>
+
+    <div class="progress-bar" *ngIf="attendanceInfo">
+      <p>Total ELLeaves :{{ attendanceInfo.totalEl }}</p>
+      <p>Balance ELLeaves :{{ attendanceInfo.elBalance }}</p>
+      <p>Present Days THis Month :{{ attendanceInfo.monthlyAttendance }}</p>
+      <p>Quarterly Attendance :{{ attendanceInfo.quarterlyAttendance }}</p>
+    </div>
+
+   
+  </div>
+</div>
+
+<div class="graph-container">
+  <ngx-charts-bar-vertical
+  [view]="view"
+  [scheme]="colorScheme"
+  [results]="data"
+  [gradient]="gradient"
+  [xAxis]="showXAxis"
+  [yAxis]="showYAxis"
+  [legend]="showLegend"
+  [showXAxisLabel]="showXAxisLabel"
+  [xAxisLabel]="xAxisLabel"
+  [showYAxisLabel]="showYAxisLabel"
+  [yAxisLabel]="yAxisLabel">
+</ngx-charts-bar-vertical>
+</div>

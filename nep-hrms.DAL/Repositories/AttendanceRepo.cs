@@ -21,8 +21,38 @@ namespace nep_hrms.DAL.Repositories
         public async Task<List<Attendance>> GetAttendanceByEmpId(int empId, DateTime startDate, DateTime endDate)
         {
             var sqlQuery = "SELECT * FROM Attendance WHERE emp_id = {0} and attendance_date between {1} and {2}";
-            return await _dbContext.Attendances.FromSqlRaw(sqlQuery, empId, startDate, endDate).ToListAsync();
+            var attendance = await _dbContext.Attendances.FromSqlRaw(sqlQuery, empId, startDate, endDate).ToListAsync();
+            return attendance;
         }
+        public async Task<int> GetMonthlyAttendance(int empId)
+        {
+            DateTime today = DateTime.Now;
+
+            return await _dbContext.Attendances
+                .Where(a => a.EmpId == empId &&
+                            a.AttendanceDate.HasValue &&
+                            a.AttendanceDate.Value.Year == today.Year &&
+                            a.AttendanceDate.Value.Month == today.Month)
+                .CountAsync();
+        }
+
+
+        //Quaterly attendance
+        public async Task<int> GetQuarterlyAttendance(int empId)
+        {
+            DateTime today = DateTime.Now;
+            int currentQuarter = (today.Month - 1) / 3 + 1;
+            DateTime startOfQuarter = new DateTime(today.Year, (currentQuarter - 1) * 3 + 1, 1);
+            DateTime endOfQuarter = startOfQuarter.AddMonths(3).AddDays(-1);
+
+            return await _dbContext.Attendances
+                .Where(a => a.EmpId == empId &&
+                            a.AttendanceDate.HasValue &&
+                            a.AttendanceDate.Value >= startOfQuarter &&
+                            a.AttendanceDate.Value <= endOfQuarter)
+                .CountAsync();
+        }
+
 
     }
 }

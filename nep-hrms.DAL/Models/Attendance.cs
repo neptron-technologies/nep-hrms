@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using nep_hrms.DAL.Models;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace nep_hrms.Server.nep_hrms.DAL;
 
@@ -29,4 +30,13 @@ public partial class Attendance
 
     [NotMapped]
     public  Employee? Emp { get; set; }
+
+    public int? StatusId { get; set; }
+
+    public virtual AttendanceStatus? Status { get; set; }
+
+    public int? ProjectId { get; set; }
+
+    public virtual Project? Project { get; set; }
+
 }
