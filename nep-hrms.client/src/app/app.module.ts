@@ -1,4 +1,4 @@
-import { withInterceptorsFromDi } from '@angular/common/http';
+import { withFetch, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { provideHttpClient } from '@angular/common/http';
@@ -16,6 +16,7 @@ import { ManageleaveComponent } from './core/Module/manageleave/manageleave.comp
 import { EmpdashboardComponent } from './core/Module/empdashboard/empdashboard.component'
 import {MatCardModule } from '@angular/material/card';
 import { SuperadminComponent } from './core/Module/superadmin/superadmin.component';
+import { RecruitmentComponent } from './core/Module/recruitment/recruitment.component';
 
 
 @NgModule({
@@ -25,7 +26,9 @@ import { SuperadminComponent } from './core/Module/superadmin/superadmin.compone
         ApplyleaveComponent, 
         ManageleaveComponent, 
         EmpdashboardComponent, 
-        SuperadminComponent],
+        SuperadminComponent,
+        RecruitmentComponent,
+    ],
 
     bootstrap: [AppComponent],
 
@@ -36,9 +39,10 @@ import { SuperadminComponent } from './core/Module/superadmin/superadmin.compone
         CommonModule, 
         NgxChartsModule, 
         BrowserAnimationsModule, 
-        MatCardModule
+        MatCardModule,
+        
     ],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClient(), DatePipe]
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClient(), DatePipe, provideHttpClient(withFetch())],
 })
 export class AppModule { };
 // providers: [

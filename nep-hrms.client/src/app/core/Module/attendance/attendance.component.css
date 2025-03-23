@@ -1,50 +1,51 @@
+
 .attendance-container {
   text-align: center;
   font-family: Arial, sans-serif;
   padding: 20px;
 }
-
+ 
 .title {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 10px;
 }
-
+ 
 .week-navigation {
   font-size: 18px;
   margin-bottom: 15px;
 }
-
+ 
 .week-navigation a {
   cursor: pointer;
   color: rgb(255, 255, 255);
   text-decoration: none;
   margin: 0 10px;
 }
-
+ 
 .week-navigation a:hover {
   text-decoration: underline;
 }
-
+ 
 .attendance-table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
 }
-
+ 
 .attendance-table th,
 .attendance-table td {
   border: 1px solid #ddd;
   padding: 10px;
   text-align: center;
 }
-
+ 
 .date-input {
   border: none;
   background: transparent;
   text-align: center;
 }
-
+ 
 .submit-btn {
   background-color: green;
   color: white;
@@ -54,19 +55,30 @@
   margin-top: 15px;
   cursor: pointer;
 }
-
+ 
 .submit-btn:hover {
   background-color: darkgreen;
   scale: 1.1;
   border-radius: 10px;
 }
-
-/* .week-navigation{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: darkgreen;
-  color: #ddd;
-  height: 40px;
-  border-radius: 10px;
-} */
+ 
+.success {
+  color: green;
+  font-weight: bold;
+}
+ 
+.error {
+  color: red;
+  font-weight: bold;
+}
+ 
+ 
+.attendance-status {
+  margin-bottom: 10px;
+  padding: 8px;
+  background-color: #f3f3f3;
+  border-left: 5px solid #007bff;
+  border-right: 5px solid #007bff;
+  font-size: 16px;
+  font-weight: bold;
+}

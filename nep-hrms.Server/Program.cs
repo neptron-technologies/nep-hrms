@@ -22,6 +22,9 @@ builder.Services.AddAutoMapper(typeof(UserRoleMapper));
 builder.Services.AddAutoMapper(typeof(PermissionMapper));
 builder.Services.AddAutoMapper(typeof(RolePermissionMapper));
 builder.Services.AddAutoMapper(typeof(LeaveMapper));
+builder.Services.AddAutoMapper(typeof(ProjectMapper));  //added on tues
+builder.Services.AddAutoMapper(typeof(RecruitmentMapper)); //added on tues
+
 
 
 var configuration = builder.Configuration;
@@ -73,6 +76,9 @@ builder.Services.AddScoped<IPayrollRepo, PayrollRepo>();
 builder.Services.AddScoped<IPayslipRepo, PayslipRepo>();
 builder.Services.AddScoped<ILeaveRepo, LeaveRepo>();
 builder.Services.AddScoped<IHolidayRepo, HolidayRepo>();
+builder.Services.AddScoped<IProjectRepo, ProjectRepo>();  //added by suraj
+builder.Services.AddScoped<IRecruitmentRepo, RecruitmentRepo>(); // same
+
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 builder.Services.AddScoped(typeof(IBaseRepo<>), typeof(BaseRepo<>));
@@ -85,6 +91,9 @@ builder.Services.AddScoped<ILeaveService, LeaveService>();
 builder.Services.AddScoped<IEmpLeaveBalRepo, EmpLeaveBalRepo>();
 builder.Services.AddScoped<IEmpLeaveCancelled, EmpLeaveCancelRepo>();
 builder.Services.AddScoped<IEmpDashBoradService, EmpDashBoardService>();
+builder.Services.AddScoped<IProjectService, ProjectService>();   //added by suraj
+builder.Services.AddScoped<IRecruitmentService, RecruitmentService>(); // same
+
 
 
 

@@ -69,5 +69,7 @@ public partial class Employee
 
     public virtual ICollection<Payslip> Payslips { get; set; } = new List<Payslip>();
 
+    public virtual ICollection<EmployeeProject> EmployeeProjects { get; set; }
+
     //public virtual ICollection<Document> Documents { get; set; } = new List<Document>();
 }

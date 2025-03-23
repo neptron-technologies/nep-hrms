@@ -63,6 +63,9 @@ namespace nep_hrms.Server.nep_hrms.DAL
 
         public virtual DbSet<AttendanceStatus> AttendanceStatuses { get; set; }
         public virtual DbSet<Project> Projects { get; set; }
+        public virtual DbSet<EmployeeProject> EmployeeProjects { get; set; }
+        public virtual DbSet<Recruitment> Recruitments { get; set; }
+
 
 
 
@@ -473,6 +476,33 @@ namespace nep_hrms.Server.nep_hrms.DAL
                     .HasConstraintName("FK_EmpKYC_Emp");
             });
 
+            modelBuilder.Entity<EmployeeProject>(entity =>
+            {
+                entity.ToTable("EmployeeProject");
+
+                entity.Property(ep => ep.EmployeeId)
+                    .HasColumnName("EmployeeId");
+
+                entity.Property(ep => ep.ProjectId)
+                    .HasColumnName("ProjectId");
+
+                // Composite PK
+                entity.HasKey(ep => new { ep.EmployeeId, ep.ProjectId })
+                    .HasName("PK_EmployeeProject");
+
+                entity.HasOne(ep => ep.Employee)
+                    .WithMany(e => e.EmployeeProjects)
+                    .HasForeignKey(ep => ep.EmployeeId)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_EmployeeProject_Employee");
+
+                entity.HasOne(ep => ep.Project)
+                    .WithMany(p => p.EmployeeProjects)
+                    .HasForeignKey(ep => ep.ProjectId)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_EmployeeProject_Project");
+            });
+
             modelBuilder.Entity<EmployeeSkill>(entity =>
             {
                 entity.Property(e => e.Id).HasColumnName("id");
@@ -616,6 +646,55 @@ namespace nep_hrms.Server.nep_hrms.DAL
                     .HasColumnName("updated_dt");
             });
 
+            modelBuilder.Entity<Project>(entity =>
+            {
+                entity.ToTable("Project");
+
+                entity.HasKey(e => e.Id).HasName("PK_Project");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.ProjectName)
+                    .HasColumnName("ProjectName")
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .IsRequired();
+                entity.Property(e => e.Description)
+                    .HasColumnName("Description")
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+                entity.Property(e => e.StartDate)
+                    .HasColumnName("StartDate")
+                    .HasColumnType("datetime");
+                entity.Property(e => e.EndDate)
+                    .HasColumnName("EndDate")
+                    .HasColumnType("datetime");
+                entity.Property(e => e.Status)
+                    .HasColumnName("Status")
+                    .HasMaxLength(50)
+                    .HasDefaultValue("Active")
+                    .IsRequired();
+                entity.Property(e => e.CreatedBy)
+                    .HasColumnName("CreatedBy")
+                    .HasMaxLength(100)
+                    .IsRequired();
+                entity.Property(e => e.CreatedDt)
+                    .HasColumnName("CreatedDt")
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
+                entity.Property(e => e.UpdatedBy)
+                    .HasColumnName("UpdatedBy")
+                    .HasMaxLength(100);
+                entity.Property(e => e.UpdatedDt)
+                    .HasColumnName("UpdatedDt")
+                    .HasColumnType("datetime");
+
+                entity.HasMany(p => p.EmployeeProjects)
+                    .WithOne(ep => ep.Project)
+                    .HasForeignKey(ep => ep.ProjectId)
+                    .HasConstraintName("FK_Project_EmployeeProject");
+            });
+
+
             modelBuilder.Entity<Role>(entity =>
             {
                 entity.HasKey(e => e.Id).HasName("PK__Roles__3213E83FD80EEB7F");
@@ -692,6 +771,53 @@ namespace nep_hrms.Server.nep_hrms.DAL
                 entity.Property(e => e.Active)
                       .HasColumnName("active");
             });
+
+            modelBuilder.Entity<Recruitment>(entity =>
+            {
+                entity.ToTable("Recruitment");
+
+                entity.HasKey(r => r.Id);
+
+                entity.Property(r => r.CandidateName)
+                    .IsRequired()
+                    .HasMaxLength(100);
+
+                entity.Property(r => r.Email)
+                    .IsRequired()
+                    .HasMaxLength(100);
+
+                entity.Property(r => r.PhoneNumber)
+                    .IsRequired()
+                    .HasMaxLength(15);
+
+                entity.Property(r => r.PositionApplied)
+                    .IsRequired()
+                    .HasMaxLength(100);
+
+                entity.Property(r => r.Status)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasDefaultValue("Pending");
+
+                entity.Property(r => r.InterviewLevel)
+                    .IsRequired()
+                    .HasDefaultValue(1);
+
+                entity.Property(r => r.InterviewDate)
+                    .HasColumnType("datetime");
+
+                entity.Property(r => r.Feedback)
+                    .HasMaxLength(500);
+
+                entity.Property(r => r.CreatedAt)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("GETDATE()");
+
+                entity.Property(r => r.UpdatedAt)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("GETDATE()");
+            });
+
 
             modelBuilder.Entity<RolePermission>(entity =>
             {

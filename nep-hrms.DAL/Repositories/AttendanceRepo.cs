@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using nep_hrms.DAL.Interfaces;
+using nep_hrms.DAL.Models;
 using nep_hrms.Server.nep_hrms.DAL;
 using System;
 using System.Collections.Generic;
@@ -18,12 +19,37 @@ namespace nep_hrms.DAL.Repositories
             _baseRepo = baseRepo;
             _dbContext = context;
         }
+        //public async Task<List<Attendance>> GetAttendanceByEmpId(int empId, DateTime startDate, DateTime endDate)
+        //{
+        //    var sqlQuery = "SELECT * FROM Attendance WHERE emp_id = {0} and attendance_date between {1} and {2}";
+        //    var attendance = await _dbContext.Attendances.FromSqlRaw(sqlQuery, empId, startDate, endDate).ToListAsync();
+        //    return attendance;
+        //}
         public async Task<List<Attendance>> GetAttendanceByEmpId(int empId, DateTime startDate, DateTime endDate)
         {
             var sqlQuery = "SELECT * FROM Attendance WHERE emp_id = {0} and attendance_date between {1} and {2}";
             var attendance = await _dbContext.Attendances.FromSqlRaw(sqlQuery, empId, startDate, endDate).ToListAsync();
+
+
+            var weeklyAttendance = await _dbContext.Attendances
+           .Where(a => a.EmpId == empId && a.AttendanceDate >= startDate && a.AttendanceDate <= endDate)
+           .OrderByDescending(a => a.AttendanceDate)
+           .FirstOrDefaultAsync();
+
+            if (weeklyAttendance != null)
+            {
+
+                var statusName = await _dbContext.AttendanceStatuses
+                    .Where(s => s.Id == weeklyAttendance.StatusId)
+                    .Select(s => s.Status)
+                    .FirstOrDefaultAsync();
+                weeklyAttendance.Status = new AttendanceStatus { Status = statusName };
+
+            }
+
             return attendance;
         }
+
         public async Task<int> GetMonthlyAttendance(int empId)
         {
             DateTime today = DateTime.Now;

@@ -10,6 +10,7 @@ import { ApplyleaveComponent } from './core/Module/applyleave/applyleave.compone
 import { ManageleaveComponent } from './core/Module/manageleave/manageleave.component';
 import { EmpdashboardComponent } from './core/Module/empdashboard/empdashboard.component';
 import { SuperadminComponent } from './core/Module/superadmin/superadmin.component';
+import { RecruitmentComponent } from './core/Module/recruitment/recruitment.component';
 
 const routes: Routes = [
   {
@@ -54,6 +55,10 @@ const routes: Routes = [
       {
         path: 'superadmin',
         component: SuperadminComponent
+      },
+      {
+        path: 'recruitment',
+        component: RecruitmentComponent
       },
       {
         path: '**',
