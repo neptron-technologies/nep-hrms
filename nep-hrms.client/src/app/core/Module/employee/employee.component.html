@@ -53,19 +53,16 @@
         <div class="mb-3">
           <label for="empCode" class="form-label">Employee Code</label>
           <input type="text" class="form-control" id="empCode" formControlName="empCode" readonly>
-          <button class="btn btn-success btn-sm form-control" for="empCode"
-                  (click)="generateEmployeeCode()">
+          <button class="btn btn-success btn-sm form-control" for="empCode" (click)="generateEmployeeCode()">
             Genrate
           </button>
-
         </div>
-
         <!-- First Name -->
         <div class="mb-3">
           <label for="fname" class="form-label">First Name</label>
           <input type="text" class="form-control" id="fname" formControlName="fname">
           <div class="validation-message"
-               *ngIf="employeeForm.get('fname')?.invalid && employeeForm.get('fname')?.touched">
+            *ngIf="employeeForm.get('fname')?.invalid && employeeForm.get('fname')?.touched">
             *Employee First Name is Required*
           </div>
         </div>
@@ -75,7 +72,7 @@
           <label for="lname" class="form-label">Last Name</label>
           <input type="text" class="form-control" id="lname" formControlName="lname">
           <div class="validation-message"
-               *ngIf="employeeForm.get('lanme')?.invalid && employeeForm.get('lname')?.touched">
+            *ngIf="employeeForm.get('lanme')?.invalid && employeeForm.get('lname')?.touched">
             *Employee Last Name is Required*
           </div>
         </div>
@@ -84,29 +81,27 @@
         <div class="mb-3">
           <label for="dob" class="form-label">DOB</label>
           <input type="date" class="form-control" id="dob" formControlName="dob">
-          <div class="validation-message"
-               *ngIf="employeeForm.get('dob')?.invalid && employeeForm.get('dob')?.touched">
+          <div class="validation-message" *ngIf="employeeForm.get('dob')?.invalid && employeeForm.get('dob')?.touched">
             *Employee Date of Birth is Required*
           </div>
         </div>
 
         <!-- Gender -->
-        <div class="mb-3">
+        <!-- <div class="mb-3">
           <label for="gender" class="form-label">Gender</label> <br>
           <input type="radio" value="Male" formControlName="gender"> Male
           <input type="radio" value="Female" formControlName="gender"> Female
           <div class="validation-message"
-               *ngIf="employeeForm.get('gender')?.invalid && employeeForm.get('gender')?.touched">
+            *ngIf="employeeForm.get('gender')?.invalid && employeeForm.get('gender')?.touched">
             *Employee Gender is Required*
           </div>
-        </div>
+        </div> -->
 
         <!-- Date of Joining -->
         <div class="mb-3">
           <label for="doj" class="form-label">DOJ</label>
           <input type="date" class="form-control" name="doj" id="doj" formControlName="doj">
-          <div class="validation-message"
-               *ngIf="employeeForm.get('doj')?.invalid && employeeForm.get('doj')?.touched">
+          <div class="validation-message" *ngIf="employeeForm.get('doj')?.invalid && employeeForm.get('doj')?.touched">
             *Employee Date Of Joining is Required*
           </div>
         </div>
@@ -132,8 +127,8 @@
         <!-- Active -->
         <div class="mb-3">
           <label for="active" class="form-label">Active</label><br>
-          <input type="radio" value="True" formControlName="active"> Active
-          <input type="radio" value="False" formControlName="active"> Inactive
+          <input type="radio" value="true" formControlName="active"> Active
+          <input type="radio" value="false" formControlName="active"> Inactive
         </div>
 
         <!-- Email -->
@@ -145,10 +140,15 @@
         <!-- Contractor -->
         <div class="mb-3">
           <label for="active" class="form-label">Contractor</label><br>
-          <input type="radio" value="True" formControlName="contractor"> Yes
-          <input type="radio" value="False" formControlName="contractor"> No
+          <input type="radio" value="true" formControlName="contractor"> Yes
+          <input type="radio" value="false" formControlName="contractor"> No
         </div>
+        <!-- Company Email -->
+        <div class="mb-3">
+          <label for="company_email" class="form-label">Company Email</label><br>
+          <input type="text" class="form-control" id="company_email" formControlName="company_email">
 
+        </div>
         <!-- <div>
           <input type="file" (change)="onFileSelected($event)">
           <button (click)="uploadFile()" style="background-color: rgb(255, 118, 118); margin-top: 2px; margin-bottom: 5px;">Upload</button>
@@ -165,28 +165,28 @@
             <div *ngIf="contactsVisible" class="mt-2">
               <div class="mb-2">
                 <label for="address" class="form-label">Address</label>
-                <input type="text" class="form-control" name="address" id="address"
-                       formControlName="address" placeholder="Enter Address">
+                <input type="text" class="form-control" name="address" id="address" formControlName="address"
+                  placeholder="Enter Address">
               </div>
               <div class="mb-2">
                 <label for="city" class="form-label">City</label>
                 <input type="text" class="form-control" name="city" id="city" formControlName="city"
-                       placeholder="Enter City">
+                  placeholder="Enter City">
               </div>
               <div class="mb-2">
                 <label for="state" class="form-label">State</label>
                 <input type="text" class="form-control" name="state" id="state" formControlName="state"
-                       placeholder="Enter State">
+                  placeholder="Enter State">
               </div>
               <div class="mb-3">
                 <label for="country" class="form-label">Country</label>
-                <input type="text" class="form-control" name="country" id="country"
-                       formControlName="country" placeholder="Enter Country">
+                <input type="text" class="form-control" name="country" id="country" formControlName="country"
+                  placeholder="Enter Country">
               </div>
               <div class="mb-3">
                 <label for="pinCode" class="form-label">Pin Code</label>
-                <input type="text" class="form-control" name="pinCode" id="pinCode"
-                       formControlName="pinCode" placeholder="Enter Pin Code">
+                <input type="text" class="form-control" name="pinCode" id="pinCode" formControlName="pinCode"
+                  placeholder="Enter Pin Code">
               </div>
               <div class="mb-3">
 
@@ -212,28 +212,28 @@
             <div *ngIf="jobHistoryVisible" class="mt-2">
               <div class="mb-2">
                 <label for="jobTitle" class="form-label">Job Title</label>
-                <input type="text" class="form-control" name="jobTitles" id="jobTitle"
-                       formControlName="jobTitle" placeholder="Enter Job Title">
+                <input type="text" class="form-control" name="jobTitles" id="jobTitle" formControlName="jobTitle"
+                  placeholder="Enter Job Title">
               </div>
               <div class="mb-2">
                 <label for="startDate" class="form-label">Start Date</label>
-                <input type="date" class="form-control" name="startDate" id="startDate"
-                       formControlName="jobTitle" placeholder="Enter Start Date">
+                <input type="date" class="form-control" name="startDate" id="startDate" formControlName="jobTitle"
+                  placeholder="Enter Start Date">
               </div>
               <div class="mb-2">
                 <label for="endDate" class="form-label">End Date</label>
-                <input type="date" class="form-control" name="endDate" id="endDate"
-                       formControlName="endDate" placeholder="Enter End Date">
+                <input type="date" class="form-control" name="endDate" id="endDate" formControlName="endDate"
+                  placeholder="Enter End Date">
               </div>
               <div class="mb-3">
                 <label for="jobLocation" class="form-label">Job Location</label>
                 <input type="text" class="form-control" name="jobLocation" id="jobLocation"
-                       formControlName="jobLocation" placeholder="Enter Location">
+                  formControlName="jobLocation" placeholder="Enter Location">
               </div>
               <div class="mb-3">
                 <label for="salary" class="form-label">Salary</label>
-                <input type="number" class="form-control" name="salary" id="salary"
-                       formControlName="salary" placeholder="Enter Salary">
+                <input type="number" class="form-control" name="salary" id="salary" formControlName="salary"
+                  placeholder="Enter Salary">
               </div>
             </div>
           </div>
@@ -251,8 +251,8 @@
             <div *ngIf="skillVisible" class="mt-2">
               <div class="mb-2">
                 <label for="skills" class="form-label">Skills</label>
-                <input type="text" class="form-control" name="skills" id="skills"
-                       formControlName="skills" placeholder="Enter skills">
+                <input type="text" class="form-control" name="skills" id="skills" formControlName="skills"
+                  placeholder="Enter skills">
               </div>
             </div>
           </div>

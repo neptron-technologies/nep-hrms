@@ -35,28 +35,24 @@ namespace nep_hrms.Server.API
         }
 
         [HttpPost("AddEmployeeToProject/{projectId}/{empId}")]
-        //[HttpPost]
-        //[Route("AddEmployeeToProject/{projectId}/{empId}")]
         public async Task<IActionResult> AddEmployeeToProject(int projectId, int empId)
         {
             await _projectService.AddEmployeeToProject(projectId, empId);
             return Ok(new { message = "Employee added to project successfully." });
         }
 
-        //[HttpPost]
-        //[Route("AddProjects")]
-        //public async Task<IActionResult> AddProject([FromBody] ProjectDto projectDto)
-        //{
-        //    if (projectDto == null)
-        //        return BadRequest(new { message = "Invalid project data" });
+        //added
+        [HttpGet("GetAllProjects")]
+        public async Task<IActionResult> GetAllProjects()
+        {
+            var projects = await _projectService.GetAllProjects();
+            if (projects == null || !projects.Any())
+            {
+                return NotFound(new { message = "No projects found." });
+            }
+            return Ok(projects);
+        }
 
-        //    var createdProject = await _projectService.AddAsync(projectDto);
-
-        //    // Explicitly set Employees to null or remove it
-        //    //createdProject.Employees = null;
-
-        //    return CreatedAtAction(nameof(GetProjectsByEmpId), new { projectId = createdProject.Id }, createdProject);
-        //}
         [HttpPost]
         [Route("AddProjects")]
         public async Task<IActionResult> AddProject([FromBody] ProjectDto projectDto)
@@ -70,8 +66,7 @@ namespace nep_hrms.Server.API
 
         }
 
-
-        // Update 
+        //Update 
         [HttpPut]
         [Route("Update{projectId}")]
         public async Task<IActionResult> UpdateProject(int projectId, [FromBody] ProjectDto projectDto)
@@ -83,13 +78,21 @@ namespace nep_hrms.Server.API
             return Ok(new { message = "Project updated successfully" });
         }
 
-        // Delete Project
+        //Delete 
         [HttpDelete]
         [Route("{projectId}")]
         public async Task<IActionResult> DeleteProject(int projectId)
         {
             await _projectService.DeleteAsync(projectId);
             return Ok(new { message = "Project deleted successfully" });
+        }
+
+        [HttpGet]
+        [Route("{empId}")]
+        public async Task<IActionResult> GetProjectId(int empId)
+        {
+            var projectId = await _projectService.GetProjectIdByEmployeeId(empId);
+            return Ok(projectId);
         }
     }
 }

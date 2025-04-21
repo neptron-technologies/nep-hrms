@@ -46,7 +46,6 @@ namespace nep_hrms.Domain.Services
             var project = _mapper.Map<Project>(projectDto);
             var createdProject = await _projectRepo.AddAsync(project);
             var result = _mapper.Map<ProjectDto>(createdProject);
-            //result.Employees = null; // employees not included
             return result;
         }
 
@@ -65,5 +64,20 @@ namespace nep_hrms.Domain.Services
         {
             await _projectRepo.AddEmployeeToProject(projectId, empId);
         }
+
+        //added
+        public async Task<List<ProjectDto>> GetAllProjects(int? projectId = null)
+        {
+            var projects = await _projectRepo.GetAllProjects(projectId);
+            return _mapper.Map<List<ProjectDto>>(projects);
+        }
+
+        public async Task<List<int>> GetProjectIdByEmployeeId(int empId)
+
+        {
+            return await _projectRepo.GetProjectIdByEmployeeId(empId);
+        }
+
+
     }
 }

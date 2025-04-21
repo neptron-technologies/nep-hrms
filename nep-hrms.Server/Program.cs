@@ -24,6 +24,7 @@ builder.Services.AddAutoMapper(typeof(RolePermissionMapper));
 builder.Services.AddAutoMapper(typeof(LeaveMapper));
 builder.Services.AddAutoMapper(typeof(ProjectMapper));  //added on tues
 builder.Services.AddAutoMapper(typeof(RecruitmentMapper)); //added on tues
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 
 
 
@@ -93,6 +94,8 @@ builder.Services.AddScoped<IEmpLeaveCancelled, EmpLeaveCancelRepo>();
 builder.Services.AddScoped<IEmpDashBoradService, EmpDashBoardService>();
 builder.Services.AddScoped<IProjectService, ProjectService>();   //added by suraj
 builder.Services.AddScoped<IRecruitmentService, RecruitmentService>(); // same
+builder.Services.AddScoped<EmailService>();
+
 
 
 

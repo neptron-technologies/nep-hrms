@@ -15,9 +15,9 @@ namespace nep_hrms.Domain.Interfaces
         Task<List<Employee>> GetAllAsync();     
         Task<Employee> GetByIdAsync(int id);
         Task<EmployeeDto> AddAsync(EmployeeDto employeeDto);
-        Task UpdateAsync(Employee employee);
+        Task UpdateAsync(EmployeeDto employeeDto);
         Task DeleteAsync(int id);
-
+        Task<string> GenerateEmpCode();
         //Task<bool> UploadEmployeeDocument(int id, string documentName, string documentType, byte[] documentContent);
     }
 }

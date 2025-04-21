@@ -19,15 +19,15 @@ export class ApplyleaveComponent implements OnInit {
   isEndDateHoliday: boolean = false;
   Leavelist: Applyleave[] = [];
   Empid: number | null = null;
-  //Empid: number = Number(localStorage.getItem('empId')) || 0;
+
   PanelOpen: boolean = false;
 
   constructor(private fb: FormBuilder, private applyleaveService: ApplyleaveService, private dataTransferService: DataTransferService) {
     this.leaveForm = this.fb.group({
-      empId: [null, Validators.required],
+      empId: ['', Validators.required],
       leaveType: ['', Validators.required],
-      startDate: [null, Validators.required],
-      endDate: [null, Validators.required],
+      startDate: ['', Validators.required],
+      endDate: ['', Validators.required],
       appliedOn: [formatDate(new Date(), 'yyyy-MM-dd', 'en')],
       noOfDays: [{ value: 0, disabled: true }],
       approvedStatus: [{ value: 'Pending', disabled: true }],
@@ -41,22 +41,16 @@ export class ApplyleaveComponent implements OnInit {
     this.leaveForm.get('endDate')?.valueChanges.subscribe(() => this.checkHolidays());
   }
   ngOnInit(): void {
-     this.Empid = this.dataTransferService.getEmpId();
-    
-      if (this.Empid !== null) {
+    this.Empid = this.dataTransferService.getEmpId();
+  
+    if (this.Empid !== null && this.Empid !== undefined) {
       this.leaveForm.patchValue({ empId: this.Empid });
       this.getLeaves(this.Empid);
-      this.getHolidays()
+      this.getHolidays();
     } else {
-      console.error('Employee ID is null. Unable to fetch leaves.');
+      console.error('Employee ID is null or undefined. Unable to fetch leaves.');
     }
-
-    
-    
-
   }
-
-
   checkHolidays() {
     const startDate = this.leaveForm.get('startDate')?.value;
     const endDate = this.leaveForm.get('endDate')?.value;
@@ -120,6 +114,8 @@ export class ApplyleaveComponent implements OnInit {
     this.PanelOpen = false;
   }
   submitForm() {
+    console.log(this.leaveForm);
+    console.log(this.Empid);
     if (this.leaveForm.valid) {
       const leaveData = this.leaveForm.getRawValue();
       leaveData.empId = this.Empid;
@@ -129,7 +125,7 @@ export class ApplyleaveComponent implements OnInit {
       leaveData.noOfDays = this.leaveForm.get('noOfDays')?.value || 0;
       this.applyleaveService.applyLeave(leaveData).subscribe(
         (response: any) => {
-          console.log('Leave Applied:', response);
+          
           Swal.fire('Success!', 'Leave Applied successfully.', 'success');
          
           this.resetForm();
@@ -152,23 +148,25 @@ export class ApplyleaveComponent implements OnInit {
       console.log('Form Invalid!');
     }
   }
-
-
-
   resetForm() {
     this.leaveForm.reset({
-      empId: '',
+      empId: this.Empid ?? '',
       leaveType: '',
       startDate: '',
       endDate: '',
-      appliedOn: '',
-      noOfDays: '',
+      appliedOn: formatDate(new Date(), 'yyyy-MM-dd', 'en'),
+      noOfDays: 0,
       leaveDesc: '',
       approvedStatus: 'Pending',
       approvedBy: '',
-      canceledStatus: '',
-      canceledOn: ''
-
+      canceledStatus: 'Not Cancelled',
+      canceledOn: null
     });
   }
+  
+
 }
+
+
+
+

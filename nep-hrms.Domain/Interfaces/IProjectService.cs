@@ -18,6 +18,8 @@ namespace nep_hrms.Domain.Interfaces
         Task UpdateAsync(ProjectDto project);
         Task DeleteAsync(int id);
         Task AddEmployeeToProject(int projectId, int empId);
+        Task<List<ProjectDto>> GetAllProjects(int? projectId = null); //added
+        Task<List<int>> GetProjectIdByEmployeeId(int empId);
     }
 
 }

@@ -14,5 +14,9 @@ namespace nep_hrms.DAL.Interfaces
         Task<Project?> GetProjectWithEmployeesAsync(int projectId);
         Task<List<Employee>> GetEmployeesByProjectId(int projectId);
         Task AddEmployeeToProject(int projectId, int empId);
+        Task<List<Project>> GetAllProjects(int? projectId = null); //added
+
+        Task<List<int>> GetProjectIdByEmployeeId(int empId);
+
     }
 }

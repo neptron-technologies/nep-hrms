@@ -4,14 +4,15 @@ export class Employee {
   fname: string;
   lname: string;
   dob: string; // Format: YYYY-MM-DD
-  gender: string;
+  //gender: string;
   doj: string; // Format: YYYY-MM-DD//
   bloodGroup: string;
   designation: string;//
   grade: string;//
-  active: string;
+  active:boolean;
   email: string;
-  contractor: string;
+  contractor: boolean;
+  company_email:string;
   address: string;
   city: string;
   state: string;
@@ -31,14 +32,15 @@ export class Employee {
     fname: string,
     lname: string,
     dob: string,
-    gender: string,
+    //gender: string,
     doj: string,
     bloodGroup: string,
     designation: string,
     grade: string,
-    active: string,
+    active: boolean,
     email: string,
-    contractor: string,
+    contractor: boolean,
+    company_email:string,
     address: string,
     city: string,
     state: string,
@@ -57,7 +59,7 @@ export class Employee {
     this.fname = fname;
     this.lname = lname;
     this.dob = dob;
-    this.gender = gender;
+    //this.gender = gender;
     this.doj = doj;
     this.bloodGroup = bloodGroup;
     this.designation = designation;
@@ -65,6 +67,7 @@ export class Employee {
     this.active = active;
     this.email = email;
     this.contractor = contractor;
+    this.company_email=company_email;
     this.address = address;
     this.city = city;
     this.state = state;

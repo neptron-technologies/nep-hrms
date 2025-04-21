@@ -21,13 +21,13 @@ import { RecruitmentComponent } from './core/Module/recruitment/recruitment.comp
 
 @NgModule({
     declarations: [AppComponent, 
-        EmployeeComponent, 
-        PayslipComponent, 
+        EmployeeComponent,  
         ApplyleaveComponent, 
         ManageleaveComponent, 
         EmpdashboardComponent, 
         SuperadminComponent,
         RecruitmentComponent,
+        PayslipComponent,
     ],
 
     bootstrap: [AppComponent],

@@ -79,5 +79,34 @@ namespace nep_hrms.DAL.Repositories
                 await _dbContext.SaveChangesAsync();
             }
         }
+
+        //added
+        public async Task<List<Project>> GetAllProjects(int? projectId = null)
+        {
+            if (projectId.HasValue)
+            {
+                return await _dbContext.Projects
+                    .Where(p => p.Id == projectId.Value)
+                    .ToListAsync();
+            }
+            return await _dbContext.Projects.ToListAsync();
+        }
+
+        public async Task<List<int>> GetProjectIdByEmployeeId(int empId)
+
+        {
+
+            var projectIds = await _dbContext.EmployeeProjects
+
+              .Where(ep => ep.EmployeeId == empId)
+
+              .Select(ep => ep.ProjectId)
+
+              .ToListAsync();
+
+            return projectIds;
+
+        }
+
     }
 }

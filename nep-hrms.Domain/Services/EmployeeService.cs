@@ -54,8 +54,9 @@ namespace nep_hrms.Domain.Services
             return _mapper.Map<EmployeeDto>(createdEmployee);
         }
 
-        public async Task UpdateAsync(Employee employee) //update
+        public async Task UpdateAsync(EmployeeDto employeeDto) //update
         {
+            var employee = _mapper.Map<Employee>(employeeDto);
             await _employeeRepo.UpdateAsync(employee);
         }
 
@@ -88,5 +89,16 @@ namespace nep_hrms.Domain.Services
         {
             return await _employeeRepo.GetDataBySql(sqlQry);
         }
+
+        public async Task<string> GenerateEmpCode()
+        {
+            var length = 4;
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            var random = new Random();
+            return new string(Enumerable.Repeat(chars, length)
+                                        .Select(s => s[random.Next(s.Length)])
+                                        .ToArray());
+        
+    }
     }
 }

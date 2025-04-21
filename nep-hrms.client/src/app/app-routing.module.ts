@@ -11,6 +11,7 @@ import { ManageleaveComponent } from './core/Module/manageleave/manageleave.comp
 import { EmpdashboardComponent } from './core/Module/empdashboard/empdashboard.component';
 import { SuperadminComponent } from './core/Module/superadmin/superadmin.component';
 import { RecruitmentComponent } from './core/Module/recruitment/recruitment.component';
+import { ProjectManagerComponent } from './core/Module/projectmanager/projectmanager.component';
 
 const routes: Routes = [
   {
@@ -59,6 +60,11 @@ const routes: Routes = [
       {
         path: 'recruitment',
         component: RecruitmentComponent
+      },
+      {
+        path: 'projectmanager',
+        component: ProjectManagerComponent
+
       },
       {
         path: '**',

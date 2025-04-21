@@ -9,8 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   selector: 'app-superadmin',
   standalone: false,
   templateUrl: './superadmin.component.html',
-  styleUrl: './superadmin.component.css'
-
+  styleUrl: './superadmin.component.css',
 })
 export class SuperadminComponent implements OnInit {
   employeeList: Employee[] = [];
@@ -22,13 +21,14 @@ export class SuperadminComponent implements OnInit {
 
   private apiUrl = 'https://your-api-url.com/employees';
 
-  constructor(private http: HttpClient,
-    private superadminService: SuperAdminService) { }
+  constructor(
+    private http: HttpClient,
+    private superadminService: SuperAdminService
+  ) {}
 
   ngOnInit(): void {
     this.getEmployees();
   }
-
 
   openModal(empId: number) {
     this.isOpen = true;
@@ -59,17 +59,17 @@ export class SuperadminComponent implements OnInit {
   getAttendance(empId: number) {
     this.superadminService.getAttendanceSummary(empId).subscribe(
       (res: any) => {
-        console.log("Attendance Data:", res); // Debugging
+        console.log('Attendance Data:', res); // Debugging
         this.attendanceDetails = Object.entries(res).map(([key, value]) => ({
           type: key,
-          days: value
-        }))
+          days: value,
+        }));
         if (this.attendanceDetails.length === 0) {
-          console.log("No attendance data found.");
+          console.log('No attendance data found.');
         }
       },
       (error) => {
-        console.error("Error fetching attendance:", error);
+        console.error('Error fetching attendance:', error);
       }
     );
   }

@@ -51,11 +51,12 @@ namespace nep_hrms.Server.API
 
         [HttpPut]
         [Route("UpdateEmployee")]
-        public async Task<IActionResult> UpdateEmployee(int id, [FromBody] Employee employee)
+        public async Task<IActionResult> UpdateEmployee(int id, [FromBody] EmployeeDto employeeDto)
         {
-            if (id != employee.Id)
+            if (id != employeeDto.Id)
                 return BadRequest();
-            await _employeeService.UpdateAsync(employee);
+
+            await _employeeService.UpdateAsync(employeeDto);
             return NoContent();
         }
 
@@ -79,6 +80,17 @@ namespace nep_hrms.Server.API
 
             //await _employeeService.DeleteAsync(id);
             //    return NoContent();
+        }
+
+
+
+        [HttpGet]
+        [Route("GenerateEmpCode")]
+        public async Task<IActionResult> GenerateEmpCode()
+        {
+           var Empcode= await _employeeService.GenerateEmpCode();
+            return Ok(new { empCode = Empcode });
+
         }
     }
 }

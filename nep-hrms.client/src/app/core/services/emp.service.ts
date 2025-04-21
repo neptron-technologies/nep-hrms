@@ -15,21 +15,25 @@ export class EmpService {
 
 
   addEmployee(obj: Employee): Observable<Employee> {
-    return this.http.post<Employee>("https://localhost:44362/api/Employee/AddEmployee/", obj);
+    return this.http.post<Employee>("https://localhost:44362/api/Employee/AddEmployee", obj);
   }
 
   updateEmployee(id: number, obj: Employee) {
-    return this.http.put<Employee>("http://localhost:3001/updatemethod?=" + id, obj);
+    return this.http.put<Employee>("https://localhost:44362/api/Employee/UpdateEmployee?=" + id, obj);
   }
 
   // Method to delete an employee
   deleteEmployee(id: number) {
-    return this.http.delete<Employee>("http://localhost:3001/deletemethod?=" + id);
+    return this.http.delete<Employee>("https://localhost:44362/api/Employee/DeleteEmployee?id=" + id);
   }
 
   getEmployees(): Observable<Employee[]>{
     //return this.http.get<Employee[]>("https://localhost:44362/api/Employee/GetEmployees");
     return this.http.get<Employee[]>(this.apiUrl)
+  }
+  getEmpCode():Observable<any>{
+    
+    return this.http.get<any>("https://localhost:44362/api/Employee/GenerateEmpCode");
   }
 }
 

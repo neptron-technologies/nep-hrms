@@ -2,7 +2,7 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { PayslipService } from '../../services/payslip.service';
 import { CommonModule } from '@angular/common';
 import { DataTransferService } from '../../services/data-transfer.service';
-import {jsPDF} from 'jspdf';
+import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 
 @Component({
@@ -18,7 +18,7 @@ export class PayslipComponent implements OnInit {
   @ViewChild('payslip', { static: false }) payslip!: ElementRef;
 
   constructor(
-    private payslipService: PayslipService, 
+    private payslipService: PayslipService,
     private dataTransferService: DataTransferService
   ) {}
 
@@ -29,23 +29,23 @@ export class PayslipComponent implements OnInit {
   updatePayslip(): void {
     this.empId = this.dataTransferService.getEmpId();
 
-    if (this.empId){
+    if (this.empId) {
       this.payslipService.getPayslip(this.empId).subscribe(
-        (data) =>{
+        (data) => {
           this.payslipData = data;
         },
         (error) => {
           console.error('Error fetching payslip:', error);
         }
       );
-    } else{
+    } else {
       console.error('Employee Id not found');
     }
   }
   downloadPDF() {
     const element = this.payslip.nativeElement;
 
-    html2canvas(element, { scale: 2 }).then(canvas => {
+    html2canvas(element, { scale: 2 }).then((canvas) => {
       const imgData = canvas.toDataURL('image/png');
       const pdf = new jsPDF('p', 'mm', 'a4');
       const imgWidth = 210; // A4 width in mm
